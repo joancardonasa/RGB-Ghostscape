@@ -9,11 +9,6 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "KinematicBody",
-"class": "Enemy",
-"language": "GDScript",
-"path": "res://scripts/gameplay/CO_Enemy.gd"
-}, {
 "base": "Node",
 "class": "Stats",
 "language": "GDScript",
@@ -25,7 +20,6 @@ _global_script_classes=[ {
 "path": "res://scripts/gameplay/CO_Wave.gd"
 } ]
 _global_script_class_icons={
-"Enemy": "",
 "Stats": "",
 "Wave": ""
 }
@@ -48,6 +42,7 @@ CoSceneManager="*res://scripts/core/CO_SceneManager.gd"
 CoGlobals="*res://scripts/core/CO_Globals.gd"
 ScSound="*res://Scenes/Core/SC_Sound.tscn"
 EnemyDeathCount="*res://EnemyDeathCount.gd"
+Utils="*res://singletons/Utils.gd"
 
 [display]
 

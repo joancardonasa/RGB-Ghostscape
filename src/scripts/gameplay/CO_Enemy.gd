@@ -2,7 +2,7 @@
 
 extends KinematicBody
 
-class_name Enemy
+#class_name Enemy
 
 var path = []
 var path_node = 0
@@ -35,7 +35,6 @@ enum state {
 var current_state = state.SEEKING
 
 func _ready():
-    
     player = get_tree().get_nodes_in_group("Player")[0]
     enemy_mesh.set_surface_material(0, default_material)
 
@@ -76,14 +75,15 @@ func move_and_attack():
             state.RETURNING:
                 current_state = state.RESTING
                 enemy_mesh.set_surface_material(0, resting_material)
-                collide_with_other_enemies(false)
+
                 # warning-ignore:return_value_discarded
                 move_and_slide(Vector3.ZERO)
                 attack_timer.start()
 
 func collide_with_other_enemies(should_we_collide):
-    set_collision_mask_bit(2, should_we_collide)
-    set_collision_layer_bit(2, should_we_collide)
+    pass
+#    set_collision_mask_bit(2, should_we_collide)
+#    set_collision_layer_bit(2, should_we_collide)
 
 func move_to(target_pos):
     path = nav.get_simple_path(global_transform.origin, target_pos)
@@ -91,22 +91,19 @@ func move_to(target_pos):
 
 func _on_PathUpdateTimer_timeout():
     if is_instance_valid(player):
-        move_to(player.global_transform.origin) 
+        move_to(player.global_transform.origin)
 
 func _on_Stats_died_signal():
-    EnemyDeathCount.update_enemy_death_count()
-    ScSound.get_node("HitSound").play()
     queue_free()
 
-func _on_AttackRadius_body_entered(body):
-    if body == player:
-        attack_target = player.global_transform.origin
-        return_target = global_transform.origin
-        current_state = state.ATTACKING
-        enemy_mesh.set_surface_material(0, attack_material)
-        collide_with_other_enemies(false)
+#func _on_AttackRadius_body_entered(body):
+#    if body == player:
+#        attack_target = player.global_transform.origin
+#        return_target = global_transform.origin
+#        current_state = state.ATTACKING
+#        enemy_mesh.set_surface_material(0, attack_material)
+#
+#func _on_AttackTimer_timeout():
+#    current_state = state.SEEKING
+#    enemy_mesh.set_surface_material(0, default_material)
 
-func _on_AttackTimer_timeout():
-    current_state = state.SEEKING
-    enemy_mesh.set_surface_material(0, default_material)
-    collide_with_other_enemies(true)
