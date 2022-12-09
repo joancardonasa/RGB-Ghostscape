@@ -47,12 +47,12 @@ default_bus_layout="res://global/BS_Bus_Layouts.tres"
 CoSceneManager="*res://scripts/core/CO_SceneManager.gd"
 CoGlobals="*res://scripts/core/CO_Globals.gd"
 ScSound="*res://Scenes/Core/SC_Sound.tscn"
+EnemyDeathCount="*res://EnemyDeathCount.gd"
 
 [display]
 
 window/size/width=640
 window/size/height=360
-window/size/fullscreen=true
 window/size/test_width=1280
 window/size/test_height=720
 window/stretch/mode="viewport"

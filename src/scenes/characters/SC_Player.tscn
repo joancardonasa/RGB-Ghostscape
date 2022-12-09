@@ -9,7 +9,7 @@
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
 
-[node name="Player" type="KinematicBody"]
+[node name="Player" type="KinematicBody" groups=["Player"]]
 collision_layer = 2
 script = ExtResource( 1 )
 
@@ -34,3 +34,5 @@ script = ExtResource( 2 )
 startingSpell = ExtResource( 3 )
 
 [node name="SceneTransition" parent="." instance=ExtResource( 5 )]
+
+[connection signal="died_signal" from="Stats" to="." method="_on_Stats_died_signal"]
