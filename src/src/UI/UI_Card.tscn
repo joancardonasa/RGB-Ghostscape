@@ -24,7 +24,7 @@ margin_top = 4.0
 margin_right = 116.0
 margin_bottom = 36.0
 
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer"]
+[node name="TimeLabel" type="Label" parent="MarginContainer/HBoxContainer"]
 margin_top = 7.0
 margin_right = 21.0
 margin_bottom = 25.0

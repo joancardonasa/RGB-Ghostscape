@@ -12,7 +12,6 @@ func set_card_manager(cardManager):
 
 func Enter():
     _cardManager.emit_signal("Player_AllowShoot", true)
-    _cardManager.emit_signal("Card_Color", col)
     _cardManager.emit_signal("Enemy_Reveal", true)
 
 func Exit():
