@@ -9,6 +9,7 @@ var _next_draw: float
 var _current_ind: int
 
 signal Player_SpeedMult(enable, mult)
+signal Card_Color(col)
 
 func _ready():
 	deck = StartDeck.duplicate()
