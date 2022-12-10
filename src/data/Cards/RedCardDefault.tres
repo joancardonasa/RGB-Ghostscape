@@ -6,3 +6,4 @@
 script = ExtResource( 1 )
 Duration = 5.0
 col = Color( 1, 0, 0, 1 )
+reveal_enemies = true
