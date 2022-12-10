@@ -25,7 +25,20 @@ func _input(event):
             active_weapon.fire()
             return
 
-    # Clean this up for the love of god
+    determine_weapon_change(event)
+
+
+func _physics_process(delta):
+    if _shooting_allowed and is_instance_valid(active_weapon):
+        if Input.is_action_pressed("fire") and active_weapon.weapon_data.automatic:
+            active_weapon.fire()
+
+
+func _on_Card_AllowShoot(enable : bool):
+    _shooting_allowed = enable
+
+
+func determine_weapon_change(event: InputEvent):
     if event.is_action_pressed("scroll_weapon_down"):
         var new_index: int = weapons.find(active_weapon, 0) - 1
         if new_index < 0: new_index = len(weapons) - 1
@@ -38,12 +51,3 @@ func _input(event):
         active_weapon.visible = false
         active_weapon = weapons[new_index]
         active_weapon.visible = true
-
-func _physics_process(delta):
-    if _shooting_allowed and is_instance_valid(active_weapon):
-        if Input.is_action_pressed("fire") and active_weapon.weapon_data.automatic:
-            active_weapon.fire()
-
-
-func _on_Card_AllowShoot(enable : bool):
-    _shooting_allowed = enable
