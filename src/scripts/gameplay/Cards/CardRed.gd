@@ -2,6 +2,8 @@ extends Resource
 class_name CardRed
 
 export(float) var Duration = 5.0
+export(Color, RGB) var col = Color(1, 0, 0)
+
 var _cardManager
 
 func set_card_manager(cardManager):
@@ -9,6 +11,7 @@ func set_card_manager(cardManager):
 
 func Enter():
 	_cardManager.emit_signal("Player_AllowShoot",true)
+	_cardManager.emit_signal("Card_Color",col)
 
 func Exit():
 	_cardManager.emit_signal("Player_AllowShoot",false)
