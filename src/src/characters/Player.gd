@@ -60,16 +60,8 @@ func _input(event):
         head.rotation.x = clamp(head.rotation.x, deg2rad(-89), deg2rad(89))
 
 func _process(delta):
-    # Camera physics interpolation to reduce physics jitter on high refresh-rate monitors
-    if Engine.get_frames_per_second() > Engine.iterations_per_second:
-        camera.set_as_toplevel(true)
-        camera.global_transform.origin = camera.global_transform.origin.linear_interpolate(head.global_transform.origin, CAM_ACCEL * delta)
-        camera.rotation.y = rotation.y
-        camera.rotation.x = head.rotation.x
-        camera.rotation.z = head.rotation.z
-    else:
-        camera.set_as_toplevel(false)
-        camera.global_transform = head.global_transform
+    camera.set_as_toplevel(false)
+    camera.global_transform = head.global_transform
         
     head.rotation.z = lerp(head.rotation.z, currentStrafeDir * LEAN_MULT, delta * LEAN_SMOOTH)
 

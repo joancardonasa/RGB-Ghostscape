@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://fonts/OutlineFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/UI/UI_Card.gd" type="Script" id=2]
+[ext_resource path="res://assets/UI/crossed-sabres.png" type="Texture" id=3]
 
 [node name="Control" type="Control"]
 margin_right = 40.0
@@ -36,3 +37,20 @@ margin_bottom = 25.0
 size_flags_horizontal = 0
 custom_fonts/font = ExtResource( 1 )
 text = "0.0"
+
+[node name="Control" type="AspectRatioContainer" parent="UI_Card/MarginContainer/HBoxContainer"]
+margin_left = 25.0
+margin_right = 42.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Icon" type="TextureRect" parent="UI_Card/MarginContainer/HBoxContainer/Control"]
+margin_top = 7.5
+margin_right = 17.0
+margin_bottom = 24.5
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 5

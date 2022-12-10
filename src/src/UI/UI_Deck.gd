@@ -29,6 +29,8 @@ func _draw_card(card: Resource, duration: float):
     _reorder_deck(card_manager.get_ordered_deck())
 
 func _reorder_deck(newOrder):
+    # Hacky way to wait the anim time for the node to deactivate
+    yield(get_tree().create_timer(0.75), "timeout")
     for child in card_container.get_children():
         card_container.remove_child(child)
     for card in newOrder:

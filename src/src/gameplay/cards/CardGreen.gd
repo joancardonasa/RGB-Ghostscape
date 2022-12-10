@@ -5,6 +5,7 @@ export(float) var Duration = 5.0
 export(float) var SpeedMult = 2.0
 export(Color, RGB) var col = Color(0,1,0)
 export(bool) var reveal_enemies = false
+export(Texture) var icon
 
 var _cardManager
 

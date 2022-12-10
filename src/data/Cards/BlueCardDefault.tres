@@ -1,9 +1,11 @@
-[gd_resource type="Resource" load_steps=2 format=2]
+[gd_resource type="Resource" load_steps=3 format=2]
 
 [ext_resource path="res://src/gameplay/cards/CardBlue.gd" type="Script" id=1]
+[ext_resource path="res://assets/UI/cardboard-box-closed.png" type="Texture" id=2]
 
 [resource]
 script = ExtResource( 1 )
 Duration = 5.0
-col = Color( 0, 0, 1, 1 )
+col = Color( 0.231373, 0.364706, 0.788235, 1 )
 reveal_enemies = false
+icon = ExtResource( 2 )
