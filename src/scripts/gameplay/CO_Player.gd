@@ -62,6 +62,7 @@ func _process(delta):
 		camera.global_transform.origin = camera.global_transform.origin.linear_interpolate(head.global_transform.origin, CAM_ACCEL * delta)
 		camera.rotation.y = rotation.y
 		camera.rotation.x = head.rotation.x
+		camera.rotation.z = head.rotation.z
 	else:
 		camera.set_as_toplevel(false)
 		camera.global_transform = head.global_transform

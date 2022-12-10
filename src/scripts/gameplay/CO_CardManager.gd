@@ -8,6 +8,7 @@ var deck : Array = []
 var _next_draw: float
 var _current_ind: int
 
+#warning-ignore-all:unused_signal
 signal Player_SpeedMult(enable, mult)
 signal Player_AllowShoot(enable)
 signal Card_Color(col)
