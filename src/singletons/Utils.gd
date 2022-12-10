@@ -15,3 +15,7 @@ func get_player():
 
 func get_card_manager():
     return get_tree().get_nodes_in_group("CardManager")[0]
+
+
+func get_hitscan_raycast():
+    return get_tree().get_nodes_in_group("WeaponHitscanRaycast")[0]

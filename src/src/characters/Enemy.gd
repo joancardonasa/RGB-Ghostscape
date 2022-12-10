@@ -5,6 +5,8 @@ export var attack_speed_multiplier = 5
 
 onready var nav_agent = $NavigationAgent
 
+onready var stats = $Stats
+
 onready var mesh = $MeshInstance
 onready var aura_mesh = $AuraMeshInstance
 
@@ -29,12 +31,15 @@ func _physics_process(_delta):
     if is_instance_valid(player):
         move_and_slide(direction.normalized() * speed, Vector3.UP)
 
-
-func _on_Hurtbox_area_entered(area):
-    # Received damage
-    pass
-
-
 func _determine_visibility(enable: bool):
     mesh.visible = enable
     aura_mesh.visible = not enable
+
+
+# Health/Damage
+func _on_Hurtbox_damage_taken(amount: int):
+    stats.take_hit(amount)
+
+
+func _on_Stats_died_signal():
+    queue_free()

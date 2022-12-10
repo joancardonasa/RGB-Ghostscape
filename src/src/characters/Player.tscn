@@ -1,10 +1,14 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/characters/Player.gd" type="Script" id=1]
 [ext_resource path="res://src/spells/SpellController.gd" type="Script" id=2]
 [ext_resource path="res://src/spells/Spell.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/other/Stats.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/core/SceneTransition.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/gameplay/weapons/Gun.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/UI/crosshair187.png" type="Texture" id=7]
+[ext_resource path="res://src/characters/WeaponManager.gd" type="Script" id=8]
+[ext_resource path="res://src/gameplay/weapons/AssaultRifle.tscn" type="PackedScene" id=9]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -24,10 +28,45 @@ shape = SubResource( 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
 
 [node name="Camera" type="Camera" parent="Head"]
-fov = 90.0
+fov = 100.0
 
 [node name="Hand" type="Position3D" parent="Head"]
 transform = Transform( 1, 0, 0, 0, 0.999997, -0.00246091, 0, 0.00246091, 0.999997, 0, -0.728066, -1.40332 )
+
+[node name="WeaponManager" type="Spatial" parent="Head"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1 )
+script = ExtResource( 8 )
+
+[node name="WeaponSocket" type="Spatial" parent="Head/WeaponManager"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.573, -0.57, 0.216 )
+
+[node name="Gun" parent="Head/WeaponManager/WeaponSocket" instance=ExtResource( 6 )]
+is_active = true
+
+[node name="AssaultRifle" parent="Head/WeaponManager/WeaponSocket" instance=ExtResource( 9 )]
+
+[node name="WeaponHUD" type="Control" parent="Head/WeaponManager"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Crosshair" type="TextureRect" parent="Head/WeaponManager/WeaponHUD"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 20.0
+margin_bottom = 20.0
+texture = ExtResource( 7 )
+expand = true
+
+[node name="WeaponHitscanRaycast" type="RayCast" parent="Head/WeaponManager" groups=["WeaponHitscanRaycast"]]
+cast_to = Vector3( 0, 0, -200 )
+collision_mask = 512
+collide_with_areas = true
+collide_with_bodies = false
+debug_shape_custom_color = Color( 0.0745098, 0.870588, 0.627451, 1 )
 
 [node name="SpellController" type="Node" parent="."]
 script = ExtResource( 2 )
