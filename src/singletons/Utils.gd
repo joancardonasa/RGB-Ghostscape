@@ -15,3 +15,7 @@ func get_player():
 
 func get_nav():
     return get_tree().get_nodes_in_group("Nav")[0]
+
+
+func get_card_manager():
+    return get_tree().get_nodes_in_group("CardManager")[0]
