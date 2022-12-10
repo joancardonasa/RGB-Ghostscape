@@ -106,7 +106,9 @@ func _physics_process(delta):
 		gravity_vec = Vector3.UP * JUMP
 	
 	# Moving
+	print(velocity)
 	velocity = velocity.linear_interpolate(direction * (SPEED * _speed_mult), accel * delta)
+	print(velocity)
 	if(gravity_vec > Vector3.ZERO):
 		movement = velocity + gravity_vec * JUMP_MULTY
 	elif(gravity_vec < Vector3.ZERO):
