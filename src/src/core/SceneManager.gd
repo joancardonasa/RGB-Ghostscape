@@ -17,11 +17,9 @@ func goto_scene(path):
     call_deferred("_deferred_goto_scene", path)
 
 func _deferred_goto_scene(path):
-    
     current_scene.free()
     
     var new_scene = ResourceLoader.load(path)
     
     current_scene = new_scene.instance()
-    
     get_tree().get_root().add_child(current_scene)

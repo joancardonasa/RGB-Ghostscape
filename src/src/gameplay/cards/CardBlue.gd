@@ -12,7 +12,7 @@ func set_card_manager(cardManager):
     _cardManager = cardManager
 
 func Enter():
-    _cardManager.emit_signal("Card_Color",col)
+    pass
 
 func Exit():
     pass
