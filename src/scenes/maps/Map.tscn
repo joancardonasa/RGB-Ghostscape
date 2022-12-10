@@ -1,0 +1,61 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/characters/SC_Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/characters/EnemyManager.tscn" type="PackedScene" id=2]
+
+[sub_resource type="NavigationMesh" id=1]
+vertices = PoolVector3Array( -5.89979, 3, -9.65581, -5.89979, 3, -9.15581, -5.39979, 3, -7.40581, 5.60021, 3, -7.40581, 5.60021, 3, -9.65581, 39.1002, 3, 6.84419, 41.3502, 3, 7.34419, 41.3502, 3, -0.655807, 39.1002, 3, -0.405807, 38.8502, 3, -7.40581, 40.3502, 3, -8.90581, 40.3502, 3, -9.65581, 28.6002, 3, -9.65581, 27.6002, 3, -7.40581, 38.8502, 3, -7.40581, 39.1002, 3, -0.405807, 41.3502, 3, -0.655807, 41.3502, 3, -8.65581, 40.3502, 3, -8.90581, 27.6002, 3, -7.40581, 28.6002, 3, -9.65581, 17.1002, 3, -9.65581, 16.6002, 3, -7.40581, 16.6002, 3, -7.40581, 17.1002, 3, -9.65581, 5.60021, 3, -9.65581, 5.60021, 3, -7.40581, -5.39979, 3, -7.40581, -5.89979, 3, -9.15581, -6.14979, 3, -8.65581, -6.14979, 3, -7.15581, -5.39979, 3, -7.40581, -6.14979, 3, -8.65581, -8.39979, 3, -8.65581, -8.39979, 3, 0.344193, -8.39979, 3, 9.59419, -6.14979, 3, 6.84419, -6.14979, 3, -0.155807, -4.14979, 3, 9.34419, -4.14979, 3, 7.09419, -6.14979, 3, 6.84419, -8.39979, 3, 9.59419, -6.14979, 3, -7.15581, -8.39979, 3, -8.65581, -8.39979, 3, 0.344193, -6.14979, 3, -0.155807, 4.10021, 1.5, 6.09419, 4.10021, 1.5, 1.59419, 2.35021, 1.5, 1.34419, 2.35021, 1.5, -1.40581, 4.10021, 1.5, -1.65581, 4.10021, 1.5, -6.40581, -5.14979, 1.5, 6.09419, 4.10021, 1.5, 6.09419, 2.35021, 1.5, 1.34419, -5.14979, 1.5, -0.155807, 2.35021, 1.5, -1.40581, 4.10021, 1.5, -6.40581, -5.14979, 1.5, -6.40581, -5.14979, 1.5, -0.155807, -5.14979, 1.5, -0.155807, 2.35021, 1.5, 1.34419, 2.35021, 1.5, -1.40581, 5.60021, 1.5, 1.34419, 4.10021, 1.5, 1.59419, 4.10021, 1.5, 6.09419, 12.6002, 1.5, 6.09419, 4.10021, 1.5, -6.40581, 4.10021, 1.5, -1.65581, 5.60021, 1.5, -1.40581, 12.6002, 1.5, -6.40581, 38.1002, 1.5, -0.155807, 38.1002, 1.5, -6.40581, 29.6002, 1.5, -6.40581, 29.6002, 1.5, 6.09419, 38.1002, 1.5, -0.155807, 29.6002, 1.5, -6.40581, 21.1002, 1.5, -6.40581, 21.1002, 1.5, 6.09419, 5.60021, 1.5, -1.40581, 5.60021, 1.5, 1.34419, 12.6002, 1.5, 6.09419, 21.1002, 1.5, 6.09419, 21.1002, 1.5, -6.40581, 12.6002, 1.5, -6.40581, 29.6002, 1.5, 6.09419, 38.1002, 1.5, 6.09419, 38.1002, 1.5, -0.155807, 3.35021, 4.5, -0.655807, 3.35021, 4.5, 0.594193, 4.60021, 4.5, 0.594193, 4.60021, 4.5, -0.655807, 41.3502, 3, 9.59419, 41.3502, 3, 7.34419, 39.1002, 3, 6.84419, 28.3502, 3, 7.09419, 30.1002, 3, 9.34419, -4.14979, 3, 9.34419, 7.10021, 3, 9.34419, 6.60021, 3, 7.09419, -4.14979, 3, 7.09419, 7.10021, 3, 9.34419, 18.6002, 3, 9.34419, 17.6002, 3, 7.09419, 6.60021, 3, 7.09419, 18.6002, 3, 9.34419, 30.1002, 3, 9.34419, 28.3502, 3, 7.09419, 17.6002, 3, 7.09419 )
+polygons = [ PoolIntArray( 1, 0, 2 ), PoolIntArray( 2, 0, 3 ), PoolIntArray( 3, 0, 4 ), PoolIntArray( 8, 7, 5 ), PoolIntArray( 5, 7, 6 ), PoolIntArray( 10, 9, 11 ), PoolIntArray( 11, 9, 12 ), PoolIntArray( 12, 9, 13 ), PoolIntArray( 18, 17, 14 ), PoolIntArray( 14, 17, 16 ), PoolIntArray( 14, 16, 15 ), PoolIntArray( 22, 21, 19 ), PoolIntArray( 19, 21, 20 ), PoolIntArray( 26, 25, 23 ), PoolIntArray( 23, 25, 24 ), PoolIntArray( 27, 29, 28 ), PoolIntArray( 31, 30, 32 ), PoolIntArray( 32, 30, 33 ), PoolIntArray( 37, 36, 34 ), PoolIntArray( 34, 36, 35 ), PoolIntArray( 39, 38, 40 ), PoolIntArray( 40, 38, 41 ), PoolIntArray( 45, 44, 42 ), PoolIntArray( 42, 44, 43 ), PoolIntArray( 48, 47, 46 ), PoolIntArray( 51, 50, 49 ), PoolIntArray( 55, 54, 52 ), PoolIntArray( 52, 54, 53 ), PoolIntArray( 59, 58, 56 ), PoolIntArray( 56, 58, 57 ), PoolIntArray( 62, 61, 60 ), PoolIntArray( 64, 63, 65 ), PoolIntArray( 65, 63, 66 ), PoolIntArray( 68, 67, 69 ), PoolIntArray( 69, 67, 70 ), PoolIntArray( 73, 72, 71 ), PoolIntArray( 75, 74, 76 ), PoolIntArray( 76, 74, 78 ), PoolIntArray( 76, 78, 77 ), PoolIntArray( 80, 79, 81 ), PoolIntArray( 81, 79, 84 ), PoolIntArray( 81, 84, 83 ), PoolIntArray( 81, 83, 82 ), PoolIntArray( 87, 86, 85 ), PoolIntArray( 91, 90, 88 ), PoolIntArray( 88, 90, 89 ), PoolIntArray( 93, 92, 94 ), PoolIntArray( 94, 92, 96 ), PoolIntArray( 94, 96, 95 ), PoolIntArray( 100, 99, 97 ), PoolIntArray( 97, 99, 98 ), PoolIntArray( 104, 103, 101 ), PoolIntArray( 101, 103, 102 ), PoolIntArray( 108, 107, 105 ), PoolIntArray( 105, 107, 106 ) ]
+
+[node name="Map" type="Spatial"]
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.94178, 0 )
+
+[node name="EnemyManager" parent="." instance=ExtResource( 2 )]
+
+[node name="Position3D" type="Position3D" parent="EnemyManager/EnemySpawnPositions" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, 0 )
+
+[node name="Position3D2" type="Position3D" parent="EnemyManager/EnemySpawnPositions" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, -4.39988 )
+
+[node name="Position3D3" type="Position3D" parent="EnemyManager/EnemySpawnPositions" index="2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0871277, 2, -4.39988 )
+
+[node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="."]
+navmesh = SubResource( 1 )
+
+[node name="CSGCombiner" type="CSGCombiner" parent="NavigationMeshInstance"]
+use_collision = true
+
+[node name="CSGBox" type="CSGBox" parent="NavigationMeshInstance/CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16.268, 0, 0 )
+width = 44.9477
+depth = 15.1047
+
+[node name="CSGBox3" type="CSGBox" parent="NavigationMeshInstance/CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17.166, 1.62301, -8.55486 )
+width = 47.0607
+depth = 3.2019
+
+[node name="CSGBox4" type="CSGBox" parent="NavigationMeshInstance/CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5576, 1.62301, 8.20745 )
+width = 47.2284
+depth = 3.2019
+
+[node name="CSGBox5" type="CSGBox" parent="NavigationMeshInstance/CSGCombiner"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.29884, 1.62301, 0.510895 )
+width = 19.2239
+depth = 3.2019
+
+[node name="CSGBox6" type="CSGBox" parent="NavigationMeshInstance/CSGCombiner"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 40.2162, 1.62301, 0.510895 )
+width = 19.2239
+depth = 3.2019
+
+[node name="CSGBox2" type="CSGBox" parent="NavigationMeshInstance/CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, 0 )
+height = 4.0
+
+[editable path="EnemyManager"]
