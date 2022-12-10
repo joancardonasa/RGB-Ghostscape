@@ -1,8 +1,6 @@
 [gd_resource type="Resource" load_steps=2 format=2]
 
-[ext_resource path="res://scripts/gameplay/Cards/CardBlue.gd" type="Script" id=1]
+[ext_resource path="res://src/gameplay/cards/CardBlue.gd" type="Script" id=1]
 
 [resource]
 script = ExtResource( 1 )
-Duration = 5.0
-col = Color( 0, 0, 1, 1 )

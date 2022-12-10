@@ -12,47 +12,41 @@ _global_script_classes=[ {
 "base": "Resource",
 "class": "CardBlue",
 "language": "GDScript",
-"path": "res://scripts/gameplay/Cards/CardBlue.gd"
+"path": "res://src/gameplay/cards/CardBlue.gd"
 }, {
 "base": "Resource",
 "class": "CardGreen",
 "language": "GDScript",
-"path": "res://scripts/gameplay/Cards/CardGreen.gd"
+"path": "res://src/gameplay/cards/CardGreen.gd"
 }, {
 "base": "Resource",
 "class": "CardRed",
 "language": "GDScript",
-"path": "res://scripts/gameplay/Cards/CardRed.gd"
+"path": "res://src/gameplay/cards/CardRed.gd"
 }, {
-"base": "KinematicBody",
+"base": "Area",
 "class": "JumpPad",
 "language": "GDScript",
-"path": "res://scripts/gameplay/objects/JumpPad.gd"
+"path": "res://src/gameplay/platform/JumpPad.gd"
 }, {
 "base": "Node",
 "class": "Stats",
 "language": "GDScript",
-"path": "res://scripts/gameplay/CO_Stats.gd"
-}, {
-"base": "Node",
-"class": "Wave",
-"language": "GDScript",
-"path": "res://scripts/gameplay/CO_Wave.gd"
+"path": "res://src/characters/Stats.gd"
 } ]
 _global_script_class_icons={
 "CardBlue": "",
 "CardGreen": "",
 "CardRed": "",
 "JumpPad": "",
-"Stats": "",
-"Wave": ""
+"Stats": ""
 }
 
 [application]
 
 config/name="Retro Magic"
 config/description="You are the Arena fighter, use your magic to defeat your enemies."
-run/main_scene="res://scenes/core/SC_Main.tscn"
+run/main_scene="res://src/main/Main.tscn"
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
 config/icon="res://screenshots/T-Icon.png"
 
@@ -62,10 +56,14 @@ default_bus_layout="res://global/BS_Bus_Layouts.tres"
 
 [autoload]
 
-CoSceneManager="*res://scripts/core/CO_SceneManager.gd"
-CoGlobals="*res://scripts/core/CO_Globals.gd"
-ScSound="*res://Scenes/Core/SC_Sound.tscn"
 Utils="*res://singletons/Utils.gd"
+SceneManager="*res://src/core/SceneManager.gd"
+Globals="*res://singletons/Globals.gd"
+Sound="*res://src/core/Sound.tscn"
+
+[debug]
+
+gdscript/warnings/return_value_discarded=false
 
 [display]
 
@@ -75,6 +73,10 @@ window/size/test_width=1280
 window/size/test_height=720
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
+
+[global]
+
+warn=false
 
 [importer_defaults]
 

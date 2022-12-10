@@ -1,0 +1,18 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://src/gameplay/cards/CardManager.gd" type="Script" id=1]
+[ext_resource path="res://data/cards/GreenCardDefault.tres" type="Resource" id=2]
+[ext_resource path="res://data/cards/BlueCardDefault.tres" type="Resource" id=3]
+[ext_resource path="res://data/cards/RedCardDefault.tres" type="Resource" id=4]
+[ext_resource path="res://src/other/UI_Card.gd" type="Script" id=5]
+
+[node name="CardManager" type="Node" groups=["CardManager"]]
+script = ExtResource( 1 )
+StartDeck = [ ExtResource( 4 ), ExtResource( 3 ), ExtResource( 2 ) ]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = 592.0
+margin_top = 8.0
+margin_right = 632.0
+margin_bottom = 48.0
+script = ExtResource( 5 )
