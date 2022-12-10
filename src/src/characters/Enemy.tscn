@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/characters/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://materials/enemy-material/MT_Enemy_Default.tres" type="Material" id=2]
@@ -6,6 +6,86 @@
 [sub_resource type="SphereShape" id=2]
 
 [sub_resource type="SphereMesh" id=1]
+
+[sub_resource type="Shader" id=4]
+code = "shader_type spatial;
+render_mode depth_draw_never, cull_front, blend_add;
+
+uniform sampler2D _NoiseTex;
+uniform float _Scale : hint_range(0.0, 0.05) = 0.05;
+uniform float _Opacity: hint_range(0.01, 10.0) = 10.0;
+uniform float _Edge : hint_range(0.0, 1.0) = 0.1;
+uniform vec4 _ColorAura : hint_color = vec4(1.0,0.0,0.0,1.0);
+uniform vec4 _ColorRim : hint_color = vec4(0.0,0.0,1.0,1.0);
+uniform float _Brightness: hint_range(0.5, 20.0) = 2.0;
+uniform float _SpeedX: hint_range(-10.0, 10.0) = 0.0;
+uniform float _SpeedY: hint_range(-10.0, 10.0) = 3.0;
+uniform float _OffsetFade: hint_range(-10.0, 10.0) = 1.0;
+uniform float _GlowBrightness: hint_range(0.01, 30.0) = 3.0;
+uniform float _OutlineFixed: hint_range(0.0, 5.0) = 2.0;
+uniform float _RimPower2: hint_range(0.01, 10.0) = 6.0;
+
+void vertex()
+{
+	VERTEX	 = (NORMAL * _Edge) + VERTEX;
+}
+float saturate(float value)
+{
+	return clamp(value,0.0,1.0);
+}
+
+void fragment() {
+	// noise
+	float speedx = TIME * _SpeedX * 0.005;
+	float speedy = TIME * _SpeedY * -0.005;
+	vec4 n = texture(_NoiseTex, vec2(SCREEN_UV.x * _Scale + speedx, SCREEN_UV.y * _Scale + speedy));
+	// same noise, but bigger
+	vec4 n2 = texture(_NoiseTex, vec2(SCREEN_UV.x* (_Scale * 0.5) + speedx, SCREEN_UV.y * (_Scale * 0.5) + speedy));
+	// same but smaller
+	vec4 n3 = texture(_NoiseTex, vec2(SCREEN_UV.x* (_Scale * 2.0) + speedx, SCREEN_UV.y * (_Scale * 2.0) + speedy));
+	// combined
+	float combinedNoise = (n.r * n2.r * 2.0) * n3.r * 2.0;
+	
+	float rims = pow(saturate(dot(VIEW, NORMAL)), _RimPower2); // calculate inverted rim based on view and normal
+	vec4 rim = vec4(rims);
+	rim -= combinedNoise; // subtract noise texture
+	rim += (rims * _OutlineFixed);
+	vec4 texturedRim = vec4(saturate(rim.a * _Opacity)); // make a harder edge
+	vec4 extraRim = (saturate((_Edge + rim.a) * _Opacity) - texturedRim) * _Brightness;// extra edge, subtracting the textured rim
+	vec4 result = (_ColorAura * texturedRim) + (_ColorRim * extraRim);// combine both with colors
+	float fade = saturate((VERTEX.y + _OffsetFade) * 2.0);
+	
+	result *= fade;
+	
+	EMISSION = vec3(result.r, result.g, result.b);
+	ALPHA = result.a;
+}
+"
+
+[sub_resource type="OpenSimplexNoise" id=6]
+seed = 1
+
+[sub_resource type="NoiseTexture" id=7]
+seamless = true
+noise = SubResource( 6 )
+
+[sub_resource type="ShaderMaterial" id=5]
+shader = SubResource( 4 )
+shader_param/_Scale = 0.0
+shader_param/_Opacity = 0.911
+shader_param/_Edge = 0.149
+shader_param/_ColorAura = Color( 0.945098, 0.227451, 0.227451, 1 )
+shader_param/_ColorRim = Color( 1, 0.0235294, 0.0235294, 1 )
+shader_param/_Brightness = 4.058
+shader_param/_SpeedX = 2.0
+shader_param/_SpeedY = 2.0
+shader_param/_OffsetFade = 1.0
+shader_param/_GlowBrightness = 3.0
+shader_param/_OutlineFixed = 2.0
+shader_param/_RimPower2 = 9.517
+shader_param/_NoiseTex = SubResource( 7 )
+
+[sub_resource type="SphereShape" id=3]
 
 [node name="Enemy" type="KinematicBody"]
 collision_layer = 4
@@ -21,10 +101,24 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0 )
 mesh = SubResource( 1 )
 material/0 = ExtResource( 2 )
 
+[node name="AuraMeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0, 1.2, 0 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 5 )
+
 [node name="PathUpdateTimer" type="Timer" parent="."]
 wait_time = 0.5
 autostart = true
 
 [node name="NavigationAgent" type="NavigationAgent" parent="."]
 
+[node name="Hurtbox" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.24632, 0 )
+collision_layer = 512
+collision_mask = 0
+
+[node name="CollisionShape" type="CollisionShape" parent="Hurtbox"]
+shape = SubResource( 3 )
+
 [connection signal="timeout" from="PathUpdateTimer" to="." method="_on_PathUpdateTimer_timeout"]
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]

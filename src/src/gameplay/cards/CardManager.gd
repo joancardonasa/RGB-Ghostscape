@@ -6,10 +6,14 @@ var deck : Array = []
 var _next_draw: float
 var _current_ind: int
 
+var current_card
+
 #warning-ignore-all:unused_signal
 signal Player_SpeedMult(enable, mult)
 signal Player_AllowShoot(enable)
 signal Card_Color(col)
+signal Enemy_Reveal(enable)
+
 
 func _ready():
     deck = StartDeck.duplicate()
@@ -21,9 +25,10 @@ func _draw_card():
     if(_current_ind >= 0):
         deck[_current_ind].Exit()
     _current_ind = (_current_ind + 1) % deck.size()
-    var _current_Card = deck[_current_ind]
-    _next_draw = _current_Card.Duration
-    _current_Card.Enter()
+
+    current_card = deck[_current_ind]
+    _next_draw = current_card.Duration
+    current_card.Enter()
 
 func _physics_process(delta):
     if _next_draw > 0:
