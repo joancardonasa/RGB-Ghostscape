@@ -8,11 +8,15 @@ var deck : Array = []
 var _next_draw: float
 var _current_ind: int
 
+signal Player_SpeedMult(enable, mult)
+
 func _ready():
 	deck = StartDeck.duplicate()
+	for card in deck:
+		card.set_card_manager(self)
 	_current_ind = -1
 
-func _DrawCard():
+func _draw_card():
 	if(_current_ind > 0):
 		deck[_current_ind].Exit()
 	_current_ind = (_current_ind + 1) % deck.size()
@@ -24,4 +28,4 @@ func _physics_process(delta):
 	if _next_draw > 0:
 		_next_draw -= delta
 	else:
-		_DrawCard()
+		_draw_card()
