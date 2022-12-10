@@ -1,10 +1,14 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scripts/gameplay/CO_Player.gd" type="Script" id=1]
 [ext_resource path="res://scripts/gameplay/CO_SpellController.gd" type="Script" id=2]
 [ext_resource path="res://scenes/spells/SC_Spell.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/other/SC_Stats.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/core/SC_SceneTransition.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scripts/gameplay/CO_CardManager.gd" type="Script" id=6]
+[ext_resource path="res://data/Cards/RedCardDefault.tres" type="Resource" id=7]
+[ext_resource path="res://data/Cards/BlueCardDefault.tres" type="Resource" id=8]
+[ext_resource path="res://data/Cards/GreenCardDefault.tres" type="Resource" id=9]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -34,5 +38,9 @@ script = ExtResource( 2 )
 startingSpell = ExtResource( 3 )
 
 [node name="SceneTransition" parent="." instance=ExtResource( 5 )]
+
+[node name="CardManager" type="Node" parent="."]
+script = ExtResource( 6 )
+StartDeck = [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ]
 
 [connection signal="died_signal" from="Stats" to="." method="_on_Stats_died_signal"]
