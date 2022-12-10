@@ -8,15 +8,21 @@ var _current_ind: int
 
 var current_card
 
+
+# Card Signals
 #warning-ignore-all:unused_signal
 signal Player_SpeedMult(enable, mult)
 signal Player_AllowShoot(enable)
 signal Card_Color(col)
 signal Enemy_Reveal(enable)
 
+# Deck Signals
+signal Refresh_Deck(deck)
+
 
 func _ready():
     deck = StartDeck.duplicate()
+    emit_signal("Refresh_Deck", deck)
     for card in deck:
         card.set_card_manager(self)
     _current_ind = -1
