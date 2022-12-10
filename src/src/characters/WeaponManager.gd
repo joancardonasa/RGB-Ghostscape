@@ -3,6 +3,8 @@ extends Spatial
 onready var weapon_socket = $WeaponSocket
 onready var weapons = $WeaponSocket.get_children()
 
+onready var ui_weapon = $UI_Weapon
+
 var active_weapon = null
 
 var _shooting_allowed: bool = false
@@ -51,3 +53,9 @@ func determine_weapon_change(event: InputEvent):
         active_weapon.visible = false
         active_weapon = weapons[new_index]
         active_weapon.visible = true
+    ui_weapon.update_ammo_amount(
+        active_weapon.ammo_magazine,
+        active_weapon.weapon_data.magazine_size,
+        active_weapon.ammo_amount)
+#    ui_weapon.get_node("UI_Ammo/Label").text = str(active_weapon.ammo_magazine) \
+#        + "/" + str(active_weapon.weapon_data.magazine_size)

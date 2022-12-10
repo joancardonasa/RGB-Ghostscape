@@ -165,6 +165,7 @@ scroll_weapon_down={
 3d_physics/layer_1="World"
 3d_physics/layer_2="Player"
 3d_physics/layer_3="Enemy"
+3d_physics/layer_7="Ammo"
 3d_physics/layer_8="PlayerDamage"
 3d_physics/layer_9="PlayerHurtbox"
 3d_physics/layer_10="EnemyHurtbox"
