@@ -1,6 +1,7 @@
-[gd_resource type="Resource" load_steps=2 format=2]
+[gd_resource type="Resource" load_steps=3 format=2]
 
 [ext_resource path="res://src/gameplay/cards/CardGreen.gd" type="Script" id=1]
+[ext_resource path="res://assets/UI/running-shoe.png" type="Texture" id=2]
 
 [resource]
 script = ExtResource( 1 )
@@ -8,3 +9,4 @@ Duration = 5.0
 SpeedMult = 2.0
 col = Color( 0.219608, 0.717647, 0.392157, 1 )
 reveal_enemies = false
+icon = ExtResource( 2 )

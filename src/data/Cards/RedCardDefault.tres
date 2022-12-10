@@ -1,9 +1,11 @@
-[gd_resource type="Resource" load_steps=2 format=2]
+[gd_resource type="Resource" load_steps=3 format=2]
 
 [ext_resource path="res://src/gameplay/cards/CardRed.gd" type="Script" id=1]
+[ext_resource path="res://assets/UI/crossed-sabres.png" type="Texture" id=2]
 
 [resource]
 script = ExtResource( 1 )
 Duration = 5.0
 col = Color( 0.694118, 0.243137, 0.32549, 1 )
 reveal_enemies = true
+icon = ExtResource( 2 )
