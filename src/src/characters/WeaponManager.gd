@@ -19,6 +19,10 @@ func _ready():
             weapon.visible = true
         else:
             weapon.visible = false
+    ui_weapon.update_ammo_amount(
+        active_weapon.ammo_magazine,
+        active_weapon.weapon_data.magazine_size,
+        active_weapon.ammo_amount)
 
 
 func _input(event):
@@ -57,5 +61,3 @@ func determine_weapon_change(event: InputEvent):
         active_weapon.ammo_magazine,
         active_weapon.weapon_data.magazine_size,
         active_weapon.ammo_amount)
-#    ui_weapon.get_node("UI_Ammo/Label").text = str(active_weapon.ammo_magazine) \
-#        + "/" + str(active_weapon.weapon_data.magazine_size)

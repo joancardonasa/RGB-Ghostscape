@@ -12,7 +12,7 @@ var hitscan_raycast = null
 var ui_weapon = null
 
 var ammo_magazine: int = 0
-var ammo_amount: int = 0
+var ammo_amount: int = 10
 
 func _ready():
     hitscan_raycast = Utils.get_hitscan_raycast()
@@ -44,12 +44,25 @@ func _on_HitscanTimer_timeout():
 
 func _on_AnimationPlayer_animation_finished(anim_name):
     if anim_name == "Fire":
-        if ammo_magazine == 0:
+        if ammo_magazine == 0 and ammo_amount > 0:
             animation_player.play("Reload")
     if anim_name == "Reload":
-#        if ammo_amount > 0:
+        reload()
+
+
+# Could also be called on purpose
+func reload():
+    if ammo_amount == 0:
+        # No ammo, make sound chckhc
+        return
+    if ammo_amount <= weapon_data.magazine_size:
+        ammo_magazine = ammo_amount
+        ammo_amount = 0
+    elif ammo_amount > weapon_data.magazine_size:
         ammo_magazine = weapon_data.magazine_size
-        ui_weapon.update_ammo_amount(
-            ammo_magazine,
-            weapon_data.magazine_size,
-            ammo_amount)
+        ammo_amount -= weapon_data.magazine_size
+
+    ui_weapon.update_ammo_amount(
+        ammo_magazine,
+        weapon_data.magazine_size,
+        ammo_amount)
