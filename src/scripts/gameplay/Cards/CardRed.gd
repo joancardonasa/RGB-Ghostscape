@@ -8,7 +8,7 @@ func set_card_manager(cardManager):
 	_cardManager = cardManager
 
 func Enter():
-	pass
+	_cardManager.emit_signal("Player_AllowShoot",true)
 
 func Exit():
-	pass
+	_cardManager.emit_signal("Player_AllowShoot",false)

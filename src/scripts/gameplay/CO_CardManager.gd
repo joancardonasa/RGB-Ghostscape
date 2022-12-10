@@ -9,6 +9,7 @@ var _next_draw: float
 var _current_ind: int
 
 signal Player_SpeedMult(enable, mult)
+signal Player_AllowShoot(enable)
 
 func _ready():
 	deck = StartDeck.duplicate()
@@ -17,7 +18,7 @@ func _ready():
 	_current_ind = -1
 
 func _draw_card():
-	if(_current_ind > 0):
+	if(_current_ind >= 0):
 		deck[_current_ind].Exit()
 	_current_ind = (_current_ind + 1) % deck.size()
 	var _current_Card = deck[_current_ind]
