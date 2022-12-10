@@ -1,7 +1,5 @@
 extends Node
 
-enum CardType {RED, GREEN, BLUE}
-
 export(Array, Resource) var StartDeck
 
 var deck : Array = []

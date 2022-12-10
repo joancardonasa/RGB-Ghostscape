@@ -41,12 +41,17 @@ onready var camera = $Head/Camera
 # Variables for boosts
 var _speed_mult: float = 1.0
 
+# Player Actions
+var _shooting_allowed: bool = false
+
 func _ready():
 	# Hides the cursor
 	ScSound.get_node("RestartSound").play()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	# warning-ignore:return_value_discarded
-	get_tree().get_nodes_in_group("CardManager")[0].connect("Player_SpeedMult", self, "_on_Card_SpeedMult")
+	var card_manager = get_tree().get_nodes_in_group("CardManager")[0]
+	card_manager.connect("Player_SpeedMult", self, "_on_Card_SpeedMult")
+	card_manager.connect("Player_AllowShoot", self, "_on_Card_AllowShoot")
 
 func _input(event):
 	# Get mouse input for camera rotation
@@ -113,7 +118,7 @@ func _physics_process(delta):
 	move_and_slide_with_snap(movement, snap, Vector3.UP)
 	
 	# Casting
-	if Input.is_action_pressed("primary_action"):
+	if Input.is_action_pressed("primary_action") and _shooting_allowed:
 		spell_controller.cast()
 
 func _on_Stats_died_signal():
@@ -125,3 +130,6 @@ func _on_Stats_died_signal():
 
 func _on_Card_SpeedMult(enable : bool, mult : float):
 	_speed_mult = mult if enable else 1.0
+
+func _on_Card_AllowShoot(enable : bool):
+	_shooting_allowed = enable
