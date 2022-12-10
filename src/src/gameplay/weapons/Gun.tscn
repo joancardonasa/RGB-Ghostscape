@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://data/weapons/Gun.tres" type="Resource" id=1]
 [ext_resource path="res://src/gameplay/weapons/Weapon.gd" type="Script" id=2]
@@ -76,6 +76,33 @@ tracks/2/keys = {
 "values": [ Vector3( 0, 0, 0 ) ]
 }
 
+[sub_resource type="Animation" id=5]
+resource_name = "Reload"
+tracks/0/type = "value"
+tracks/0/path = NodePath("MeshInstance:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.7, 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( -49.402, 0, 0 ), Vector3( -49.402, 0, 0 ), Vector3( 29.662, 0, 0 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MeshInstance:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.7, 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, -0.255822 ), Vector3( 0, -0.140215, -0.47715 ), Vector3( 0, -0.140215, -0.47715 ), Vector3( 0, 0.10385, -0.305221 ), Vector3( 0, 0, -0.255822 ) ]
+}
+
 [node name="Gun" type="Spatial"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12362, 0.0823674 )
 script = ExtResource( 2 )
@@ -92,10 +119,12 @@ transform = Transform( 14.5828, 0, 0, 0, 8.83508, 0, 0, 0, 4.75023, 0, 0.344743,
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Fire = SubResource( 1 )
 anims/RESET = SubResource( 2 )
+anims/Reload = SubResource( 5 )
 
 [node name="HitscanTimer" type="Timer" parent="."]
 process_mode = 0
 wait_time = 0.05
 one_shot = true
 
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="timeout" from="HitscanTimer" to="." method="_on_HitscanTimer_timeout"]

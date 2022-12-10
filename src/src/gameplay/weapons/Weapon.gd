@@ -29,7 +29,9 @@ func fire():
         if hitscan_raycast.is_colliding():
             var collider = hitscan_raycast.get_collider()
             collider.take_damage(2)
+
         ammo_magazine -= 1
+
         ui_weapon.update_ammo_amount(
             ammo_magazine,
             weapon_data.magazine_size,
@@ -38,3 +40,16 @@ func fire():
 
 func _on_HitscanTimer_timeout():
     hitscan_raycast.enabled = false
+
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+    if anim_name == "Fire":
+        if ammo_magazine == 0:
+            animation_player.play("Reload")
+    if anim_name == "Reload":
+#        if ammo_amount > 0:
+        ammo_magazine = weapon_data.magazine_size
+        ui_weapon.update_ammo_amount(
+            ammo_magazine,
+            weapon_data.magazine_size,
+            ammo_amount)
