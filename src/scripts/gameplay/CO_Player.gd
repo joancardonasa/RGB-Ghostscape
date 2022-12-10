@@ -10,8 +10,8 @@ onready var _transition = $SceneTransition;
 # Constant variables for Movement
 const SPEED = 10
 const GRAVITY = 10
-const JUMP = 5
-const FALL_MULTY = 0.5
+const JUMP = 8
+const FALL_MULTY = 2
 const JUMP_MULTY = 0.9
 const CAM_ACCEL = 40
 const ACCEL_TYPE = {"default": 10, "air": 1}
