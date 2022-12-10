@@ -29,7 +29,6 @@ func _process(delta):
 
 func _set_active(enabled: bool, anim_time: float = 0.75):
     time_label.set_visible(enabled)
-    icon_rect.set_visible(enabled)
     var tween = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
     if enabled:
         tween.tween_property(ui_card, "margin_left", -1.0 * grow_size, anim_time)
