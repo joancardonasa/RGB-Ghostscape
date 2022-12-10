@@ -2,7 +2,7 @@ extends Control
 
 
 var UI_Card = preload("res://src/UI/UI_Card.tscn")
-onready var card_container = $ScreenSplit/CardContainer
+onready var card_container = $CardContainer
 var card_manager
 var deck = {}
 
@@ -19,8 +19,8 @@ func _clear_deck():
 func _set_deck(cards: Array):
     for card in cards:
         var card_instance = UI_Card.instance()
-        card_instance.set_card(card)
         card_container.add_child(card_instance)
+        card_instance.set_card(card)
         deck[card.get_instance_id()] = card_instance
 
 func _draw_card(card: Resource, duration: float):
