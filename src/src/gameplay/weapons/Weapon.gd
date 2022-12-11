@@ -31,6 +31,7 @@ func _ready():
 func fire():
     if not animation_player.is_playing() and ammo_magazine > 0:
         animation_player.play("Fire")
+        ui_weapon.ring_crosshair_on_shot()
 
         hitscan_raycast.enabled = true
         if hitscan_raycast.is_colliding():

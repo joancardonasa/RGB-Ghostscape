@@ -17,3 +17,9 @@ func update_ammo_amount(
 
 func update_crosshair(texture: Texture):
     crosshair.texture = texture
+
+func ring_crosshair_on_shot():
+    crosshair.rect_scale = Vector2(1.2,1.2)
+    var tween = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
+    tween.tween_property(crosshair, "rect_scale", Vector2.ONE, 0.1)
+
