@@ -1,7 +1,6 @@
 extends KinematicBody
 
 export var speed = 5
-export var attack_speed_multiplier = 5
 
 onready var nav_agent = $NavigationAgent
 
@@ -42,7 +41,13 @@ func _determine_visibility(enable: bool):
 func _on_Hurtbox_damage_taken(amount: int):
     stats.take_hit(amount)
 
+func _on_Hurtbox_player_collision(player_hurtbox : Area):
+    player_hurtbox.take_damage()
+    _die()
 
 func _on_Stats_died_signal():
     Utils.spawn_ammo_pickup(global_transform.origin)
+    _die()
+
+func _die():
     queue_free()
