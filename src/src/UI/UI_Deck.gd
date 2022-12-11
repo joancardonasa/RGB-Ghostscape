@@ -34,5 +34,11 @@ func _reorder_deck(newOrder):
     for child in card_container.get_children():
         card_container.remove_child(child)
     for card in newOrder:
-        card_container.add_child(deck[card.get_instance_id()])  
+        card_container.add_child(deck[card.get_instance_id()])
+        
+func can_drop_data(postion: Vector2, data):
+    return data is Node and data.is_in_group("DRAGGABLE")
+
+func drop_data(position: Vector2, data):
+    print(data)
     

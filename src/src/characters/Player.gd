@@ -54,12 +54,13 @@ func _ready():
 
 func _input(event):
     # Get mouse input for camera rotation
-    if event is InputEventMouseMotion:
+    if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
         rotate_y(deg2rad(-event.relative.x * mouse_sense))
         head.rotate_x(deg2rad(-event.relative.y * mouse_sense))
         head.rotation.x = clamp(head.rotation.x, deg2rad(-89), deg2rad(89))
     if event.is_action_pressed("restart_dev"):
         SceneManager.goto_scene("res://src/maps/Map.tscn")
+        
 
 func _process(delta):
     camera.set_as_toplevel(false)
