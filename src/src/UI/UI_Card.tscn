@@ -18,15 +18,15 @@ color = Color( 0.596078, 0.235294, 0.235294, 1 )
 [node name="MarginContainer" type="MarginContainer" parent="UI_Card"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_constants/margin_right = 4
+custom_constants/margin_right = 10
 custom_constants/margin_top = 4
-custom_constants/margin_left = 4
+custom_constants/margin_left = 10
 custom_constants/margin_bottom = 4
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI_Card/MarginContainer"]
-margin_left = 4.0
+margin_left = 10.0
 margin_top = 4.0
-margin_right = 146.0
+margin_right = 140.0
 margin_bottom = 116.0
 
 [node name="TimeLabel" type="Label" parent="UI_Card/MarginContainer/HBoxContainer"]
@@ -40,15 +40,15 @@ valign = 1
 
 [node name="Control" type="AspectRatioContainer" parent="UI_Card/MarginContainer/HBoxContainer"]
 margin_left = 81.0
-margin_right = 142.0
+margin_right = 130.0
 margin_bottom = 112.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Icon" type="TextureRect" parent="UI_Card/MarginContainer/HBoxContainer/Control"]
-margin_top = 25.5
-margin_right = 61.0
-margin_bottom = 86.5
+margin_top = 31.5
+margin_right = 49.0
+margin_bottom = 80.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
