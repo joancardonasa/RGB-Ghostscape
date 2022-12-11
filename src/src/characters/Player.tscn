@@ -47,6 +47,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.573, -0.57, 0.216 )
 
 [node name="Gun" parent="Head/WeaponManager/WeaponSocket" instance=ExtResource( 6 )]
 is_active = true
+ammo_type = 2
 
 [node name="AssaultRifle" parent="Head/WeaponManager/WeaponSocket" instance=ExtResource( 9 )]
 
@@ -95,15 +96,15 @@ startingSpell = ExtResource( 3 )
 
 [node name="SceneTransition" parent="." instance=ExtResource( 5 )]
 
-[node name="AmmoManager" type="Spatial" parent="."]
+[node name="AmmoManager" type="Spatial" parent="." groups=["AmmoManager"]]
 script = ExtResource( 10 )
 
-[node name="Area" type="Area" parent="AmmoManager"]
+[node name="PickupArea" type="Area" parent="AmmoManager"]
 collision_layer = 0
 collision_mask = 64
 
-[node name="CollisionShape" type="CollisionShape" parent="AmmoManager/Area"]
+[node name="CollisionShape" type="CollisionShape" parent="AmmoManager/PickupArea"]
 shape = SubResource( 2 )
 
 [connection signal="died_signal" from="Stats" to="." method="_on_Stats_died_signal"]
-[connection signal="area_entered" from="AmmoManager/Area" to="AmmoManager" method="_on_Area_area_entered"]
+[connection signal="area_entered" from="AmmoManager/PickupArea" to="AmmoManager" method="_on_PickupArea_area_entered"]
