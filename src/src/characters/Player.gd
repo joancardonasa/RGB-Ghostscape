@@ -73,7 +73,7 @@ func _physics_process(delta):
     var h_rot = global_transform.basis.get_euler().y
     var f_input = Input.get_action_strength("move_backward") - Input.get_action_strength("move_forward")
     var h_input = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
-    
+
     # Check if to lean
     if(h_input < 0):
         currentStrafeDir = LEAM_AMOUNT

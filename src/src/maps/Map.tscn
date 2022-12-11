@@ -155,4 +155,6 @@ transform = Transform( 1, 0, 0, 0, 0.12, 0, 0, 0, 1, 50.0108, -10.1311, -12.2405
 
 [node name="UI" parent="." instance=ExtResource( 4 )]
 
+[node name="PickupContainer" type="Spatial" parent="." groups=["PickupContainer"]]
+
 [editable path="EnemyManager"]

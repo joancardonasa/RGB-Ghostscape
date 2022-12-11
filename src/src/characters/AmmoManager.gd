@@ -22,4 +22,6 @@ func _ready():
 
 
 func _on_PickupArea_area_entered(area):
-    pass # Replace with function body.
+    if area.is_in_group("AmmoPickup"):
+        ammo_amount[area.ammo_type] += area.ammo_amount
+        area.queue_free()

@@ -9,4 +9,5 @@ Duration = 5.0
 SpeedMult = 2.0
 col = Color( 0.219608, 0.717647, 0.392157, 1 )
 reveal_enemies = false
+reveal_pickups = false
 icon = ExtResource( 2 )
