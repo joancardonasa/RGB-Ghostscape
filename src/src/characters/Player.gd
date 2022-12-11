@@ -19,7 +19,7 @@ const ACCEL_TYPE = {"default": 10, "air": 1}
 # Strafe leaning
 const LEAN_SMOOTH : float = 10.0
 const LEAN_MULT : float = 0.066
-const LEAM_AMOUNT : float = 0.7
+const LEAN_AMOUNT : float = 0.7
 
 # Mouse sensitivity
 var mouse_sense = 0.1
@@ -36,7 +36,8 @@ var movement = Vector3()
 # Onready variables
 onready var accel = ACCEL_TYPE["default"]
 onready var head = $Head
-onready var camera = $Head/Camera
+onready var camera = $Head/LeanGimbal/Camera
+onready var lean_gimbal = $Head/LeanGimbal
 
 # Variables for boosts
 var _speed_mult: float = 1.0
@@ -62,10 +63,7 @@ func _input(event):
         SceneManager.goto_scene("res://src/maps/Map.tscn")
 
 func _process(delta):
-    camera.set_as_toplevel(false)
-    camera.global_transform = head.global_transform
-
-    head.rotation.z = lerp(head.rotation.z, currentStrafeDir * LEAN_MULT, delta * LEAN_SMOOTH)
+    lean_gimbal.rotation.z = lerp(lean_gimbal.rotation.z, currentStrafeDir * LEAN_MULT, delta * LEAN_SMOOTH)
 
 func _physics_process(delta):
     # Get keyboard input
@@ -76,9 +74,9 @@ func _physics_process(delta):
 
     # Check if to lean
     if(h_input < 0):
-        currentStrafeDir = LEAM_AMOUNT
+        currentStrafeDir = LEAN_AMOUNT
     elif(h_input > 0):
-        currentStrafeDir = -LEAM_AMOUNT
+        currentStrafeDir = -LEAN_AMOUNT
     else:
         currentStrafeDir = 0
     

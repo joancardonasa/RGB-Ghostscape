@@ -31,7 +31,9 @@ shape = SubResource( 1 )
 [node name="Head" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
 
-[node name="Camera" type="Camera" parent="Head"]
+[node name="LeanGimbal" type="Spatial" parent="Head"]
+
+[node name="Camera" type="Camera" parent="Head/LeanGimbal"]
 fov = 100.0
 far = 400.0
 
