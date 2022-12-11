@@ -120,4 +120,5 @@ collision_mask = 64
 shape = SubResource( 2 )
 
 [connection signal="died_signal" from="Stats" to="." method="_on_Stats_died_signal"]
+[connection signal="PickedUpAmmo" from="AmmoManager" to="Head/WeaponManager" method="_on_AmmoManager_PickedUpAmmo"]
 [connection signal="area_entered" from="AmmoManager/PickupArea" to="AmmoManager" method="_on_PickupArea_area_entered"]

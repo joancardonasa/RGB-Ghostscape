@@ -18,15 +18,7 @@ func _ready():
 
     for weapon in weapons:
         if weapon.is_active:
-            active_weapon = weapon
-            weapon.visible = true
-        else:
-            weapon.visible = false
-    ui_weapon.update_crosshair(active_weapon.crosshair_texture)
-    ui_weapon.update_ammo_amount(
-        active_weapon.ammo_magazine,
-        active_weapon.weapon_data.magazine_size,
-        ammo_manager.ammo_amount[active_weapon.ammo_type])
+            set_new_active_weapon(weapon)
 
 
 func _input(event):
@@ -58,8 +50,13 @@ func determine_weapon_change(event: InputEvent):
         if new_index >= len(weapons): new_index = 0
     else:
         return
-    active_weapon = weapons[new_index]
-    set_new_weapon_active(active_weapon)
+
+    set_new_active_weapon(weapons[new_index])
+
+
+func set_new_active_weapon(weapon: Weapon):
+    active_weapon = weapon
+    get_tree().call_group("Weapon", "set_active", weapon)
     ui_weapon.update_crosshair(active_weapon.crosshair_texture)
     ui_weapon.update_ammo_amount(
         active_weapon.ammo_magazine,
@@ -67,5 +64,8 @@ func determine_weapon_change(event: InputEvent):
         ammo_manager.ammo_amount[active_weapon.ammo_type])
 
 
-func set_new_weapon_active(weapon):
-    get_tree().call_group("Weapon", "set_active", weapon)
+func _on_AmmoManager_PickedUpAmmo(ammo_type, ammo_amount):
+    ui_weapon.update_ammo_amount(
+        active_weapon.ammo_magazine,
+        active_weapon.weapon_data.magazine_size,
+        ammo_manager.ammo_amount[active_weapon.ammo_type])

@@ -41,10 +41,11 @@ func get_card_manager():
 func get_hitscan_raycast():
     return get_tree().get_nodes_in_group("WeaponHitscanRaycast")[0]
 
+func get_weapon_manager():
+    return get_tree().get_nodes_in_group("WeaponManager")[0]
 
 func get_ui_weapon():
     return get_tree().get_nodes_in_group("UI_Weapon")[0]
-
 
 func get_ammo_manager():
     return get_tree().get_nodes_in_group("AmmoManager")[0]
