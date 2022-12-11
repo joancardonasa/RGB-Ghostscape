@@ -5,11 +5,15 @@ var UI_Card = preload("res://src/UI/UI_Card.tscn")
 onready var card_container = $CardContainer
 var card_manager
 var deck = {}
+var preview_card: Control
+var preview_pos: int = -1
 
 func _ready():
     card_manager = Utils.get_card_manager()
     _clear_deck()
     card_manager.connect("Draw_Card",self, "_draw_card")
+    preview_card = UI_Card.instance()
+
     _set_deck(card_manager.deck)
 
 func _clear_deck():
@@ -36,9 +40,33 @@ func _reorder_deck(newOrder):
     for card in newOrder:
         card_container.add_child(deck[card.get_instance_id()])
         
-func can_drop_data(postion: Vector2, data):
-    return data is Node and data.is_in_group("DRAGGABLE")
+func can_drop_data(position: Vector2, data):
+    var can_drop = data is Node and data.is_in_group("DRAGGABLE")
+    if not can_drop:
+        return false
+    var idx = _idx_from_pos(position)
+    if idx != preview_pos:
+        if preview_pos == -1:
+            card_container.add_child(preview_card)
+            preview_card.set_card(data.card_data)
+        card_container.move_child(preview_card, idx)
+        preview_pos = idx
+    return can_drop
 
 func drop_data(position: Vector2, data):
     print(data)
     
+func _idx_from_pos(pos: Vector2) -> int:
+    var idx = 0
+    for child in card_container.get_children():
+        if pos.y < (child.get_position().y + (child.get_size().y/2)):
+            return idx
+        idx += 1
+    return idx
+
+
+
+func _on_UI_Deck_mouse_exited():
+    if preview_pos != -1:
+        card_container.remove_child(preview_card)
+        preview_pos = -1

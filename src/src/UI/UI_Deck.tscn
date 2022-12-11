@@ -3,7 +3,7 @@
 [ext_resource path="res://src/UI/UI_Card.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/UI/UI_Deck.gd" type="Script" id=2]
 
-[node name="UI_Deck" type="Control"]
+[node name="UI_Deck" type="Control" groups=["UI_Deck"]]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
@@ -26,3 +26,5 @@ size_flags_stretch_ratio = 0.21
 [node name="UI_Card2" parent="CardContainer" instance=ExtResource( 1 )]
 margin_top = 123.0
 margin_bottom = 243.0
+
+[connection signal="mouse_exited" from="." to="." method="_on_UI_Deck_mouse_exited"]

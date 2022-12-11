@@ -8,6 +8,9 @@ onready var time_label: Label = $UI_Card/MarginContainer/HBoxContainer/TimeLabel
 onready var icon_rect: TextureRect = $UI_Card/MarginContainer/HBoxContainer/Control/Icon
 onready var ui_card: ColorRect = $UI_Card
 
+func _ready():
+    ui_card.color = Color(0,0,0,0)
+
 func set_card(card: Resource):
     cardData = card
     ui_card.color = cardData.col
@@ -36,6 +39,4 @@ func _set_active(enabled: bool, anim_time: float = 0.75):
     else:
         tween.tween_property(ui_card, "margin_left", 0.0, anim_time)
         ui_card.color = cardData.col - Color(0, 0, 0, 0.2)
-    
-        
     
