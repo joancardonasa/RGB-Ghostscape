@@ -1,0 +1,81 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=2]
+
+[ext_resource path="res://textures/default-texture/Block_Texture_Orange.png" type="Texture" id=1]
+[ext_resource path="res://textures/default-texture/Block_Texture_Grey.png" type="Texture" id=2]
+[ext_resource path="res://textures/default-texture/Block_Texture_Black.png" type="Texture" id=3]
+
+[sub_resource type="Shader" id=1]
+resource_local_to_scene = true
+code = "// ANCHOR: all
+// ANCHOR: setup
+shader_type spatial;
+
+uniform float metallic;
+uniform float roughness : hint_range(0,1);
+
+uniform sampler2D texture_albedo : hint_albedo;
+uniform sampler2D texture_normal : hint_normal;
+// END: setup
+// ANCHOR: emission_setup
+uniform sampler2D texture_emission : hint_black_albedo;
+uniform vec4 emission : hint_color;
+
+uniform float emission_energy;
+// END: emission_setup
+uniform float fresnel_power = 3.0;
+// ANCHOR: fresnel_setup
+uniform float fresnel_color_intensity = 1.0;
+uniform vec4 fresnel_color : hint_color;
+
+uniform float fresnel_pulse_speed = 1.0;
+// END: fresnel_setup
+// ANCHOR: speed
+uniform float emission_pulse_speed = 1.0;
+// END: speed
+// ANCHOR: setup_fragment
+void fragment() {
+	ALBEDO = texture(texture_albedo, UV).rgb;
+	
+	METALLIC = metallic;
+	ROUGHNESS = roughness;
+	
+	NORMALMAP = texture(texture_normal, UV).rgb;
+// END: setup_fragment
+	// ANCHOR: emission_tex
+	vec3 emission_tex = texture(texture_emission, UV).rgb;
+	// END: emission_tex
+	// ANCHOR: fresnel
+	float fresnel = 1.0 - dot(NORMAL, VIEW);
+	// END: fresnel
+	// ANCHOR: fresnel_power
+	fresnel = pow(fresnel, fresnel_power);
+	// END: fresnel_power
+	// ANCHOR: fresnel_time
+	float fresnel_time_factor = clamp(sin(TIME * fresnel_pulse_speed), 0.15, 1);
+	// END: fresnel_time
+	// ANCHOR: time_factor
+	float emission_time_factor = clamp(sin(TIME * emission_pulse_speed) + 0.33, 0.33, 1);
+	// END: time_factor
+	// ANCHOR: emission_time
+	EMISSION = ((emission.rgb * emission_tex) * emission_energy * emission_time_factor);
+	// END: emission_time
+	// ANCHOR: emission_fresnel
+	EMISSION += (fresnel * fresnel_color.rgb * fresnel_color_intensity * fresnel_time_factor);
+	// END: emission_fresnel
+}
+// END: all"
+
+[resource]
+shader = SubResource( 1 )
+shader_param/metallic = 0.716
+shader_param/roughness = 0.357
+shader_param/emission = Color( 0.0156863, 0.298039, 0.0980392, 1 )
+shader_param/emission_energy = 4.0
+shader_param/fresnel_power = 3.0
+shader_param/fresnel_color_intensity = 1.11
+shader_param/fresnel_color = Color( 0.431373, 1, 0.490196, 1 )
+shader_param/fresnel_pulse_speed = 1.0
+shader_param/emission_pulse_speed = 0.5
+shader_param/texture_albedo = ExtResource( 3 )
+shader_param/texture_normal = ExtResource( 1 )
+shader_param/texture_emission = ExtResource( 2 )
