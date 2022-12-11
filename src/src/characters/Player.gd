@@ -109,11 +109,7 @@ func _physics_process(delta):
 
     # warning-ignore:return_value_discarded
     move_and_slide_with_snap(movement, snap, Vector3.UP)
-    
-    # Casting
-#    if Input.is_action_pressed("primary_action") and _shooting_allowed:
-#        $Head/WeaponManager.
-        #spell_controller.cast()
+
 
 func _on_Stats_died_signal():
     Sound.get_node("DeathSound").play()
