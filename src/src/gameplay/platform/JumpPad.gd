@@ -5,10 +5,9 @@ class_name JumpPad
 export var height: float = 25
 export var time: float = 0.75
 
-var _player
-
-func _ready():
-    _player = Utils.get_player()
+onready var _player = Utils.get_player()
+onready var _collider = $CollisionShape
+onready var _mesh = $MeshInstance
 
 func _on_JumpArea_body_entered(body):
     if body == _player:
@@ -25,3 +24,7 @@ func _on_JumpArea_body_entered(body):
         )
         add_child(tween)
         tween.start()
+
+func set_enabled(enabled):
+    _collider.disabled = !enabled
+    _mesh.visible = enabled
