@@ -32,6 +32,7 @@ var direction = Vector3()
 var velocity = Vector3()
 var gravity_vec = Vector3()
 var movement = Vector3()
+var boost_vec = Vector3()
 
 # Onready variables
 onready var accel = ACCEL_TYPE["default"]
@@ -96,6 +97,13 @@ func _physics_process(delta):
         snap = Vector3.ZERO
         gravity_vec = Vector3.UP * JUMP
     
+    if boost_vec != Vector3.ZERO:
+        snap = Vector3.ZERO
+        if (boost_vec.y > 0):
+            gravity_vec = Vector3.UP * boost_vec.y
+        velocity += Vector3(boost_vec.x, 0, boost_vec.z)
+        boost_vec = Vector3.ZERO
+    
     # Moving
     velocity = velocity.linear_interpolate(direction * (SPEED * _speed_mult), accel * delta)
     if(gravity_vec > Vector3.ZERO):
@@ -123,3 +131,5 @@ func _on_Stats_died_signal():
 func _on_Card_SpeedMult(enable : bool, mult : float):
     _speed_mult = mult if enable else 1.0
 
+func boost(force: Vector3):
+    boost_vec = force
