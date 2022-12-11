@@ -1,0 +1,26 @@
+extends Area
+
+export var force: float = 50
+export var jump: float = 5
+var boost_vec: Vector3
+
+onready var _player = Utils.get_player()
+onready var _collider = $CollisionShape
+var _meshes: Array = []
+
+func _ready():
+    for child in get_children():
+        if child is MeshInstance:
+            _meshes.append(child)
+    boost_vec = get_global_transform().basis.x * force
+    boost_vec.y = jump
+
+
+func _on_JumpArea_body_entered(body):
+    if body == _player:
+        _player.boost(boost_vec)
+
+func set_enabled(enabled):
+    _collider.disabled = !enabled
+    for mesh in _meshes:
+        mesh.visible = enabled

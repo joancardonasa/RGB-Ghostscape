@@ -1,7 +1,5 @@
 extends Area
 
-class_name JumpPad
-
 export var force: float = 20
 
 onready var _player = Utils.get_player()
