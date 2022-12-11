@@ -4,8 +4,11 @@ class_name Weapon
 # TODO Ammo type resources
 
 export var is_active: bool = false
-export(Resource) var weapon_data
 export(AmmoManager.AmmoType) var ammo_type = AmmoManager.AmmoType.SMALL
+
+# This could be depenant on bullet, but right now it's just simpler to set it here due to some concerns (e.g how do you set flamethrower ammo damage?)
+export(int) var damage = 0
+export(Resource) var weapon_data
 export(Texture) var crosshair_texture
 
 onready var animation_player = $AnimationPlayer
@@ -32,7 +35,7 @@ func fire():
         hitscan_raycast.enabled = true
         if hitscan_raycast.is_colliding():
             var collider = hitscan_raycast.get_collider()
-            collider.take_damage(2)
+            collider.take_damage(damage)
 
         ammo_magazine -= 1
 

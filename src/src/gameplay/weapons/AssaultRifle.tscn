@@ -96,6 +96,7 @@ tracks/1/keys = {
 [node name="AssaultRifle" type="Spatial" groups=["Weapon"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12362, 0.0823674 )
 script = ExtResource( 2 )
+damage = 1
 weapon_data = ExtResource( 1 )
 crosshair_texture = ExtResource( 3 )
 

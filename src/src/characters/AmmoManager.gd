@@ -10,8 +10,8 @@ enum AmmoType {
 
 export var ammo_amount: Dictionary = {
     AmmoType.SHELL: 0,
-    AmmoType.SMALL: 30,
-    AmmoType.LARGE: 6
+    AmmoType.SMALL: 10,
+    AmmoType.LARGE: 3
 }
 
 var weapon_manager = null

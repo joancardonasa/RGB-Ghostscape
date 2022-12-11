@@ -60,10 +60,10 @@ func spawn_ammo_pickup(position: Vector3):
     # TODO: Set randomly
     if roll_probability(0.5):
         ammo_pickup.ammo_type = AmmoManager.AmmoType.SMALL
-        ammo_pickup.ammo_amount = 10
+        ammo_pickup.ammo_amount = 5
     else:
         ammo_pickup.ammo_type = AmmoManager.AmmoType.LARGE
-        ammo_pickup.ammo_amount = 6
+        ammo_pickup.ammo_amount = 2
 
     pickup_container.add_child(ammo_pickup)
     ammo_pickup.global_transform.origin = position
