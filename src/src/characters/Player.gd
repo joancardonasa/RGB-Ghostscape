@@ -122,4 +122,5 @@ func _on_Card_SpeedMult(enable : bool, mult : float):
 
 func _on_HurtBox_damage_taken():
     Sound.get_node("HitSound").play()
-    stats.take_hit(1)
+    if not Globals.GODMODE:
+        stats.take_hit(1)
