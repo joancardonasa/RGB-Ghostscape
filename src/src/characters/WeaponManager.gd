@@ -65,6 +65,9 @@ func set_new_active_weapon(weapon: Weapon):
 
 
 func _on_AmmoManager_PickedUpAmmo(ammo_type, ammo_amount):
+    # Do not update if the active weapon does not have the picked up ammo type
+    if active_weapon.ammo_type != ammo_type:
+        return
     ui_weapon.update_ammo_amount(
         active_weapon.ammo_magazine,
         active_weapon.weapon_data.magazine_size,

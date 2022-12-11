@@ -50,9 +50,9 @@ func _on_HitscanTimer_timeout():
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):
-    if anim_name == "Fire":
-        if ammo_magazine == 0 and ammo_manager.ammo_amount[ammo_type] > 0:
-            animation_player.play("Reload")
+#    if anim_name == "Fire":
+#        if ammo_magazine == 0 and ammo_manager.ammo_amount[ammo_type] > 0:
+#            animation_player.play("Reload")
     if anim_name == "Reload":
         reload()
 
@@ -62,12 +62,14 @@ func reload():
     if ammo_manager.ammo_amount[ammo_type] == 0:
         # No ammo, make sound chckhc
         return
-    if ammo_manager.ammo_amount[ammo_type] <= weapon_data.magazine_size:
-        ammo_magazine = ammo_manager.ammo_amount[ammo_type]
-        ammo_manager.ammo_amount[ammo_type] = 0
-    elif ammo_manager.ammo_amount[ammo_type] > weapon_data.magazine_size:
-        ammo_magazine = weapon_data.magazine_size
-        ammo_manager.ammo_amount[ammo_type] -= weapon_data.magazine_size
+
+    var amount_empty: int = weapon_data.magazine_size - ammo_magazine
+    var amount_available: int = ammo_manager.ammo_amount[ammo_type]
+
+    var amount_to_fill: int = min(amount_empty, amount_available)
+
+    ammo_magazine += amount_to_fill
+    ammo_manager.ammo_amount[ammo_type] -= amount_to_fill
 
     ui_weapon.update_ammo_amount(
         ammo_magazine,
@@ -82,3 +84,11 @@ func set_active(weapon: Weapon):
     else:
         visible = false
 
+
+func _input(event):
+    if event.is_action_pressed("reload"):
+        if ammo_magazine == weapon_data.magazine_size or \
+            ammo_manager.ammo_amount[ammo_type] == 0:
+                return
+        else:
+            animation_player.play("Reload")
