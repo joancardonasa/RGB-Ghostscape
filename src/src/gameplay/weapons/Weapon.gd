@@ -6,6 +6,7 @@ class_name Weapon
 export var is_active: bool = false
 export(Resource) var weapon_data
 export(AmmoManager.AmmoType) var ammo_type = AmmoManager.AmmoType.SMALL
+export(Texture) var crosshair_texture
 
 onready var animation_player = $AnimationPlayer
 
@@ -69,3 +70,12 @@ func reload():
         ammo_magazine,
         weapon_data.magazine_size,
         ammo_manager.ammo_amount[ammo_type])
+
+
+func set_active(weapon: Weapon):
+    # TODO: Add activate animation
+    if self == weapon:
+        visible = true
+    else:
+        visible = false
+

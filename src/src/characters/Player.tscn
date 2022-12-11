@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/characters/Player.gd" type="Script" id=1]
 [ext_resource path="res://src/spells/SpellController.gd" type="Script" id=2]
@@ -6,14 +6,22 @@
 [ext_resource path="res://src/other/Stats.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/core/SceneTransition.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/gameplay/weapons/Gun.tscn" type="PackedScene" id=6]
-[ext_resource path="res://assets/UI/crosshair187.png" type="Texture" id=7]
+[ext_resource path="res://assets/UI/crosshair010.png" type="Texture" id=7]
 [ext_resource path="res://src/characters/WeaponManager.gd" type="Script" id=8]
 [ext_resource path="res://src/gameplay/weapons/AssaultRifle.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/characters/AmmoManager.gd" type="Script" id=10]
 [ext_resource path="res://src/UI/UI_Weapon.gd" type="Script" id=11]
+[ext_resource path="res://fonts/Comfortaa-VariableFont_wght.ttf" type="DynamicFontData" id=12]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
+
+[sub_resource type="DynamicFont" id=3]
+size = 48
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 12 )
 
 [sub_resource type="CylinderShape" id=2]
 
@@ -61,11 +69,12 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -32.0
-margin_top = -32.0
-margin_right = 32.0
-margin_bottom = 32.0
+margin_left = -40.0
+margin_top = -40.0
+margin_right = 40.0
+margin_bottom = 40.0
 texture = ExtResource( 7 )
+expand = true
 
 [node name="UI_Ammo" type="Control" parent="Head/WeaponManager/UI_Weapon"]
 anchor_left = 1.0
@@ -76,8 +85,13 @@ margin_left = -112.0
 margin_top = -40.0
 
 [node name="Label" type="Label" parent="Head/WeaponManager/UI_Weapon/UI_Ammo"]
+anchor_left = 1.0
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = -448.0
+margin_top = -184.0
+custom_fonts/font = SubResource( 3 )
 text = "1/6 (30)"
 align = 1
 valign = 1

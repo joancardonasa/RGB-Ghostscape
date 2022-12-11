@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://data/weapons/Gun.tres" type="Resource" id=1]
 [ext_resource path="res://src/gameplay/weapons/Weapon.gd" type="Script" id=2]
+[ext_resource path="res://assets/UI/crosshair010.png" type="Texture" id=3]
 
 [sub_resource type="CubeMesh" id=3]
 
@@ -103,10 +104,11 @@ tracks/1/keys = {
 "values": [ Vector3( 0, 0, -0.255822 ), Vector3( 0, -0.140215, -0.47715 ), Vector3( 0, -0.140215, -0.47715 ), Vector3( 0, 0.10385, -0.305221 ), Vector3( 0, 0, -0.255822 ) ]
 }
 
-[node name="Gun" type="Spatial"]
+[node name="Gun" type="Spatial" groups=["Weapon"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12362, 0.0823674 )
 script = ExtResource( 2 )
 weapon_data = ExtResource( 1 )
+crosshair_texture = ExtResource( 3 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 transform = Transform( 0.068574, 0, 0, 0, 0.113185, 0, 0, 0, 0.210516, 0, 0.140866, -0.311273 )
