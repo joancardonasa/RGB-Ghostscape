@@ -14,6 +14,7 @@ var current_card
 signal Player_SpeedMult(enable, mult)
 signal Player_AllowShoot(enable)
 signal Enemy_Reveal(enable)
+signal Platform_Reveal(enable)
 
 # Deck Signals
 signal Draw_Card(card, duration)
