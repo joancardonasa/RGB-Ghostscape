@@ -5,15 +5,14 @@
 [ext_resource path="res://assets/UI/crossed-sabres.png" type="Texture" id=3]
 
 [node name="Control" type="Control"]
-margin_right = 40.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 50, 40 )
+margin_right = 150.0
+margin_bottom = 120.0
+rect_min_size = Vector2( 150, 120 )
 script = ExtResource( 2 )
 
 [node name="UI_Card" type="ColorRect" parent="."]
-margin_right = 50.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 50, 40 )
+anchor_right = 1.0
+rect_min_size = Vector2( 150, 120 )
 color = Color( 0.596078, 0.235294, 0.235294, 1 )
 
 [node name="MarginContainer" type="MarginContainer" parent="UI_Card"]
@@ -27,28 +26,29 @@ custom_constants/margin_bottom = 4
 [node name="HBoxContainer" type="HBoxContainer" parent="UI_Card/MarginContainer"]
 margin_left = 4.0
 margin_top = 4.0
-margin_right = 46.0
-margin_bottom = 36.0
+margin_right = 146.0
+margin_bottom = 116.0
 
 [node name="TimeLabel" type="Label" parent="UI_Card/MarginContainer/HBoxContainer"]
-margin_top = 7.0
-margin_right = 21.0
-margin_bottom = 25.0
-size_flags_horizontal = 0
+margin_right = 77.0
+margin_bottom = 112.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
 custom_fonts/font = ExtResource( 1 )
 text = "0.0"
+valign = 1
 
 [node name="Control" type="AspectRatioContainer" parent="UI_Card/MarginContainer/HBoxContainer"]
-margin_left = 25.0
-margin_right = 42.0
-margin_bottom = 32.0
+margin_left = 81.0
+margin_right = 142.0
+margin_bottom = 112.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Icon" type="TextureRect" parent="UI_Card/MarginContainer/HBoxContainer/Control"]
-margin_top = 7.5
-margin_right = 17.0
-margin_bottom = 24.5
+margin_top = 25.5
+margin_right = 61.0
+margin_bottom = 86.5
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource( 3 )

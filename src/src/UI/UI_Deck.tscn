@@ -12,7 +12,7 @@ script = ExtResource( 2 )
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -50.0
+margin_left = -150.0
 margin_top = 40.0
 margin_bottom = -40.0
 size_flags_horizontal = 8
@@ -27,4 +27,3 @@ size_flags_vertical = 9
 size_flags_stretch_ratio = 0.21
 
 [node name="UI_Card2" parent="CardContainer" instance=ExtResource( 1 )]
-margin_right = 50.0
