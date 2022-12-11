@@ -58,11 +58,13 @@ func _input(event):
         rotate_y(deg2rad(-event.relative.x * mouse_sense))
         head.rotate_x(deg2rad(-event.relative.y * mouse_sense))
         head.rotation.x = clamp(head.rotation.x, deg2rad(-89), deg2rad(89))
+    if event.is_action_pressed("restart_dev"):
+        SceneManager.goto_scene("res://src/maps/Map.tscn")
 
 func _process(delta):
     camera.set_as_toplevel(false)
     camera.global_transform = head.global_transform
-        
+
     head.rotation.z = lerp(head.rotation.z, currentStrafeDir * LEAN_MULT, delta * LEAN_SMOOTH)
 
 func _physics_process(delta):
@@ -71,7 +73,7 @@ func _physics_process(delta):
     var h_rot = global_transform.basis.get_euler().y
     var f_input = Input.get_action_strength("move_backward") - Input.get_action_strength("move_forward")
     var h_input = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
-    
+
     # Check if to lean
     if(h_input < 0):
         currentStrafeDir = LEAM_AMOUNT

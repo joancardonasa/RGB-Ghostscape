@@ -3,13 +3,17 @@ extends Spatial
 onready var weapon_socket = $WeaponSocket
 onready var weapons = $WeaponSocket.get_children()
 
+onready var ui_weapon = $UI_Weapon
+
 var active_weapon = null
+var ammo_manager = null
 
 var _shooting_allowed: bool = false
 # Define signal to get new weapon set
 
 func _ready():
     var card_manager = Utils.get_card_manager()
+    ammo_manager = Utils.get_ammo_manager()
     card_manager.connect("Player_AllowShoot", self, "_on_Card_AllowShoot")
     for weapon in weapons:
         if weapon.is_active:
@@ -17,6 +21,10 @@ func _ready():
             weapon.visible = true
         else:
             weapon.visible = false
+    ui_weapon.update_ammo_amount(
+        active_weapon.ammo_magazine,
+        active_weapon.weapon_data.magazine_size,
+        ammo_manager.ammo_amount[active_weapon.ammo_type])
 
 
 func _input(event):
@@ -51,3 +59,7 @@ func determine_weapon_change(event: InputEvent):
         active_weapon.visible = false
         active_weapon = weapons[new_index]
         active_weapon.visible = true
+    ui_weapon.update_ammo_amount(
+        active_weapon.ammo_magazine,
+        active_weapon.weapon_data.magazine_size,
+        ammo_manager.ammo_amount[active_weapon.ammo_type])

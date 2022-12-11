@@ -14,6 +14,7 @@ var direction: Vector3 = Vector3.ZERO
 
 var player = null
 var card_manager = null
+var pickup_container = null
 
 func _ready():
     player = Utils.get_player()
@@ -21,6 +22,7 @@ func _ready():
     card_manager.connect("Enemy_Reveal", self, "_determine_visibility")
     _determine_visibility(card_manager.current_card.reveal_enemies)
 
+    pickup_container = Utils.get_pickup_container()
 
 func _on_PathUpdateTimer_timeout():
     if is_instance_valid(player):
@@ -42,4 +44,5 @@ func _on_Hurtbox_damage_taken(amount: int):
 
 
 func _on_Stats_died_signal():
+    Utils.spawn_ammo_pickup(global_transform.origin)
     queue_free()

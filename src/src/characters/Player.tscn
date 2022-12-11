@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://src/characters/Player.gd" type="Script" id=1]
 [ext_resource path="res://src/spells/SpellController.gd" type="Script" id=2]
@@ -9,9 +9,13 @@
 [ext_resource path="res://assets/UI/crosshair187.png" type="Texture" id=7]
 [ext_resource path="res://src/characters/WeaponManager.gd" type="Script" id=8]
 [ext_resource path="res://src/gameplay/weapons/AssaultRifle.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/characters/AmmoManager.gd" type="Script" id=10]
+[ext_resource path="res://src/UI/UI_Weapon.gd" type="Script" id=11]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
+
+[sub_resource type="CylinderShape" id=2]
 
 [node name="Player" type="KinematicBody" groups=["Player"]]
 collision_layer = 2
@@ -29,6 +33,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
 
 [node name="Camera" type="Camera" parent="Head"]
 fov = 100.0
+far = 400.0
 
 [node name="Hand" type="Position3D" parent="Head"]
 transform = Transform( 1, 0, 0, 0, 0.999997, -0.00246091, 0, 0.00246091, 0.999997, 0, -0.728066, -1.40332 )
@@ -42,14 +47,16 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.573, -0.57, 0.216 )
 
 [node name="Gun" parent="Head/WeaponManager/WeaponSocket" instance=ExtResource( 6 )]
 is_active = true
+ammo_type = 2
 
 [node name="AssaultRifle" parent="Head/WeaponManager/WeaponSocket" instance=ExtResource( 9 )]
 
-[node name="WeaponHUD" type="Control" parent="Head/WeaponManager"]
+[node name="UI_Weapon" type="Control" parent="Head/WeaponManager" groups=["UI_Weapon"]]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 11 )
 
-[node name="Crosshair" type="TextureRect" parent="Head/WeaponManager/WeaponHUD"]
+[node name="Crosshair" type="TextureRect" parent="Head/WeaponManager/UI_Weapon"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -60,6 +67,21 @@ margin_right = 20.0
 margin_bottom = 20.0
 texture = ExtResource( 7 )
 expand = true
+
+[node name="UI_Ammo" type="Control" parent="Head/WeaponManager/UI_Weapon"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -112.0
+margin_top = -40.0
+
+[node name="Label" type="Label" parent="Head/WeaponManager/UI_Weapon/UI_Ammo"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "1/6 (30)"
+align = 1
+valign = 1
 
 [node name="WeaponHitscanRaycast" type="RayCast" parent="Head/WeaponManager" groups=["WeaponHitscanRaycast"]]
 cast_to = Vector3( 0, 0, -200 )
@@ -74,4 +96,15 @@ startingSpell = ExtResource( 3 )
 
 [node name="SceneTransition" parent="." instance=ExtResource( 5 )]
 
+[node name="AmmoManager" type="Spatial" parent="." groups=["AmmoManager"]]
+script = ExtResource( 10 )
+
+[node name="PickupArea" type="Area" parent="AmmoManager"]
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionShape" type="CollisionShape" parent="AmmoManager/PickupArea"]
+shape = SubResource( 2 )
+
 [connection signal="died_signal" from="Stats" to="." method="_on_Stats_died_signal"]
+[connection signal="area_entered" from="AmmoManager/PickupArea" to="AmmoManager" method="_on_PickupArea_area_entered"]

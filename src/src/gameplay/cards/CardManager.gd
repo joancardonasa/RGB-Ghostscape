@@ -13,7 +13,11 @@ var current_card
 #warning-ignore-all:unused_signal
 signal Player_SpeedMult(enable, mult)
 signal Player_AllowShoot(enable)
+
 signal Enemy_Reveal(enable)
+
+signal Pickup_Reveal(enable)
+signal Pickup_Delete()
 
 # Deck Signals
 signal Draw_Card(card, duration)
