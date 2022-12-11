@@ -68,3 +68,5 @@ func spawn_ammo_pickup(position: Vector3):
     pickup_container.add_child(ammo_pickup)
     ammo_pickup.global_transform.origin = position
 
+func get_ui_deck():
+    return get_tree().get_nodes_in_group("UI_Deck")[0]

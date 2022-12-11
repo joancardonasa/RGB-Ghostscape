@@ -7,7 +7,6 @@ onready var _label_count = $Label
 func _ready():
     add_to_group("DRAGGABLE")
     _set_card(card_data, count)
-    var ui_deck = get_tree().get_nodes_in_group("UI_Deck")[0]
 
 func get_drag_data(_position: Vector2):
     set_drag_preview(_preview_drag())
