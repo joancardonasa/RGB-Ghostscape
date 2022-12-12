@@ -107,4 +107,6 @@ shape = SubResource( 3 )
 
 [connection signal="died_signal" from="Stats" to="." method="_on_Stats_died_signal"]
 [connection signal="timeout" from="PathUpdateTimer" to="." method="_on_PathUpdateTimer_timeout"]
+[connection signal="area_entered" from="Hurtbox" to="Hurtbox" method="_on_Hurtbox_area_entered"]
 [connection signal="damage_taken" from="Hurtbox" to="." method="_on_Hurtbox_damage_taken"]
+[connection signal="player_collision" from="Hurtbox" to="." method="_on_Hurtbox_player_collision"]

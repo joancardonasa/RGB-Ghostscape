@@ -37,6 +37,7 @@ var movement = Vector3()
 onready var accel = ACCEL_TYPE["default"]
 onready var head = $Head
 onready var camera = $Head/Camera
+onready var stats = $Stats
 
 # Variables for boosts
 var _speed_mult: float = 1.0
@@ -107,9 +108,7 @@ func _physics_process(delta):
     else:
         movement = velocity + gravity_vec
 
-    # warning-ignore:return_value_discarded
     move_and_slide_with_snap(movement, snap, Vector3.UP)
-
 
 func _on_Stats_died_signal():
     Sound.get_node("DeathSound").play()
@@ -121,3 +120,7 @@ func _on_Stats_died_signal():
 func _on_Card_SpeedMult(enable : bool, mult : float):
     _speed_mult = mult if enable else 1.0
 
+func _on_HurtBox_damage_taken():
+    Sound.get_node("HitSound").play()
+    if not Globals.GODMODE:
+        stats.take_hit(1)

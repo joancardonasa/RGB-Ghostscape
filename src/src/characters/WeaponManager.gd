@@ -30,7 +30,7 @@ func _input(event):
     determine_weapon_change(event)
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
     if _shooting_allowed and is_instance_valid(active_weapon):
         if Input.is_action_pressed("fire") and active_weapon.weapon_data.automatic:
             active_weapon.fire()
