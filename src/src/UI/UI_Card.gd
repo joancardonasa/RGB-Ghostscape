@@ -4,19 +4,19 @@ export(int) var grow_size = 60
 var card_data
 var timer = 0
 
-onready var time_label: Label = $UI_Card/MarginContainer/HBoxContainer/TimeLabel
-onready var icon_rect: TextureRect = $UI_Card/MarginContainer/HBoxContainer/Control/Icon
-onready var ui_card: ColorRect = $UI_Card
+onready var time_label: Label = $Background/MarginContainer/HBoxContainer/TimeLabel
+onready var icon_rect: TextureRect = $Background/MarginContainer/HBoxContainer/Control/Icon
+onready var background: ColorRect = $Background
 
 signal lifted
 
 func _ready():
-    ui_card.color = Color(0,0,0,0)
+    background.color = Color(0,0,0,0)
     add_to_group("DRAGGABLE")
 
 func set_card(card: Resource):
     card_data = card
-    ui_card.color = card_data.col
+    background.color = card_data.col
     icon_rect.texture = card_data.icon
     _set_active(false)
 
@@ -35,13 +35,15 @@ func _process(delta):
 
 func _set_active(enabled: bool, anim_time: float = 0.75):
     time_label.set_visible(enabled)
+    if grow_size == 0:
+        return
     var tween = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
     if enabled:
-        tween.tween_property(ui_card, "margin_left", -1.0 * grow_size, anim_time)
-        ui_card.color = card_data.col
+        tween.tween_property(background, "margin_left", -1.0 * grow_size, anim_time)
+        background.color = card_data.col
     else:
-        tween.tween_property(ui_card, "margin_left", 0.0, anim_time)
-        ui_card.color = card_data.col - Color(0, 0, 0, 0.2)
+        tween.tween_property(background, "margin_left", 0.0, anim_time)
+        background.color = card_data.col - Color(0, 0, 0, 0.2)
     
 func get_drag_data(_position: Vector2):
     set_drag_preview(_preview_drag())

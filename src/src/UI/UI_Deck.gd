@@ -7,6 +7,7 @@ var _card_manager
 var _deck = {}
 var _preview_card: Control
 var _preview_pos: int = -1
+onready var _move_preview_timer: Timer = $MovePreview
 
 signal card_added(card, idx)
 
@@ -16,7 +17,10 @@ func _ready():
     _clear_deck()
     _card_manager.connect("Draw_Card",self, "_draw_card")
     _preview_card = UI_Card.instance()
-
+    _preview_card.get_node("Background").margin_right = -50
+    _preview_card.get_node("Background").margin_left = -50
+    _preview_card.grow_size = 0
+    
     for card in _card_manager.deck:
         _add_card(card)
 
@@ -27,15 +31,13 @@ func _clear_deck():
 func _draw_card(card: Resource, duration: float):
     var card_instance = _deck[card.get_instance_id()]
     card_instance.activate(duration)
-    # Hacky way to wait the anim time for the node to deactivate
-    yield(get_tree().create_timer(0.75), "timeout")
-    _reorder_deck(_card_manager.get_ordered_deck())
+    _reorder_deck()
 
-func _reorder_deck(newOrder):
+func _reorder_deck():
     for child in _card_container.get_children():
         if child != _preview_card:
             _card_container.remove_child(child)
-    for card in newOrder:
+    for card in _card_manager.deck:
         _card_container.add_child(_deck[card.get_instance_id()])
     if(_preview_pos != -1):
         _card_container.move_child(_preview_card, _preview_pos)
@@ -44,29 +46,35 @@ func can_drop_data(position: Vector2, data):
     var can_drop = data is Node and data.is_in_group("DRAGGABLE")
     if not can_drop:
         return false
+    if not _move_preview_timer.is_stopped():
+        return can_drop
     var idx = _idx_from_pos(position)
     if idx != _preview_pos:
         if _preview_pos == -1:
             _card_container.add_child(_preview_card)
             _preview_card.set_card(data.card_data)
-            _card_container.move_child(_preview_card, idx)
+        _card_container.move_child(_preview_card, idx)
         _preview_pos = idx
+        _move_preview_timer.start()
     return can_drop
 
 func drop_data(position: Vector2, data):
-    _remove_preview()
+    _remove_preview()                   
     var card_data = data.card_data.duplicate()
     emit_signal("card_added", card_data, _idx_from_pos(position))
     _add_card(card_data)
-    _reorder_deck(_card_manager.get_ordered_deck())
-
+    _reorder_deck()
+    
 func _on_UI_Deck_mouse_exited():
-    _remove_preview()
+    if(get_viewport().get_mouse_position().x < rect_position.x):
+        _remove_preview()
     
 func _idx_from_pos(pos: Vector2) -> int:
     var idx = 0
     for child in _card_container.get_children():
-        if pos.y < (child.get_position().y + (child.get_size().y/2)):
+        if child == _preview_card:
+            continue
+        if pos.y < child.rect_position.y + child.rect_size.y:
             return idx
         idx += 1
     return idx
@@ -87,4 +95,4 @@ func _on_card_lifted(card):
     _card_manager.remove_from_deck(card.card_data)
     _card_container.remove_child(card)
     _deck.erase(card.card_data.get_instance_id())
-    _reorder_deck(_card_manager.get_ordered_deck())
+    _reorder_deck()
