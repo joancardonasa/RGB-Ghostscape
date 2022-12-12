@@ -51,6 +51,7 @@ func determine_weapon_change(event: InputEvent):
     else:
         return
 
+    if active_weapon.is_reloading: return
     set_new_active_weapon(weapons[new_index])
 
 
@@ -58,17 +59,10 @@ func set_new_active_weapon(weapon: Weapon):
     active_weapon = weapon
     get_tree().call_group("Weapon", "set_active", weapon)
     ui_weapon.update_crosshair(active_weapon.crosshair_texture)
-    ui_weapon.update_ammo_amount(
-        active_weapon.ammo_magazine,
-        active_weapon.weapon_data.magazine_size,
-        ammo_manager.ammo_amount[active_weapon.ammo_type])
+    ui_weapon.update_ammo_amount(active_weapon)
 
 
 func _on_AmmoManager_PickedUpAmmo(ammo_type, ammo_amount):
-    # Do not update if the active weapon does not have the picked up ammo type
     if active_weapon.ammo_type != ammo_type:
         return
-    ui_weapon.update_ammo_amount(
-        active_weapon.ammo_magazine,
-        active_weapon.weapon_data.magazine_size,
-        ammo_manager.ammo_amount[active_weapon.ammo_type])
+    ui_weapon.update_ammo_amount(active_weapon)

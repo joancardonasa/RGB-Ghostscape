@@ -1,25 +1,32 @@
 extends Control
 
-onready var ui_ammo_label: Label = $UI_Ammo/Label
+onready var ui_ammo_label: Label = $UI_Ammo/HBoxContainer/Label
+onready var ui_ammo_icon: TextureRect = $UI_Ammo/HBoxContainer/AmmoIcon 
+
 onready var crosshair: TextureRect = $Crosshair
 
+var weapon_manager = null
+var ammo_manager = null
+
 func _ready():
-    pass
+    weapon_manager = Utils.get_weapon_manager()
+    ammo_manager = Utils.get_ammo_manager()
 
 
-func update_ammo_amount(
-    new_ammo_amount: int,
-    magazine_size: int,
-    total_ammo_amount: int
-   ):
-    ui_ammo_label.text = str(new_ammo_amount) + "/" + str(magazine_size) + \
-        " (" + str(total_ammo_amount) + ")"
+func update_ammo_amount(weapon: Weapon):
+    ui_ammo_icon.modulate = ammo_manager.ammo_info[weapon.ammo_type]["color"]
+    ui_ammo_label.text = \
+        str(weapon.ammo_magazine) + "/" + \
+        str(weapon.weapon_data.magazine_size) + \
+        " (" + str(ammo_manager.ammo_info[weapon.ammo_type]["amount"]) + ")"
 
+
+# Crosshair
 func update_crosshair(texture: Texture):
     crosshair.texture = texture
 
-func ring_crosshair_on_shot():
+func scale_crosshair_on_shot(scale_animation_time: float):
     crosshair.rect_scale = Vector2(1.2,1.2)
     var tween = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
-    tween.tween_property(crosshair, "rect_scale", Vector2.ONE, 0.1)
+    tween.tween_property(crosshair, "rect_scale", Vector2.ONE, scale_animation_time)
 

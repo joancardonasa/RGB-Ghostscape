@@ -10,7 +10,7 @@ export(AmmoManager.AmmoType) var ammo_type = AmmoManager.AmmoType.SMALL
 export(int) var damage = 0
 export(Resource) var weapon_data
 export(Texture) var crosshair_texture
-
+export(float) var crosshair_scale_shot_time = 0.1
 onready var animation_player = $AnimationPlayer
 
 var hitscan_raycast = null
@@ -19,6 +19,7 @@ var ammo_manager = null
 
 var ammo_magazine: int = 0
 
+var is_reloading: bool = false
 
 func _ready():
     hitscan_raycast = Utils.get_hitscan_raycast()
@@ -29,9 +30,9 @@ func _ready():
 
 
 func fire():
-    if not animation_player.is_playing() and ammo_magazine > 0:
+    if not animation_player.is_playing() and ammo_magazine > 0 and is_active:
         animation_player.play("Fire")
-        ui_weapon.ring_crosshair_on_shot()
+        ui_weapon.scale_crosshair_on_shot(crosshair_scale_shot_time)
 
         hitscan_raycast.enabled = true
         if hitscan_raycast.is_colliding():
@@ -40,10 +41,12 @@ func fire():
 
         ammo_magazine -= 1
 
-        ui_weapon.update_ammo_amount(
-            ammo_magazine,
-            weapon_data.magazine_size,
-            ammo_manager.ammo_amount[ammo_type])
+        ui_weapon.update_ammo_amount(self)
+#        ui_weapon.update_ammo_amount(
+#            ammo_magazine,
+#            weapon_data.magazine_size,
+#            ammo_manager.ammo_amount[ammo_type],
+#            is_active)
 
 
 func _on_HitscanTimer_timeout():
@@ -55,41 +58,44 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 #        if ammo_magazine == 0 and ammo_manager.ammo_amount[ammo_type] > 0:
 #            animation_player.play("Reload")
     if anim_name == "Reload":
+        is_reloading = false
         reload()
 
 
 # Could also be called on purpose
 func reload():
-    if ammo_manager.ammo_amount[ammo_type] == 0:
+    if ammo_manager.ammo_info[ammo_type]["amount"] == 0:
         # No ammo, make sound chckhc
         return
 
     var amount_empty: int = weapon_data.magazine_size - ammo_magazine
-    var amount_available: int = ammo_manager.ammo_amount[ammo_type]
+    var amount_available: int = ammo_manager.ammo_info[ammo_type]["amount"]
 
     var amount_to_fill: int = min(amount_empty, amount_available)
 
     ammo_magazine += amount_to_fill
-    ammo_manager.ammo_amount[ammo_type] -= amount_to_fill
+    ammo_manager.ammo_info[ammo_type]["amount"] -= amount_to_fill
 
-    ui_weapon.update_ammo_amount(
-        ammo_magazine,
-        weapon_data.magazine_size,
-        ammo_manager.ammo_amount[ammo_type])
+    ui_weapon.update_ammo_amount(self)
 
 
 func set_active(weapon: Weapon):
     # TODO: Add activate animation
-    if self == weapon:
-        visible = true
-    else:
-        visible = false
+    is_active = self == weapon
+    visible = self == weapon
 
 
 func _input(event):
+    # Only reload active weapon
+    if not is_active: return
     if event.is_action_pressed("reload"):
         if ammo_magazine == weapon_data.magazine_size or \
-            ammo_manager.ammo_amount[ammo_type] == 0:
+            ammo_manager.ammo_info[ammo_type]["amount"] == 0:
                 return
         else:
-            animation_player.play("Reload")
+            start_reload_anim()
+
+
+func start_reload_anim():
+    is_reloading = true
+    animation_player.play("Reload")
