@@ -11,6 +11,10 @@ export(int) var damage = 0
 export(Resource) var weapon_data
 export(Texture) var crosshair_texture
 export(float) var crosshair_scale_shot_time = 0.1
+
+export(float) var camera_shake_intensity = 0.06
+export(float) var camera_shake_duration = 0.06
+
 onready var animation_player = $AnimationPlayer
 
 var hitscan_raycast = null
@@ -32,6 +36,7 @@ func _ready():
 func fire():
     if not animation_player.is_playing() and ammo_magazine > 0 and is_active:
         animation_player.play("Fire")
+        Utils.camera_shake(camera_shake_intensity, camera_shake_duration)
         ui_weapon.scale_crosshair_on_shot(crosshair_scale_shot_time)
 
         hitscan_raycast.enabled = true

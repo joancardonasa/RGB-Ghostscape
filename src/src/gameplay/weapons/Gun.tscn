@@ -110,6 +110,8 @@ script = ExtResource( 2 )
 damage = 3
 weapon_data = ExtResource( 1 )
 crosshair_texture = ExtResource( 3 )
+camera_shake_intensity = 0.1
+camera_shake_duration = 0.08
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 transform = Transform( 0.068574, 0, 0, 0, 0.113185, 0, 0, 0, 0.210516, 0, 0.140866, -0.311273 )

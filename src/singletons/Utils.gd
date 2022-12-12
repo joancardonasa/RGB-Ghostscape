@@ -68,3 +68,9 @@ func spawn_ammo_pickup(position: Vector3):
     pickup_container.add_child(ammo_pickup)
     ammo_pickup.global_transform.origin = position
 
+# Camera
+func get_camera():
+    return get_tree().get_nodes_in_group("Camera")[0]
+
+func camera_shake(intensity, duration):
+    get_camera().shake(intensity, duration)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://src/characters/Player.gd" type="Script" id=1]
 [ext_resource path="res://src/spells/SpellController.gd" type="Script" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://assets/UI/ammo.png" type="Texture" id=14]
 [ext_resource path="res://assets/UI/hitmarker.png" type="Texture" id=15]
 [ext_resource path="res://src/characters/WeaponSocket.gd" type="Script" id=16]
+[ext_resource path="res://src/characters/Camera.gd" type="Script" id=17]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -45,10 +46,11 @@ shape = SubResource( 1 )
 [node name="Head" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
 
-[node name="Camera" type="Camera" parent="Head"]
+[node name="Camera" type="Camera" parent="Head" groups=["Camera"]]
 current = true
 fov = 100.0
 far = 400.0
+script = ExtResource( 17 )
 
 [node name="Hand" type="Position3D" parent="Head"]
 transform = Transform( 1, 0, 0, 0, 0.999997, -0.00246091, 0, 0.00246091, 0.999997, 0, -0.728066, -1.40332 )
