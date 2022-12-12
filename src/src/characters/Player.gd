@@ -19,7 +19,7 @@ const ACCEL_TYPE = {"default": 10, "air": 1}
 # Strafe leaning
 const LEAN_SMOOTH : float = 10.0
 const LEAN_MULT : float = 0.066
-const LEAM_AMOUNT : float = 0.7
+const LEAN_AMOUNT : float = 0.7
 
 # Mouse sensitivity
 var mouse_sense = 0.1
@@ -32,12 +32,14 @@ var direction = Vector3()
 var velocity = Vector3()
 var gravity_vec = Vector3()
 var movement = Vector3()
+var boost_vec = Vector3()
 
 # Onready variables
 onready var accel = ACCEL_TYPE["default"]
 onready var head = $Head
-onready var camera = $Head/Camera
 onready var stats = $Stats
+onready var camera = $Head/LeanGimbal/Camera
+onready var lean_gimbal = $Head/LeanGimbal
 
 # Variables for boosts
 var _speed_mult: float = 1.0
@@ -63,10 +65,7 @@ func _input(event):
         SceneManager.goto_scene("res://src/maps/Map.tscn")
 
 func _process(delta):
-    camera.set_as_toplevel(false)
-    camera.global_transform = head.global_transform
-
-    head.rotation.z = lerp(head.rotation.z, currentStrafeDir * LEAN_MULT, delta * LEAN_SMOOTH)
+    lean_gimbal.rotation.z = lerp(lean_gimbal.rotation.z, currentStrafeDir * LEAN_MULT, delta * LEAN_SMOOTH)
 
 func _physics_process(delta):
     # Get keyboard input
@@ -77,9 +76,9 @@ func _physics_process(delta):
 
     # Check if to lean
     if(h_input < 0):
-        currentStrafeDir = LEAM_AMOUNT
+        currentStrafeDir = LEAN_AMOUNT
     elif(h_input > 0):
-        currentStrafeDir = -LEAM_AMOUNT
+        currentStrafeDir = -LEAN_AMOUNT
     else:
         currentStrafeDir = 0
     
@@ -98,6 +97,13 @@ func _physics_process(delta):
     if Input.is_action_just_pressed("jump") and is_on_floor():
         snap = Vector3.ZERO
         gravity_vec = Vector3.UP * JUMP
+    
+    if boost_vec != Vector3.ZERO:
+        snap = Vector3.ZERO
+        if (boost_vec.y > 0):
+            gravity_vec = Vector3.UP * boost_vec.y
+        velocity += Vector3(boost_vec.x, 0, boost_vec.z)
+        boost_vec = Vector3.ZERO
     
     # Moving
     velocity = velocity.linear_interpolate(direction * (SPEED * _speed_mult), accel * delta)
@@ -124,3 +130,5 @@ func _on_HurtBox_damage_taken():
     Sound.get_node("HitSound").play()
     if not Globals.GODMODE:
         stats.take_hit(1)
+func boost(force: Vector3):
+    boost_vec = force

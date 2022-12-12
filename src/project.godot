@@ -29,11 +29,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/gameplay/cards/CardRed.gd"
 }, {
-"base": "Area",
-"class": "JumpPad",
-"language": "GDScript",
-"path": "res://src/gameplay/platform/JumpPad.gd"
-}, {
 "base": "Node",
 "class": "Stats",
 "language": "GDScript",
@@ -54,7 +49,6 @@ _global_script_class_icons={
 "CardBlue": "",
 "CardGreen": "",
 "CardRed": "",
-"JumpPad": "",
 "Stats": "",
 "Weapon": "",
 "WeaponData": ""
