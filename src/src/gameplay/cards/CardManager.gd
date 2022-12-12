@@ -57,3 +57,6 @@ func get_ordered_deck():
 func add_to_deck(card: Resource, idx: int):
     card.set_card_manager(self)
     deck.insert((_current_ind+ idx) % (deck.size()+1), card)
+
+func remove_from_deck(card: Resource):
+    deck.erase(card)

@@ -17,18 +17,12 @@ func _ready():
     _card_manager.connect("Draw_Card",self, "_draw_card")
     _preview_card = UI_Card.instance()
 
-    _set_deck(_card_manager.deck)
+    for card in _card_manager.deck:
+        _add_card(card)
 
 func _clear_deck():
     for card in _card_container.get_children():
         card.queue_free()
-
-func _set_deck(cards: Array):
-    for card in cards:
-        var card_instance = UI_Card.instance()
-        _card_container.add_child(card_instance)
-        card_instance.set_card(card)
-        _deck[card.get_instance_id()] = card_instance
 
 func _draw_card(card: Resource, duration: float):
     var card_instance = _deck[card.get_instance_id()]
@@ -55,7 +49,7 @@ func can_drop_data(position: Vector2, data):
         if _preview_pos == -1:
             _card_container.add_child(_preview_card)
             _preview_card.set_card(data.card_data)
-        _card_container.move_child(_preview_card, idx)
+            _card_container.move_child(_preview_card, idx)
         _preview_pos = idx
     return can_drop
 
@@ -64,7 +58,11 @@ func drop_data(position: Vector2, data):
     var card_data = data.card_data.duplicate()
     emit_signal("card_added", card_data, _idx_from_pos(position))
     _add_card(card_data)
+    _reorder_deck(_card_manager.get_ordered_deck())
 
+func _on_UI_Deck_mouse_exited():
+    _remove_preview()
+    
 func _idx_from_pos(pos: Vector2) -> int:
     var idx = 0
     for child in _card_container.get_children():
@@ -72,9 +70,6 @@ func _idx_from_pos(pos: Vector2) -> int:
             return idx
         idx += 1
     return idx
-
-func _on_UI_Deck_mouse_exited():
-    _remove_preview()
 
 func _remove_preview():
     if _preview_pos!= -1:
@@ -86,5 +81,10 @@ func _add_card(card_data: Resource):
     _card_container.add_child(ncard)
     ncard.set_card(card_data)
     _deck[card_data.get_instance_id()] = ncard
+    ncard.connect("lifted", self, "_on_card_lifted")
+
+func _on_card_lifted(card):
+    _card_manager.remove_from_deck(card.card_data)
+    _card_container.remove_child(card)
+    _deck.erase(card.card_data.get_instance_id())
     _reorder_deck(_card_manager.get_ordered_deck())
-    
