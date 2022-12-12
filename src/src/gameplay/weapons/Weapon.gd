@@ -36,6 +36,7 @@ func fire():
 
         hitscan_raycast.enabled = true
         if hitscan_raycast.is_colliding():
+            ui_weapon.show_hit_indicator_on_hit(0.1)
             var collider = hitscan_raycast.get_collider()
             collider.take_damage(damage)
 
