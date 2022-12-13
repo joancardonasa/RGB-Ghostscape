@@ -50,6 +50,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
 [node name="LeanGimbal" type="Spatial" parent="Head"]
 
 [node name="Camera" type="Camera" parent="Head/LeanGimbal" groups=["Camera"]]
+current = true
 fov = 100.0
 far = 400.0
 script = ExtResource( 17 )

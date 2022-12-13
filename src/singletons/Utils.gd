@@ -49,6 +49,9 @@ func get_ui_weapon():
 func get_ammo_manager():
     return get_tree().get_nodes_in_group("AmmoManager")[0]
 
+func get_ui_deck():
+    return get_tree().get_nodes_in_group("UI_Deck")[0]
+
 # Pickup utils
 func get_pickup_container():
     return get_tree().get_nodes_in_group("PickupContainer")[0]
