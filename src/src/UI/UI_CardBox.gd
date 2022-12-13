@@ -15,4 +15,3 @@ func set_active(enabled: bool):
         Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
     else:
         Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-    
