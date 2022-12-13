@@ -1,6 +1,9 @@
 extends Control
 
 
+export(int) var locked_cards = 3
+
+
 var UI_Card = preload("res://src/UI/UI_Card.tscn")
 onready var _card_container = $CardContainer
 var _card_manager
@@ -37,18 +40,20 @@ func _reorder_deck():
     for child in _card_container.get_children():
         if child != _preview_card:
             _card_container.remove_child(child)
-    for card in _card_manager.deck:
-        _card_container.add_child(_deck[card.get_instance_id()])
+    for card_idx in _card_manager.deck.size():
+        var nchild = _deck[_card_manager.deck[card_idx].get_instance_id()]
+        _card_container.add_child(nchild)
+        nchild.locked = card_idx < locked_cards
     if(_preview_pos != -1):
         _card_container.move_child(_preview_card, _preview_pos)
         
 func can_drop_data(position: Vector2, data):
-    var can_drop = data is Node and data.is_in_group("DRAGGABLE")
+    var idx = _idx_from_pos(position)
+    var can_drop = data is Node and data.is_in_group("DRAGGABLE") and idx >= locked_cards
     if not can_drop:
         return false
     if not _move_preview_timer.is_stopped():
         return can_drop
-    var idx = _idx_from_pos(position)
     if idx != _preview_pos:
         if _preview_pos == -1:
             _card_container.add_child(_preview_card)

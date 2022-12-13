@@ -3,6 +3,7 @@ extends Control
 export(int) var grow_size = 60
 var card_data
 var timer = 0
+var locked: bool = false
 
 onready var time_label: Label = $Background/MarginContainer/HBoxContainer/TimeLabel
 onready var icon_rect: TextureRect = $Background/MarginContainer/HBoxContainer/Control/Icon
@@ -46,6 +47,8 @@ func _set_active(enabled: bool, anim_time: float = 0.75):
         background.color = card_data.col - Color(0, 0, 0, 0.2)
     
 func get_drag_data(_position: Vector2):
+    if(locked):
+        return null
     set_drag_preview(_preview_drag())
     emit_signal("lifted",self)
     return self
