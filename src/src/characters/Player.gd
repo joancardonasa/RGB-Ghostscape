@@ -54,6 +54,7 @@ func _ready():
     # warning-ignore:return_value_discarded
     var card_manager = Utils.get_card_manager()
     card_manager.connect("Player_SpeedMult", self, "_on_Card_SpeedMult")
+    card_manager.connect("Player_Heal", self, "_on_Card_Heal")
 
 func _input(event):
     # Get mouse input for camera rotation
@@ -126,6 +127,9 @@ func _on_Stats_died_signal():
 
 func _on_Card_SpeedMult(enable : bool, mult : float):
     _speed_mult = mult if enable else 1.0
+
+func _on_Card_Heal(amount : int):
+    stats.heal(amount)
 
 func _on_HurtBox_damage_taken():
     Sound.get_node("HitSound").play()

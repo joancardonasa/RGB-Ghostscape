@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://src/gameplay/cards/CardBlueHeal.gd" type="Script" id=1]
+[ext_resource path="res://assets/UI/health-normal.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+name = "[Blue] Heal"
+tooltip = "Heals 1 Hit, Breaks on use"
+Duration = 5.0
+col = Color( 0.133333, 0.188235, 0.996078, 1 )
+reveal_enemies = false
+reveal_pickups = true
+icon = ExtResource( 2 )

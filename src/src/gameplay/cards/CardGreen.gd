@@ -2,6 +2,7 @@ extends Resource
 class_name CardGreen
 
 export(String) var name = "[Green] Default"
+export(String) var tooltip = ""
 export(float) var Duration = 5.0
 export(float) var SpeedMult = 2.0
 export(Color, RGB) var col = Color(0,1,0)

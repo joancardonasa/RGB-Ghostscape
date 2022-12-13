@@ -20,6 +20,11 @@ _global_script_classes=[ {
 "path": "res://src/gameplay/cards/CardBlue.gd"
 }, {
 "base": "Resource",
+"class": "CardBlueHeal",
+"language": "GDScript",
+"path": "res://src/gameplay/cards/CardBlueHeal.gd"
+}, {
+"base": "Resource",
 "class": "CardGreen",
 "language": "GDScript",
 "path": "res://src/gameplay/cards/CardGreen.gd"
@@ -47,6 +52,7 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "AmmoManager": "",
 "CardBlue": "",
+"CardBlueHeal": "",
 "CardGreen": "",
 "CardRed": "",
 "Stats": "",

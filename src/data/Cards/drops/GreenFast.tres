@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource( 1 )
 name = "[Green] Fast"
+tooltip = ""
 Duration = 2.5
 SpeedMult = 5.0
 col = Color( 0.0196078, 0.682353, 0.0196078, 1 )

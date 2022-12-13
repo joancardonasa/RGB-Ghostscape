@@ -46,8 +46,8 @@ func _reflect_count(new_count: int):
     else:
         _label_count.text = str(new_count)
     if new_count == 0:
-        var gvalue: float = card_data.col.v
-        color = Color(gvalue,gvalue,gvalue,0.5)
+        var gvalue: float = card_data.col.v / 2
+        color = Color(gvalue,gvalue,gvalue,1)
     else:
         color = card_data.col
 
