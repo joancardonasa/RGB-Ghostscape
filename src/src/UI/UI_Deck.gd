@@ -13,6 +13,7 @@ var _preview_pos: int = -1
 onready var _move_preview_timer: Timer = $MovePreview
 
 signal card_added(card, idx)
+signal card_removed(card)
 
 
 func _ready():
@@ -101,3 +102,4 @@ func _on_card_lifted(card):
     _card_container.remove_child(card)
     _deck.erase(card.card_data.get_instance_id())
     _reorder_deck()
+    emit_signal("card_removed", card.card_data)
