@@ -14,11 +14,14 @@ func _ready():
     pass
 
 func take_hit(damage):	
-    current_HP -= damage
-    
+    current_HP -= damage    
     if current_HP <= 0:
         die()
-        
+
+func heal(amount: int):
+    current_HP += amount
+    if current_HP > max_HP:
+        current_HP = max_HP
 
 func die():
     emit_signal("died_signal")

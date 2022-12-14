@@ -19,6 +19,7 @@ signal Platform_Reveal(enable)
 signal Pickup_Reveal(enable)
 signal Pickup_Delete()
 
+signal Player_Heal(amount)
 # Deck Signals
 signal Draw_Card(card, duration)
 
