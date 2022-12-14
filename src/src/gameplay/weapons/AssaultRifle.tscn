@@ -5,6 +5,7 @@
 [ext_resource path="res://assets/UI/crosshair066.png" type="Texture" id=3]
 
 [sub_resource type="CubeMesh" id=5]
+size = Vector3( 0.138, 0.226, 2.064 )
 
 [sub_resource type="SpatialMaterial" id=6]
 albedo_color = Color( 0.415686, 0.172549, 0.105882, 1 )
@@ -101,7 +102,7 @@ weapon_data = ExtResource( 1 )
 crosshair_texture = ExtResource( 3 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
-transform = Transform( 0.068574, 0, 0, 0, 0.113185, 0, 0, 0, 0.532226, 0, 0.140866, -0.311273 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.140866, -0.311273 )
 mesh = SubResource( 5 )
 material/0 = SubResource( 6 )
 
