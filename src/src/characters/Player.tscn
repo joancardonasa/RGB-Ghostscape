@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://src/characters/Player.gd" type="Script" id=1]
 [ext_resource path="res://src/spells/SpellController.gd" type="Script" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://assets/UI/hitmarker.png" type="Texture" id=15]
 [ext_resource path="res://src/characters/WeaponSocket.gd" type="Script" id=16]
 [ext_resource path="res://src/characters/Camera.gd" type="Script" id=17]
+[ext_resource path="res://src/characters/PlayerHurtbox.gd" type="Script" id=18]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -163,7 +164,7 @@ shape = SubResource( 2 )
 [node name="HurtBox" type="Area" parent="."]
 collision_layer = 256
 collision_mask = 512
-script = ExtResource( 12 )
+script = ExtResource( 18 )
 
 [node name="CollisionShape" type="CollisionShape" parent="HurtBox"]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )

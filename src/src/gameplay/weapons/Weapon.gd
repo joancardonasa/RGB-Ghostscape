@@ -48,11 +48,10 @@ func fire():
         ammo_magazine -= 1
 
         ui_weapon.update_ammo_amount(self)
-#        ui_weapon.update_ammo_amount(
-#            ammo_magazine,
-#            weapon_data.magazine_size,
-#            ammo_manager.ammo_amount[ammo_type],
-#            is_active)
+    elif not animation_player.is_playing() and \
+        ammo_magazine == 0 and \
+        ammo_manager.ammo_info[ammo_type]["amount"] > 0:
+        start_reload_anim()
 
 
 func _on_HitscanTimer_timeout():
@@ -60,9 +59,6 @@ func _on_HitscanTimer_timeout():
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):
-#    if anim_name == "Fire":
-#        if ammo_magazine == 0 and ammo_manager.ammo_amount[ammo_type] > 0:
-#            animation_player.play("Reload")
     if anim_name == "Reload":
         is_reloading = false
         reload()
