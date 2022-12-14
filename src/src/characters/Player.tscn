@@ -73,6 +73,7 @@ is_active = true
 ammo_type = 2
 
 [node name="AssaultRifle" parent="Head/WeaponManager/WeaponSocket" instance=ExtResource( 9 )]
+visible = false
 
 [node name="UI_Weapon" type="Control" parent="Head/WeaponManager" groups=["UI_Weapon"]]
 anchor_right = 1.0
