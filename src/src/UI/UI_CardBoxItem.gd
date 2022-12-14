@@ -16,7 +16,7 @@ func _ready():
     ui_deck.connect("card_added", self, "_deck_on_card_added")
     ui_deck.connect("card_removed", self, "_deck_on_card_removed")
     add_to_group("DRAGGABLE")
-    _set_card(card_data, count)
+    _set_card(card_data, count | 0)
     connect("mouse_entered", self, "_on_UI_CardBoxItem_mouse_entered")
     connect("mouse_exited", self, "_on_UI_CardBoxItem_mouse_exited")
 

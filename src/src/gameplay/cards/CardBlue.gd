@@ -5,7 +5,7 @@ class_name CardBlue
 export(String) var name = "[Blue] Default"
 export(String) var tooltip = ""
 export(float) var Duration = 5.0
-export(Color, RGB) var col = Color(0, 0, 1)
+export(Color, RGB) var col = Color("#0e7bae")
 export(bool) var reveal_enemies = false
 export(bool) var reveal_pickups = true
 export(Texture) var icon
