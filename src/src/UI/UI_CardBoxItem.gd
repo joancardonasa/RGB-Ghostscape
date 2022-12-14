@@ -8,12 +8,17 @@ onready var _label_count: Label = $Background/MarginContainer/VBoxContainer/Labe
 onready var _background: Button = $Background
 onready var _icon: TextureRect = $Background/MarginContainer/VBoxContainer/Icon
 
+signal card_entered(card)
+signal card_exited(card)
+
 func _ready():
     var ui_deck = Utils.get_ui_deck()
     ui_deck.connect("card_added", self, "_deck_on_card_added")
     ui_deck.connect("card_removed", self, "_deck_on_card_removed")
     add_to_group("DRAGGABLE")
     _set_card(card_data, count)
+    connect("mouse_entered", self, "_on_UI_CardBoxItem_mouse_entered")
+    connect("mouse_exited", self, "_on_UI_CardBoxItem_mouse_exited")
 
 func get_drag_data(_position: Vector2):
     if(count<=0):
@@ -63,3 +68,10 @@ func _deck_on_card_removed(data):
     if data.name == card_data.name:
         count +=1
         _reflect_count(count)
+
+func _on_UI_CardBoxItem_mouse_exited():
+    emit_signal("card_exited", self)
+
+func _on_UI_CardBoxItem_mouse_entered():
+    if count > 0: 
+        emit_signal("card_entered", self)

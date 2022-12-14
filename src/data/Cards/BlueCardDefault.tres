@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource( 1 )
 name = "[Blue] Default"
+tooltip = ""
 Duration = 5.0
 col = Color( 0.231373, 0.364706, 0.788235, 1 )
 reveal_enemies = false

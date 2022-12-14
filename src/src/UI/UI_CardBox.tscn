@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/UI/UI_CardBoxItem.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/UI/UI_CardBox.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://data/cards/GreenCardDefault.tres" type="Resource" id=5]
 [ext_resource path="res://data/cards/drops/GreenFast.tres" type="Resource" id=6]
 [ext_resource path="res://data/cards/drops/BlueHeal.tres" type="Resource" id=7]
+[ext_resource path="res://src/UI/UI_CardTooltip.tscn" type="PackedScene" id=8]
 
 [node name="CardBox" type="MarginContainer" groups=["UI_CardBox"]]
 anchor_right = 1.0
@@ -17,6 +18,8 @@ custom_constants/margin_top = 40
 custom_constants/margin_left = 40
 custom_constants/margin_bottom = 0
 script = ExtResource( 2 )
+
+[node name="TooltipLayer" parent="." instance=ExtResource( 8 )]
 
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_left = 40.0

@@ -9,13 +9,14 @@ var active_weapon = null
 var ammo_manager = null
 
 var _shooting_allowed: bool = false
+var _cardbox_open: bool = false
 # Define signal to get new weapon set
 
 func _ready():
     var card_manager = Utils.get_card_manager()
     ammo_manager = Utils.get_ammo_manager()
     card_manager.connect("Player_AllowShoot", self, "_on_Card_AllowShoot")
-    Utils.get_ui_cardbox().connect("CardBox_AllowShoot", self, "_on_Card_AllowShoot")
+    Utils.get_ui_cardbox().connect("CardBox_Enabled", self, "_on_CardBox_Enabled")
 
     for weapon in weapons:
         if weapon.is_active:
@@ -32,7 +33,7 @@ func _input(event):
 
 
 func _physics_process(_delta):
-    if _shooting_allowed and is_instance_valid(active_weapon):
+    if _shooting_allowed and not _cardbox_open and is_instance_valid(active_weapon):
         if Input.is_action_pressed("fire") and active_weapon.weapon_data.automatic:
             active_weapon.fire()
 
@@ -67,3 +68,6 @@ func _on_AmmoManager_PickedUpAmmo(ammo_type, ammo_amount):
     if active_weapon.ammo_type != ammo_type:
         return
     ui_weapon.update_ammo_amount(active_weapon)
+
+func _on_CardBox_Enabled(enabled: bool):
+    _cardbox_open = enabled

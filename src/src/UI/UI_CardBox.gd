@@ -1,6 +1,8 @@
 extends Container
 
-signal CardBox_AllowShoot(allow)
+signal CardBox_Enabled(enabled)
+
+onready var container = $ColorRect/HBoxContainer
 
 func _ready():
     set_active(false)
@@ -13,8 +15,11 @@ func _input(event):
 
 func set_active(enabled: bool):
     visible = enabled
-    emit_signal("CardBox_AllowShoot", not enabled)
+    emit_signal("CardBox_Enabled", enabled)
     if(enabled):
         Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
     else:
         Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+func get_cards():
+    return container.get_children()
