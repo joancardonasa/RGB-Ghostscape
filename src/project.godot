@@ -72,6 +72,7 @@ Utils="*res://singletons/Utils.gd"
 SceneManager="*res://src/core/SceneManager.gd"
 Globals="*res://singletons/Globals.gd"
 Sound="*res://src/core/Sound.tscn"
+Counter="*res://singletons/Counter.gd"
 
 [debug]
 

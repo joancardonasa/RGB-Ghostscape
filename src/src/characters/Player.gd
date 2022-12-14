@@ -122,7 +122,7 @@ func _on_Stats_died_signal():
     var a_player = _transition.fade_in() # animation_player
     yield(a_player, "animation_finished")
     queue_free()
-    SceneManager.goto_scene("res://src/maps/Map.tscn")
+    SceneManager.goto_scene("res://src/UI/GameOverControl.tscn")
 
 func _on_Card_SpeedMult(enable : bool, mult : float):
     _speed_mult = mult if enable else 1.0
@@ -131,5 +131,6 @@ func _on_HurtBox_damage_taken():
     Sound.get_node("HitSound").play()
     if not Globals.GODMODE:
         stats.take_hit(1)
+
 func boost(force: Vector3):
     boost_vec = force

@@ -11,13 +11,12 @@
 [ext_resource path="res://src/gameplay/weapons/AssaultRifle.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/characters/AmmoManager.gd" type="Script" id=10]
 [ext_resource path="res://src/UI/UI_Weapon.gd" type="Script" id=11]
-[ext_resource path="res://fonts/Comfortaa-VariableFont_wght.ttf" type="DynamicFontData" id=12]
+[ext_resource path="res://src/characters/PlayerHurtbox.gd" type="Script" id=12]
 [ext_resource path="res://src/UI/HUD.tscn" type="PackedScene" id=13]
 [ext_resource path="res://assets/UI/ammo.png" type="Texture" id=14]
 [ext_resource path="res://assets/UI/hitmarker.png" type="Texture" id=15]
 [ext_resource path="res://src/characters/WeaponSocket.gd" type="Script" id=16]
 [ext_resource path="res://src/characters/Camera.gd" type="Script" id=17]
-[ext_resource path="res://src/characters/PlayerHurtbox.gd" type="Script" id=12]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -27,7 +26,6 @@ size = 48
 outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
 use_filter = true
-font_data = ExtResource( 12 )
 
 [sub_resource type="CylinderShape" id=2]
 
@@ -130,7 +128,7 @@ stretch_mode = 6
 
 [node name="Label" type="Label" parent="Head/WeaponManager/UI_Weapon/UI_Ammo/HBoxContainer"]
 margin_left = 68.0
-margin_right = 230.0
+margin_right = 76.0
 margin_bottom = 184.0
 size_flags_horizontal = 4
 size_flags_vertical = 1

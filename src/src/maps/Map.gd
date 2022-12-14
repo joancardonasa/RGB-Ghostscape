@@ -2,4 +2,4 @@ extends Spatial
 
 
 func _ready():
-    pass
+    Counter.reset_game()
