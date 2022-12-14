@@ -170,6 +170,10 @@ script = ExtResource( 18 )
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
 shape = SubResource( 1 )
 
+[node name="InvulTimer" type="Timer" parent="HurtBox"]
+wait_time = 0.8
+one_shot = true
+
 [connection signal="died_signal" from="Stats" to="." method="_on_Stats_died_signal"]
 [connection signal="PickedUpAmmo" from="AmmoManager" to="Head/WeaponManager" method="_on_AmmoManager_PickedUpAmmo"]
 [connection signal="area_entered" from="AmmoManager/PickupArea" to="AmmoManager" method="_on_PickupArea_area_entered"]
