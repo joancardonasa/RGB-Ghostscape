@@ -6,7 +6,7 @@
 [ext_resource path="res://data/cards/RedCardDefault.tres" type="Resource" id=4]
 [ext_resource path="res://data/cards/GreenCardDefault.tres" type="Resource" id=5]
 
-[node name="CardBox" type="MarginContainer"]
+[node name="CardBox" type="MarginContainer" groups=["UI_CardBox"]]
 anchor_right = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 0

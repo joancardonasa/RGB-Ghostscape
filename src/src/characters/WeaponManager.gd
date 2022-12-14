@@ -15,6 +15,7 @@ func _ready():
     var card_manager = Utils.get_card_manager()
     ammo_manager = Utils.get_ammo_manager()
     card_manager.connect("Player_AllowShoot", self, "_on_Card_AllowShoot")
+    Utils.get_ui_cardbox().connect("CardBox_AllowShoot", self, "_on_Card_AllowShoot")
 
     for weapon in weapons:
         if weapon.is_active:
