@@ -1,9 +1,14 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/UI/UI_BackgroundGradient.tres" type="Texture" id=1]
 [ext_resource path="res://fonts/TextFonts.tres" type="DynamicFont" id=2]
 [ext_resource path="res://src/UI/GameOverControl.gd" type="Script" id=3]
 [ext_resource path="res://fonts/Comfortaa-VariableFont_wght.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=2]
+size = 128
+use_filter = true
+font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=1]
 size = 48
@@ -27,6 +32,19 @@ margin_bottom = 840.0
 rect_rotation = 90.0
 texture = ExtResource( 1 )
 expand = true
+
+[node name="GameOverLabel" type="Label" parent="GameOverMenu"]
+self_modulate = Color( 0.909804, 0.133333, 0.133333, 1 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -960.0
+margin_top = 136.0
+margin_right = 960.0
+margin_bottom = 279.0
+custom_fonts/font = SubResource( 2 )
+text = "YOU DIED"
+align = 1
+valign = 1
 
 [node name="GameOverMenuButtons" type="VBoxContainer" parent="GameOverMenu"]
 anchor_left = 1.0
