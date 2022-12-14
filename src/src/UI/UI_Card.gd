@@ -7,17 +7,17 @@ var locked: bool = false
 
 onready var time_label: Label = $Background/MarginContainer/HBoxContainer/TimeLabel
 onready var icon_rect: TextureRect = $Background/MarginContainer/HBoxContainer/Control/Icon
-onready var background: ColorRect = $Background
+onready var background: Button = $Background
 
 signal lifted
 
 func _ready():
-    background.color = Color(0,0,0,0)
+    background.self_modulate = Color(0,0,0,0)
     add_to_group("DRAGGABLE")
 
 func set_card(card: Resource):
     card_data = card
-    background.color = card_data.col
+    background.self_modulate = card_data.col
     icon_rect.texture = card_data.icon
     _set_active(false)
 
@@ -41,10 +41,8 @@ func _set_active(enabled: bool, anim_time: float = 0.75):
     var tween = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
     if enabled:
         tween.tween_property(background, "margin_left", -1.0 * grow_size, anim_time)
-        background.color = card_data.col
     else:
         tween.tween_property(background, "margin_left", 0.0, anim_time)
-        background.color = card_data.col - Color(0, 0, 0, 0.2)
     
 func get_drag_data(_position: Vector2):
     if(locked):

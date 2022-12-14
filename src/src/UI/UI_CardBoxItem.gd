@@ -1,10 +1,12 @@
-extends ColorRect
+extends Control
 
 export(Resource) var card_data
 export(int) var count = 1
 var previewCount = 1
 
-onready var _label_count = $Label
+onready var _label_count: Label = $Background/MarginContainer/VBoxContainer/Label
+onready var _background: Button = $Background
+onready var _icon: TextureRect = $Background/MarginContainer/VBoxContainer/Icon
 
 func _ready():
     var ui_deck = Utils.get_ui_deck()
@@ -23,14 +25,15 @@ func get_drag_data(_position: Vector2):
 
 func _set_card(card: Resource, card_count: int):
     card_data = card
-    color = card_data.col
+    _background.self_modulate = card_data.col
     count = card_count
+    _icon.texture = card_data.icon
     _reflect_count(count)
     
 func _preview_drag():
     var preview = ColorRect.new()
     preview.rect_size = rect_size * 0.35
-    preview.color = color
+    preview.color = _background.self_modulate
     preview.rect_rotation = 45
     preview.connect("tree_exiting", self, "_end_drag")
     return preview
@@ -47,9 +50,9 @@ func _reflect_count(new_count: int):
         _label_count.text = str(new_count)
     if new_count == 0:
         var gvalue: float = card_data.col.v / 2
-        color = Color(gvalue,gvalue,gvalue,1)
+        _background.self_modulate = Color(gvalue,gvalue,gvalue,1)
     else:
-        color = card_data.col
+        _background.self_modulate = card_data.col
 
 func _deck_on_card_added(data, _position: int):
     if data.name == card_data.name:
