@@ -1,0 +1,63 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/UI/UI_BackgroundGradient.tres" type="Texture" id=1]
+[ext_resource path="res://src/UI/PauseControl.gd" type="Script" id=2]
+[ext_resource path="res://fonts/TextFonts.tres" type="DynamicFont" id=3]
+
+[node name="PauseControl" type="CanvasLayer" groups=["PauseControl"]]
+pause_mode = 2
+layer = 2
+script = ExtResource( 2 )
+
+[node name="PauseMenu" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenu"]
+self_modulate = Color( 1, 1, 1, 0.360784 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1920.0
+margin_right = 1080.0
+margin_bottom = 840.0
+rect_rotation = 90.0
+texture = ExtResource( 1 )
+expand = true
+
+[node name="PauseMenuButtons" type="VBoxContainer" parent="PauseMenu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -192.0
+margin_top = -131.5
+margin_right = 192.0
+margin_bottom = 131.5
+custom_constants/separation = 40
+alignment = 1
+
+[node name="ContinueButton" type="Button" parent="PauseMenu/PauseMenuButtons"]
+margin_right = 384.0
+margin_bottom = 61.0
+custom_fonts/font = ExtResource( 3 )
+text = "Continue"
+
+[node name="RestartButton" type="Button" parent="PauseMenu/PauseMenuButtons"]
+margin_top = 101.0
+margin_right = 384.0
+margin_bottom = 162.0
+custom_fonts/font = ExtResource( 3 )
+text = "Restart"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainMenuButton" type="Button" parent="PauseMenu/PauseMenuButtons"]
+margin_top = 202.0
+margin_right = 384.0
+margin_bottom = 263.0
+custom_fonts/font = ExtResource( 3 )
+text = "Main Menu"
+__meta__ = {
+"_edit_use_anchors_": false
+}
