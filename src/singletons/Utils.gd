@@ -75,6 +75,7 @@ func spawn_ammo_pickup(position: Vector3):
         ammo_pickup.ammo_amount = 2
 
     pickup_container.add_child(ammo_pickup)
+    # TODO How to ensure it falls on the ground?
     ammo_pickup.global_transform.origin = position
 
 # Camera
