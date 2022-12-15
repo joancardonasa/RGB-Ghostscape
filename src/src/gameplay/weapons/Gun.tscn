@@ -116,16 +116,13 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.140866, -0.311273 )
 layers = 2
 
 [node name="revolver" parent="MeshInstance" instance=ExtResource( 5 )]
-transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, -0.3, 0, -0.174039, 0.0612463 )
+transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, -0.3, 0, -0.495899, 0.0612463 )
 
 [node name="MeshInstance" type="MeshInstance" parent="MeshInstance"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.140866, -0.370878 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.180994, -0.370878 )
 
 [node name="generic_hand" parent="MeshInstance/MeshInstance" instance=ExtResource( 4 )]
 transform = Transform( -0.3, 0, -4.52987e-08, 0, 0.3, 0, 4.52987e-08, 0, -0.3, 0, -0.363243, 0.360419 )
-
-[node name="Muzzle" type="Position3D" parent="MeshInstance/MeshInstance"]
-transform = Transform( 14.5828, 0, 0, 0, 8.83508, 0, 0, 0, 4.75023, 0, 0.344743, -1.12145 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Fire = SubResource( 1 )

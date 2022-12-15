@@ -40,6 +40,8 @@ func _ready():
 func fire():
     if not animation_player.is_playing() and ammo_magazine > 0 and is_active:
         animation_player.play("Fire")
+#        $"%MuzzleFlash".restart()
+#        $"%MuzzleFlash".emitting = true
         Utils.camera_shake(camera_shake_intensity, camera_shake_duration)
         emit_signal("weapon_shot", crosshair_scale_shot_time)
 
