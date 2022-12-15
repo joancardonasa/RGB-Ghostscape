@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/characters/Player.gd" type="Script" id=1]
 [ext_resource path="res://src/spells/SpellController.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://src/other/Stats.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/core/SceneTransition.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/gameplay/weapons/Gun.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/gameplay/weapons/Minigun.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/characters/WeaponManager.gd" type="Script" id=8]
 [ext_resource path="res://src/gameplay/weapons/AssaultRifle.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/characters/AmmoManager.gd" type="Script" id=10]
@@ -58,6 +59,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.573, -0.57, 0.216 )
 is_active = true
 
 [node name="AssaultRifle" parent="Head/WeaponManager/WeaponSocket" instance=ExtResource( 9 )]
+
+[node name="Minigun" parent="Head/WeaponManager/WeaponSocket" instance=ExtResource( 7 )]
+ammo_type = 1
+damage = 1
 
 [node name="WeaponHitscanRaycast" type="RayCast" parent="Head/WeaponManager" groups=["WeaponHitscanRaycast"]]
 cast_to = Vector3( 0, 0, -200 )
