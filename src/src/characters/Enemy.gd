@@ -34,9 +34,11 @@ func _physics_process(_delta):
         look_at(player.global_transform.origin, Vector3.UP)
 
 func _determine_visibility(enable: bool):
-    pass
-#    mesh.visible = enable
-#    aura_mesh.visible = not enable
+    if enable:
+        # TODO: Find cleaner way
+        $ghost/ghost.mesh.surface_get_material(2).set("albedo_color", Color("ecffff"))
+    else:
+        $ghost/ghost.mesh.surface_get_material(2).set("albedo_color", Color("29ecffff"))
 
 
 # Health/Damage

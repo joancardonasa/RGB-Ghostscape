@@ -5,67 +5,12 @@
 [ext_resource path="res://src/other/Stats.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/characters/EnemyHurtbox.gd" type="Script" id=4]
 [ext_resource path="res://assets/enemies/ghost.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/characters/EnemyInvisibleShader.tres" type="Material" id=6]
+[ext_resource path="res://assets/enemies/ghost_mesh.tres" type="ArrayMesh" id=7]
 
 [sub_resource type="SphereShape" id=2]
 
 [sub_resource type="SphereMesh" id=1]
-
-[sub_resource type="Shader" id=4]
-code = "/*
-	走査シェーダー by あるる（きのもと 結衣）
-	Scanning Shader by Yui Kinomoto @arlez80
-
-	MIT License
-*/
-
-shader_type spatial;
-render_mode unshaded;
-
-const float PI = 3.1415926535;
-
-uniform vec3 shift = vec3( 0.0, 0.0, 0.0 );
-uniform vec3 time_shift_scale = vec3( 0.0, 0.0, 0.0 );
-uniform vec4 scan_color : hint_color = vec4( 0.0, 1.0, 0.3, 1.0 );
-uniform float scan_line_width : hint_range( 0.0, 1.0 ) = 0.1;
-uniform float scan_line_size = 0.05;
-
-varying vec3 local_vertex;
-
-float get_ratio_scan_line( float p )
-{
-	return max(
-		-sin( mod( p, scan_line_size ) / scan_line_size * PI ) + scan_line_width
-	,	0.0
-	) / scan_line_width;
-}
-
-void vertex( )
-{
-	local_vertex = VERTEX + shift + time_shift_scale * TIME;
-}
-
-void fragment( )
-{
-	float v = clamp(
-		get_ratio_scan_line( local_vertex.x )
-	+	get_ratio_scan_line( local_vertex.y )
-	+	get_ratio_scan_line( local_vertex.z )
-	,	0.0
-	,	1.0
-	);
-
-	ALBEDO = scan_color.rgb;
-	ALPHA = scan_color.a * v;
-}
-"
-
-[sub_resource type="ShaderMaterial" id=5]
-shader = SubResource( 4 )
-shader_param/shift = Vector3( 0, 0, 0 )
-shader_param/time_shift_scale = Vector3( 0, 0, 0 )
-shader_param/scan_color = Color( 0.0745098, 0.956863, 0.564706, 1 )
-shader_param/scan_line_width = 0.244
-shader_param/scan_line_size = 0.05
 
 [sub_resource type="CapsuleShape" id=6]
 radius = 1.08533
@@ -93,10 +38,12 @@ mesh = SubResource( 1 )
 material/0 = ExtResource( 2 )
 
 [node name="AuraMeshInstance" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0 )
+transform = Transform( 0.2, 0, 0, 0, 8.74228e-09, -0.2, 0, -0.2, -8.74228e-09, 0, 2.19912, -1.16383 )
 visible = false
-mesh = SubResource( 1 )
-material/0 = SubResource( 5 )
+mesh = ExtResource( 7 )
+material/0 = ExtResource( 6 )
+material/1 = ExtResource( 6 )
+material/2 = ExtResource( 6 )
 
 [node name="PathUpdateTimer" type="Timer" parent="."]
 wait_time = 0.5
