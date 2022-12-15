@@ -3,7 +3,7 @@
 [ext_resource path="res://assets/UI/speed_lines_small.png" type="Texture" id=1]
 [ext_resource path="res://src/UI/HUD.gd" type="Script" id=2]
 [ext_resource path="res://assets/UI/ammo.png" type="Texture" id=3]
-[ext_resource path="res://fonts/Comfortaa-VariableFont_wght.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://fonts/FredokaOne-Regular.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://assets/UI/crosshair010.png" type="Texture" id=5]
 [ext_resource path="res://assets/UI/hitmarker.png" type="Texture" id=6]
 
@@ -67,8 +67,8 @@ bg_color = Color( 0.6, 0.6, 0.6, 0 )
 
 [sub_resource type="DynamicFont" id=10]
 size = 48
-outline_size = 3
-outline_color = Color( 0, 0, 0, 1 )
+outline_size = 5
+outline_color = Color( 0.0470588, 0.0156863, 0.129412, 1 )
 use_filter = true
 font_data = ExtResource( 4 )
 
@@ -101,6 +101,7 @@ margin_bottom = -56.0
 mouse_filter = 2
 
 [node name="ProgressBarBackground" type="ProgressBar" parent="HUD_UI/HP"]
+modulate = Color( 0.92549, 1, 0.984314, 1 )
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_top = -72.0
@@ -134,7 +135,7 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -320.0
+margin_left = -360.0
 margin_top = -164.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HUD_UI/Ammo"]
@@ -152,10 +153,11 @@ stretch_mode = 6
 
 [node name="Label" type="Label" parent="HUD_UI/Ammo/HBoxContainer"]
 margin_left = 68.0
-margin_right = 230.0
+margin_right = 246.0
 margin_bottom = 164.0
 size_flags_horizontal = 4
 size_flags_vertical = 1
+custom_colors/font_color = Color( 0.92549, 1, 0.984314, 1 )
 custom_fonts/font = SubResource( 10 )
 text = "1/6 (30)"
 align = 1
