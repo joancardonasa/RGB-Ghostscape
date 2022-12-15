@@ -11,7 +11,7 @@ export(int) var damage = 0
 export(Resource) var weapon_data
 export(Texture) var crosshair_texture
 export(float) var crosshair_scale_shot_time = 0.1
-
+export(float) var hit_marker_time = 0.08
 export(float) var camera_shake_intensity = 0.06
 export(float) var camera_shake_duration = 0.06
 
@@ -47,7 +47,7 @@ func fire():
 
         hitscan_raycast.enabled = true
         if hitscan_raycast.is_colliding():
-            emit_signal("enemy_hit", 0.1)
+            emit_signal("enemy_hit", hit_marker_time)
             var collider = hitscan_raycast.get_collider()
             collider.take_damage(damage)
 

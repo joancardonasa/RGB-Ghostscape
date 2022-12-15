@@ -97,6 +97,7 @@ damage = 2
 weapon_data = ExtResource( 1 )
 crosshair_texture = ExtResource( 3 )
 crosshair_scale_shot_time = 0.05
+hit_marker_time = 0.05
 camera_shake_intensity = 0.08
 camera_shake_duration = 0.1
 
