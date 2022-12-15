@@ -104,6 +104,7 @@ tracks/1/keys = {
 [node name="Gun" type="Spatial" groups=["Weapon"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12362, 0.0823674 )
 script = ExtResource( 2 )
+ammo_type = 2
 damage = 3
 weapon_data = ExtResource( 1 )
 crosshair_texture = ExtResource( 3 )

@@ -3,13 +3,12 @@ extends Spatial
 onready var weapon_socket = $WeaponSocket
 onready var weapons = $WeaponSocket.get_children()
 
-onready var ui_weapon = $UI_Weapon
-
 var active_weapon = null
 var ammo_manager = null
 
 var _shooting_allowed: bool = false
-# Define signal to get new weapon set
+
+signal update_ammo(weapon)
 
 func _ready():
     var card_manager = Utils.get_card_manager()
@@ -59,11 +58,8 @@ func determine_weapon_change(event: InputEvent):
 func set_new_active_weapon(weapon: Weapon):
     active_weapon = weapon
     get_tree().call_group("Weapon", "set_active", weapon)
-    ui_weapon.update_crosshair(active_weapon.crosshair_texture)
-    ui_weapon.update_ammo_amount(active_weapon)
-
 
 func _on_AmmoManager_PickedUpAmmo(ammo_type, ammo_amount):
     if active_weapon.ammo_type != ammo_type:
         return
-    ui_weapon.update_ammo_amount(active_weapon)
+    emit_signal("update_ammo", active_weapon)

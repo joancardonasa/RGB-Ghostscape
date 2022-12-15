@@ -43,8 +43,11 @@ func get_hitscan_raycast():
 func get_weapon_manager():
     return get_tree().get_nodes_in_group("WeaponManager")[0]
 
-func get_ui_weapon():
-    return get_tree().get_nodes_in_group("UI_Weapon")[0]
+#func get_ui_weapon():
+#    return get_tree().get_nodes_in_group("UI_Weapon")[0]
+
+func get_hud():
+    return get_tree().get_nodes_in_group("HUD")[0]
 
 func get_ammo_manager():
     return get_tree().get_nodes_in_group("AmmoManager")[0]
