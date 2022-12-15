@@ -72,7 +72,8 @@ func drop_data(position: Vector2, data):
     _reorder_deck()
     
 func _on_UI_Deck_mouse_exited():
-    if(get_viewport().get_mouse_position().x < rect_position.x):
+    ## Literally part of the official documentation: https://docs.godotengine.org/en/stable/classes/class_control.html?highlight=mouse_entered#signals
+    if not Rect2(Vector2(), rect_size).has_point(get_local_mouse_position()):
         _remove_preview()
     
 func _idx_from_pos(pos: Vector2) -> int:
