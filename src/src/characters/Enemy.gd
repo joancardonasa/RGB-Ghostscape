@@ -8,9 +8,6 @@ onready var nav_agent = $NavigationAgent
 
 onready var stats = $Stats
 
-onready var mesh = $MeshInstance
-onready var aura_mesh = $AuraMeshInstance
-
 var direction: Vector3 = Vector3.ZERO
 
 var player = null
