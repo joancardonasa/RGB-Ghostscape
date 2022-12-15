@@ -164,6 +164,7 @@ align = 1
 valign = 1
 
 [node name="Crosshair" type="TextureRect" parent="HUD_UI"]
+modulate = Color( 0.780392, 0, 1, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5

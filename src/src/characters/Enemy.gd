@@ -31,10 +31,12 @@ func _on_PathUpdateTimer_timeout():
 func _physics_process(_delta):
     if is_instance_valid(player):
         move_and_slide(direction.normalized() * speed, Vector3.UP)
+        look_at(player.global_transform.origin, Vector3.UP)
 
 func _determine_visibility(enable: bool):
-    mesh.visible = enable
-    aura_mesh.visible = not enable
+    pass
+#    mesh.visible = enable
+#    aura_mesh.visible = not enable
 
 
 # Health/Damage

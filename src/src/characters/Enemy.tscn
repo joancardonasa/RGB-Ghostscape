@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/characters/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://materials/enemy-material/MT_Enemy_Default.tres" type="Material" id=2]
 [ext_resource path="res://src/other/Stats.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/characters/EnemyHurtbox.gd" type="Script" id=4]
+[ext_resource path="res://assets/enemies/ghost.tscn" type="PackedScene" id=5]
 
 [sub_resource type="SphereShape" id=2]
 
@@ -66,12 +67,17 @@ shader_param/scan_color = Color( 0.0745098, 0.956863, 0.564706, 1 )
 shader_param/scan_line_width = 0.244
 shader_param/scan_line_size = 0.05
 
-[sub_resource type="SphereShape" id=3]
+[sub_resource type="CapsuleShape" id=6]
+radius = 1.08533
+height = 1.52124
 
 [node name="Enemy" type="KinematicBody"]
 collision_layer = 4
 collision_mask = 5
 script = ExtResource( 1 )
+
+[node name="ghost" parent="." instance=ExtResource( 5 )]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, -0.2, 0, 2.181, -1.15361 )
 
 [node name="Stats" parent="." instance=ExtResource( 3 )]
 max_HP = 3
@@ -82,11 +88,13 @@ shape = SubResource( 2 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0 )
+visible = false
 mesh = SubResource( 1 )
 material/0 = ExtResource( 2 )
 
 [node name="AuraMeshInstance" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0 )
+visible = false
 mesh = SubResource( 1 )
 material/0 = SubResource( 5 )
 
@@ -97,13 +105,14 @@ autostart = true
 [node name="NavigationAgent" type="NavigationAgent" parent="."]
 
 [node name="Hurtbox" type="Area" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.24632, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.07824, 2.35634, 0 )
 collision_layer = 512
 collision_mask = 0
 script = ExtResource( 4 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Hurtbox"]
-shape = SubResource( 3 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -3.0658, -0.653309, 0 )
+shape = SubResource( 6 )
 
 [connection signal="died_signal" from="Stats" to="." method="_on_Stats_died_signal"]
 [connection signal="timeout" from="PathUpdateTimer" to="." method="_on_PathUpdateTimer_timeout"]
