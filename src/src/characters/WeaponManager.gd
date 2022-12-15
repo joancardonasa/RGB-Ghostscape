@@ -64,11 +64,7 @@ func set_new_active_weapon(weapon: Weapon):
 func _on_AmmoManager_PickedUpAmmo(ammo_type, ammo_amount):
     if active_weapon.ammo_type != ammo_type:
         return
-<<<<<<< HEAD
-    ui_weapon.update_ammo_amount(active_weapon)
+    emit_signal("update_ammo", active_weapon)
 
 func _on_CardBox_Enabled(enabled: bool):
     _cardbox_open = enabled
-=======
-    emit_signal("update_ammo", active_weapon)
->>>>>>> simple_models
