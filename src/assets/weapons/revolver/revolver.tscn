@@ -3,3 +3,6 @@
 [ext_resource path="res://assets/weapons/revolver/revolver.glb" type="PackedScene" id=1]
 
 [node name="revolver" instance=ExtResource( 1 )]
+
+[node name="gun" parent="." index="0"]
+layers = 2

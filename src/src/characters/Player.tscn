@@ -50,6 +50,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
 [node name="LeanGimbal" type="Spatial" parent="Head"]
 
 [node name="Camera" type="Camera" parent="Head/LeanGimbal" groups=["Camera"]]
+cull_mask = 1048573
 current = true
 fov = 100.0
 far = 400.0
@@ -175,6 +176,21 @@ shape = SubResource( 1 )
 [node name="InvulTimer" type="Timer" parent="HurtBox"]
 wait_time = 0.8
 one_shot = true
+
+[node name="ViewportContainer" type="ViewportContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Viewport" type="Viewport" parent="ViewportContainer"]
+size = Vector2( 1920, 1080 )
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="Camera" type="Camera" parent="ViewportContainer/Viewport"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
+cull_mask = 2
+fov = 100.0
 
 [connection signal="died_signal" from="Stats" to="." method="_on_Stats_died_signal"]
 [connection signal="PickedUpAmmo" from="AmmoManager" to="Head/WeaponManager" method="_on_AmmoManager_PickedUpAmmo"]
