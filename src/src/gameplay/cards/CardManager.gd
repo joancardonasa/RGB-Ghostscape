@@ -35,6 +35,7 @@ func _draw_card():
     current_card = deck[0]
     _next_draw = current_card.Duration
     current_card.Enter()
+
     emit_signal("Draw_Card", current_card, current_card.Duration)
 
 func push_card():
