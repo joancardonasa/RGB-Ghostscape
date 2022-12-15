@@ -1,5 +1,7 @@
 extends KinematicBody
 
+var EnemyDeathScene = preload("res://src/characters/EnemyDeathScene.tscn")
+
 export var speed = 5
 
 onready var nav_agent = $NavigationAgent
@@ -55,4 +57,9 @@ func _on_Stats_died_signal():
     _die()
 
 func _die():
+    var death_scene = EnemyDeathScene.instance()
+    # Actually instance where it should go, in Map
+    var main = Utils.get_pickup_container()
+    main.add_child(death_scene)
+    death_scene.global_transform.origin = global_transform.origin + Vector3(0, 2, 0)
     queue_free()
