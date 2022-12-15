@@ -14,7 +14,8 @@
 [ext_resource path="res://src/characters/PlayerHurtbox.gd" type="Script" id=18]
 
 [sub_resource type="CapsuleShape" id=1]
-radius = 0.5
+radius = 0.106658
+height = 0.31459
 
 [sub_resource type="CylinderShape" id=2]
 
