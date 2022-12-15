@@ -2,7 +2,7 @@
 
 [ext_resource path="res://data/weapons/Minigun.tres" type="Resource" id=1]
 [ext_resource path="res://src/gameplay/weapons/Weapon.gd" type="Script" id=2]
-[ext_resource path="res://assets/UI/crosshair010.png" type="Texture" id=3]
+[ext_resource path="res://assets/UI/crosshair029.png" type="Texture" id=3]
 [ext_resource path="res://assets/hand/generic_hand.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/weapons/minigun/minigun.tscn" type="PackedScene" id=5]
 
@@ -96,6 +96,7 @@ ammo_type = 2
 damage = 2
 weapon_data = ExtResource( 1 )
 crosshair_texture = ExtResource( 3 )
+crosshair_scale_shot_time = 0.05
 camera_shake_intensity = 0.08
 camera_shake_duration = 0.1
 
