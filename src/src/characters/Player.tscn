@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/characters/Player.gd" type="Script" id=1]
 [ext_resource path="res://src/spells/SpellController.gd" type="Script" id=2]
@@ -6,28 +6,17 @@
 [ext_resource path="res://src/other/Stats.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/core/SceneTransition.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/gameplay/weapons/Gun.tscn" type="PackedScene" id=6]
-[ext_resource path="res://assets/UI/crosshair010.png" type="Texture" id=7]
+[ext_resource path="res://src/gameplay/weapons/Minigun.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/characters/WeaponManager.gd" type="Script" id=8]
 [ext_resource path="res://src/gameplay/weapons/AssaultRifle.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/characters/AmmoManager.gd" type="Script" id=10]
-[ext_resource path="res://src/UI/UI_Weapon.gd" type="Script" id=11]
-[ext_resource path="res://fonts/Comfortaa-VariableFont_wght.ttf" type="DynamicFontData" id=12]
 [ext_resource path="res://src/UI/HUD.tscn" type="PackedScene" id=13]
-[ext_resource path="res://assets/UI/ammo.png" type="Texture" id=14]
-[ext_resource path="res://assets/UI/hitmarker.png" type="Texture" id=15]
-[ext_resource path="res://src/characters/WeaponSocket.gd" type="Script" id=16]
 [ext_resource path="res://src/characters/Camera.gd" type="Script" id=17]
 [ext_resource path="res://src/characters/PlayerHurtbox.gd" type="Script" id=18]
 
 [sub_resource type="CapsuleShape" id=1]
-radius = 0.5
-
-[sub_resource type="DynamicFont" id=3]
-size = 48
-outline_size = 3
-outline_color = Color( 0, 0, 0, 1 )
-use_filter = true
-font_data = ExtResource( 12 )
+radius = 0.411191
+height = 0.31459
 
 [sub_resource type="CylinderShape" id=2]
 
@@ -45,11 +34,12 @@ transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0
 shape = SubResource( 1 )
 
 [node name="Head" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05185, 0 )
 
 [node name="LeanGimbal" type="Spatial" parent="Head"]
 
 [node name="Camera" type="Camera" parent="Head/LeanGimbal" groups=["Camera"]]
+cull_mask = 1048573
 current = true
 fov = 100.0
 far = 400.0
@@ -64,80 +54,15 @@ script = ExtResource( 8 )
 
 [node name="WeaponSocket" type="Spatial" parent="Head/WeaponManager"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.573, -0.57, 0.216 )
-script = ExtResource( 16 )
-sway_left = Vector3( 0, 0.3, 0 )
-sway_right = Vector3( 0, -0.3, 0 )
 
 [node name="Gun" parent="Head/WeaponManager/WeaponSocket" instance=ExtResource( 6 )]
 is_active = true
-ammo_type = 2
 
 [node name="AssaultRifle" parent="Head/WeaponManager/WeaponSocket" instance=ExtResource( 9 )]
 
-[node name="UI_Weapon" type="Control" parent="Head/WeaponManager" groups=["UI_Weapon"]]
-anchor_right = 1.0
-anchor_bottom = 1.0
-script = ExtResource( 11 )
-
-[node name="Crosshair" type="TextureRect" parent="Head/WeaponManager/UI_Weapon"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -40.0
-margin_top = -40.0
-margin_right = 40.0
-margin_bottom = 40.0
-rect_pivot_offset = Vector2( 40, 40 )
-texture = ExtResource( 7 )
-expand = true
-
-[node name="HitIndicator" type="TextureRect" parent="Head/WeaponManager/UI_Weapon/Crosshair"]
-modulate = Color( 1, 1, 1, 0 )
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -40.0
-margin_top = -40.0
-margin_right = 40.0
-margin_bottom = 40.0
-rect_pivot_offset = Vector2( 40, 40 )
-texture = ExtResource( 15 )
-expand = true
-
-[node name="UI_Ammo" type="Control" parent="Head/WeaponManager/UI_Weapon"]
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -384.0
-margin_top = -184.0
-margin_right = -64.0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Head/WeaponManager/UI_Weapon/UI_Ammo"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-
-[node name="AmmoIcon" type="TextureRect" parent="Head/WeaponManager/UI_Weapon/UI_Ammo/HBoxContainer"]
-margin_right = 64.0
-margin_bottom = 184.0
-rect_min_size = Vector2( 64, 64 )
-size_flags_horizontal = 4
-texture = ExtResource( 14 )
-expand = true
-stretch_mode = 6
-
-[node name="Label" type="Label" parent="Head/WeaponManager/UI_Weapon/UI_Ammo/HBoxContainer"]
-margin_left = 68.0
-margin_right = 230.0
-margin_bottom = 184.0
-size_flags_horizontal = 4
-size_flags_vertical = 1
-custom_fonts/font = SubResource( 3 )
-text = "1/6 (30)"
-align = 1
-valign = 1
+[node name="Minigun" parent="Head/WeaponManager/WeaponSocket" instance=ExtResource( 7 )]
+ammo_type = 1
+damage = 1
 
 [node name="WeaponHitscanRaycast" type="RayCast" parent="Head/WeaponManager" groups=["WeaponHitscanRaycast"]]
 cast_to = Vector3( 0, 0, -200 )
@@ -175,7 +100,23 @@ shape = SubResource( 1 )
 wait_time = 0.8
 one_shot = true
 
+[node name="ViewportContainer" type="ViewportContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Viewport" type="Viewport" parent="ViewportContainer"]
+size = Vector2( 1920, 1080 )
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="Camera" type="Camera" parent="ViewportContainer/Viewport"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
+cull_mask = 2
+fov = 100.0
+
 [connection signal="died_signal" from="Stats" to="." method="_on_Stats_died_signal"]
+[connection signal="hp_updated" from="Stats" to="HUD" method="_on_Stats_hp_updated"]
 [connection signal="PickedUpAmmo" from="AmmoManager" to="Head/WeaponManager" method="_on_AmmoManager_PickedUpAmmo"]
 [connection signal="area_entered" from="AmmoManager/PickupArea" to="AmmoManager" method="_on_PickupArea_area_entered"]
 [connection signal="damage_taken" from="HurtBox" to="." method="_on_HurtBox_damage_taken"]

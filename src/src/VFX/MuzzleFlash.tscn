@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=2]
+
+[sub_resource type="Curve" id=8]
+_data = [ Vector2( 0.0168539, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.196629, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=9]
+curve = SubResource( 8 )
+
+[sub_resource type="ParticlesMaterial" id=10]
+flag_rotate_y = true
+direction = Vector3( 0, 0, -1 )
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 0.2
+initial_velocity_random = 1.0
+angle = 360.0
+angle_random = 1.0
+scale = 3.0
+scale_random = 1.0
+scale_curve = SubResource( 9 )
+
+[sub_resource type="SpatialMaterial" id=11]
+flags_unshaded = true
+albedo_color = Color( 1, 0.898039, 0.121569, 0.356863 )
+
+[sub_resource type="CapsuleMesh" id=12]
+material = SubResource( 11 )
+radius = 0.026
+mid_height = 0.001
+radial_segments = 26
+
+[node name="MuzzleFlash" type="Particles"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0241559 )
+layers = 2
+emitting = false
+amount = 6
+lifetime = 0.2
+one_shot = true
+speed_scale = 2.0
+explosiveness = 1.0
+process_material = SubResource( 10 )
+draw_pass_1 = SubResource( 12 )

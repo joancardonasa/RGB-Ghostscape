@@ -20,6 +20,7 @@ func spawn_enemy():
 
 func get_random_spawn_position() -> Vector3:
     # IDEA: Would be cool to prioritize spawn points closer to the player
+    # TODO: Make them spawn at player ground level or at least fall immediately
     if enemy_spawn_positions and len(enemy_spawn_positions) > 0:
         return Utils.choose_random(enemy_spawn_positions).global_transform.origin
     return Vector3.ZERO

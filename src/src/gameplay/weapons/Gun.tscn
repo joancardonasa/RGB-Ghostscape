@@ -3,11 +3,8 @@
 [ext_resource path="res://data/weapons/Gun.tres" type="Resource" id=1]
 [ext_resource path="res://src/gameplay/weapons/Weapon.gd" type="Script" id=2]
 [ext_resource path="res://assets/UI/crosshair010.png" type="Texture" id=3]
-
-[sub_resource type="CubeMesh" id=3]
-
-[sub_resource type="SpatialMaterial" id=4]
-albedo_color = Color( 0.305882, 0.329412, 0.368627, 1 )
+[ext_resource path="res://assets/hand/generic_hand.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/weapons/revolver/revolver.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Fire"
@@ -107,6 +104,7 @@ tracks/1/keys = {
 [node name="Gun" type="Spatial" groups=["Weapon"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12362, 0.0823674 )
 script = ExtResource( 2 )
+ammo_type = 2
 damage = 3
 weapon_data = ExtResource( 1 )
 crosshair_texture = ExtResource( 3 )
@@ -114,12 +112,17 @@ camera_shake_intensity = 0.1
 camera_shake_duration = 0.08
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
-transform = Transform( 0.068574, 0, 0, 0, 0.113185, 0, 0, 0, 0.210516, 0, 0.140866, -0.311273 )
-mesh = SubResource( 3 )
-material/0 = SubResource( 4 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.140866, -0.311273 )
+layers = 2
 
-[node name="Muzzle" type="Position3D" parent="MeshInstance"]
-transform = Transform( 14.5828, 0, 0, 0, 8.83508, 0, 0, 0, 4.75023, 0, 0.344743, -1.12145 )
+[node name="revolver" parent="MeshInstance" instance=ExtResource( 5 )]
+transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, -0.3, 0, -0.495899, 0.0612463 )
+
+[node name="MeshInstance" type="MeshInstance" parent="MeshInstance"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.180994, -0.370878 )
+
+[node name="generic_hand" parent="MeshInstance/MeshInstance" instance=ExtResource( 4 )]
+transform = Transform( -0.3, 0, -4.52987e-08, 0, 0.3, 0, 4.52987e-08, 0, -0.3, 0, -0.363243, 0.360419 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Fire = SubResource( 1 )

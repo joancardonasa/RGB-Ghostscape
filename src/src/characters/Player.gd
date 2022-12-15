@@ -7,6 +7,9 @@ extends KinematicBody
 onready var spell_controller = $SpellController
 onready var _transition = $SceneTransition;
 
+onready var main_cam = $Head/LeanGimbal/Camera
+onready var gun_cam = $ViewportContainer/Viewport/Camera
+
 # Constant variables for Movement
 const SPEED = 10
 const GRAVITY = 10
@@ -68,6 +71,7 @@ func _input(event):
 
 func _process(delta):
     lean_gimbal.rotation.z = lerp(lean_gimbal.rotation.z, currentStrafeDir * LEAN_MULT, delta * LEAN_SMOOTH)
+    gun_cam.global_transform = main_cam.global_transform
 
 func _physics_process(delta):
     # Get keyboard input

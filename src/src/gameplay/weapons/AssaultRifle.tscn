@@ -3,11 +3,8 @@
 [ext_resource path="res://data/weapons/AssaultRifle.tres" type="Resource" id=1]
 [ext_resource path="res://src/gameplay/weapons/Weapon.gd" type="Script" id=2]
 [ext_resource path="res://assets/UI/crosshair066.png" type="Texture" id=3]
-
-[sub_resource type="CubeMesh" id=5]
-
-[sub_resource type="SpatialMaterial" id=6]
-albedo_color = Color( 0.415686, 0.172549, 0.105882, 1 )
+[ext_resource path="res://assets/hand/generic_hand.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/weapons/assault_rifle/assault_rifle.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Fire"
@@ -101,12 +98,21 @@ weapon_data = ExtResource( 1 )
 crosshair_texture = ExtResource( 3 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
-transform = Transform( 0.068574, 0, 0, 0, 0.113185, 0, 0, 0, 0.532226, 0, 0.140866, -0.311273 )
-mesh = SubResource( 5 )
-material/0 = SubResource( 6 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.140866, -0.311273 )
+layers = 2
 
-[node name="Muzzle" type="Position3D" parent="MeshInstance"]
-transform = Transform( 14.5828, 0, 0, 0, 8.83508, 0, 0, 0, 4.75023, 0, 0.344743, -1.12145 )
+[node name="assault_rifle" parent="MeshInstance" instance=ExtResource( 5 )]
+transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, -0.3, 0, -0.614153, 0 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="MeshInstance"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.279647, -0.657578 )
+skeleton = NodePath("../..")
+
+[node name="generic_hand2" parent="MeshInstance/MeshInstance2" instance=ExtResource( 4 )]
+transform = Transform( 0.290467, 0, -0.0750278, 0, 0.3, 0, -0.0750278, 0, -0.290467, 0, -0.307508, 0.600921 )
+
+[node name="generic_hand3" parent="MeshInstance/MeshInstance2" instance=ExtResource( 4 )]
+transform = Transform( 0.240219, -0.0638094, 0.167997, -2.45178e-08, 0.280451, 0.106522, 0.179707, 0.0852958, -0.224566, 0, -0.472511, -0.8398 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Fire = SubResource( 1 )

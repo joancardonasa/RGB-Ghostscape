@@ -1,15 +1,46 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/core/SceneTransition.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/MainMenu.gd" type="Script" id=2]
 [ext_resource path="res://fonts/DetailText.tres" type="DynamicFont" id=3]
 [ext_resource path="res://src/UI/UI_BackgroundGradient.tres" type="Texture" id=4]
 [ext_resource path="res://fonts/TextFonts.tres" type="DynamicFont" id=5]
-[ext_resource path="res://fonts/Comfortaa-VariableFont_wght.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://fonts/FredokaOne-Regular.ttf" type="DynamicFontData" id=6]
+
+[sub_resource type="Shader" id=6]
+code = "shader_type canvas_item;
+
+uniform vec4 color_gap: hint_color = vec4(0.25);
+uniform vec4 color_stripe: hint_color = vec4(1.0, 0.75, 0.0, 1.0);
+uniform float divisions = 8.0; // increase for more stripe density
+uniform float stripe_bias = 2.5; // 1.0 means no stripes; 2.0 means stripes and gaps are equal size
+uniform float speed = 0.1;
+uniform float angle = 0.7854; // in radians
+
+void fragment() {
+	float w = cos(angle) * UV.x + sin(angle) * UV.y - speed * TIME;
+	if (floor(mod(w * divisions, stripe_bias)) < 0.0001) {
+		COLOR = color_gap;
+	} else {
+		COLOR = color_stripe;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id=7]
+shader = SubResource( 6 )
+shader_param/color_gap = Color( 0.0470588, 0.0156863, 0.129412, 1 )
+shader_param/color_stripe = Color( 0.196078, 0.219608, 0.34902, 1 )
+shader_param/divisions = 8.0
+shader_param/stripe_bias = 2.5
+shader_param/speed = 0.1
+shader_param/angle = 2.84
 
 [sub_resource type="DynamicFont" id=4]
 size = 128
+outline_size = 10
+outline_color = Color( 0.0470588, 0.0156863, 0.129412, 1 )
 use_filter = true
+extra_spacing_char = 5
 font_data = ExtResource( 6 )
 
 [sub_resource type="StyleBoxFlat" id=5]
@@ -25,12 +56,13 @@ anchor_bottom = 1.0
 script = ExtResource( 2 )
 
 [node name="Background" type="ColorRect" parent="."]
-visible = false
+material = SubResource( 7 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
 
 [node name="TextureRectBack" type="TextureRect" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 1920.0
@@ -45,10 +77,11 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -394.5
+margin_left = -394.0
 margin_top = -284.0
-margin_right = 394.5
-margin_bottom = -140.0
+margin_right = 395.0
+margin_bottom = -100.0
+custom_colors/default_color = Color( 0.92549, 1, 0.984314, 1 )
 custom_fonts/normal_font = SubResource( 4 )
 bbcode_enabled = true
 bbcode_text = "[center]Specte[color=red]R[/color][color=green]G[/color][color=blue]B[/color][/center]"

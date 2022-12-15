@@ -1,13 +1,12 @@
 extends KinematicBody
 
+var EnemyDeathScene = preload("res://src/characters/EnemyDeathScene.tscn")
+
 export var speed = 5
 
 onready var nav_agent = $NavigationAgent
 
 onready var stats = $Stats
-
-onready var mesh = $MeshInstance
-onready var aura_mesh = $AuraMeshInstance
 
 var direction: Vector3 = Vector3.ZERO
 
@@ -31,10 +30,14 @@ func _on_PathUpdateTimer_timeout():
 func _physics_process(_delta):
     if is_instance_valid(player):
         move_and_slide(direction.normalized() * speed, Vector3.UP)
+        look_at(player.global_transform.origin, Vector3.UP)
 
 func _determine_visibility(enable: bool):
-    mesh.visible = enable
-    aura_mesh.visible = not enable
+    if enable:
+        # TODO: Find cleaner way
+        $ghost/ghost.mesh.surface_get_material(2).set("albedo_color", Color("ecffff"))
+    else:
+        $ghost/ghost.mesh.surface_get_material(2).set("albedo_color", Color("29ecffff"))
 
 
 # Health/Damage
@@ -51,4 +54,9 @@ func _on_Stats_died_signal():
     _die()
 
 func _die():
+    var death_scene = EnemyDeathScene.instance()
+    # Actually instance where it should go, in Map
+    var main = Utils.get_pickup_container()
+    main.add_child(death_scene)
+    death_scene.global_transform.origin = global_transform.origin + Vector3(0, 2, 0)
     queue_free()

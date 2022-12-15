@@ -11,23 +11,27 @@ export(int) var damage = 0
 export(Resource) var weapon_data
 export(Texture) var crosshair_texture
 export(float) var crosshair_scale_shot_time = 0.1
-
+export(float) var hit_marker_time = 0.08
 export(float) var camera_shake_intensity = 0.06
 export(float) var camera_shake_duration = 0.06
 
 onready var animation_player = $AnimationPlayer
 
 var hitscan_raycast = null
-var ui_weapon = null
 var ammo_manager = null
 
 var ammo_magazine: int = 0
 
 var is_reloading: bool = false
 
+signal set_active(weapon)
+signal update_ammo(weapon)
+signal weapon_shot(shot_time)
+signal enemy_hit(hit_marker_time)
+
+
 func _ready():
     hitscan_raycast = Utils.get_hitscan_raycast()
-    ui_weapon = Utils.get_ui_weapon()
     ammo_manager = Utils.get_ammo_manager()
 
     ammo_magazine = weapon_data.magazine_size
@@ -36,18 +40,20 @@ func _ready():
 func fire():
     if not animation_player.is_playing() and ammo_magazine > 0 and is_active:
         animation_player.play("Fire")
+#        $"%MuzzleFlash".restart()
+#        $"%MuzzleFlash".emitting = true
         Utils.camera_shake(camera_shake_intensity, camera_shake_duration)
-        ui_weapon.scale_crosshair_on_shot(crosshair_scale_shot_time)
+        emit_signal("weapon_shot", crosshair_scale_shot_time)
 
         hitscan_raycast.enabled = true
         if hitscan_raycast.is_colliding():
-            ui_weapon.show_hit_indicator_on_hit(0.1)
+            emit_signal("enemy_hit", hit_marker_time)
             var collider = hitscan_raycast.get_collider()
             collider.take_damage(damage)
 
         ammo_magazine -= 1
 
-        ui_weapon.update_ammo_amount(self)
+        emit_signal("update_ammo", self)
     elif not animation_player.is_playing() and \
         ammo_magazine == 0 and \
         ammo_manager.ammo_info[ammo_type]["amount"] > 0:
@@ -78,13 +84,16 @@ func reload():
     ammo_magazine += amount_to_fill
     ammo_manager.ammo_info[ammo_type]["amount"] -= amount_to_fill
 
-    ui_weapon.update_ammo_amount(self)
+    emit_signal("update_ammo", self)
 
 
 func set_active(weapon: Weapon):
     # TODO: Add activate animation
     is_active = self == weapon
     visible = self == weapon
+    if is_active:
+        emit_signal("set_active", self)
+        emit_signal("update_ammo", self)
 
 
 func _input(event):
