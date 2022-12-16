@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/effects/Impact.tscn" type="PackedScene" id=1]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="Impact" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1.00351, 0, 0, 0, 1.00351, 0, 0, 0, 1.00351, 0.0580868, 0.221581, -0.300372 )
+
+[node name="CSGBox" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0580868, 0.221581, -2.12924 )
+layers = 3
+width = 5.2342

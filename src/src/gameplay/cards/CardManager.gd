@@ -11,7 +11,6 @@ onready var _ui_deck = Utils.get_ui_deck()
 # Card Signals
 #warning-ignore-all:unused_signal
 signal Player_SpeedMult(enable, mult)
-signal Player_AllowShoot(enable)
 
 signal Enemy_Reveal(enable)
 signal Platform_Reveal(enable)

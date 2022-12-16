@@ -3,10 +3,15 @@ extends KinematicBody
 var EnemyDeathScene = preload("res://src/characters/EnemyDeathScene.tscn")
 
 export var speed = 5
+export(Material) var normal_material
+export(Material) var hidden_material
+export(Material) var hit_material
 
 onready var nav_agent = $NavigationAgent
 
 onready var stats = $Stats
+onready var hit_anim_timer = $ghost/HitAnimTimer
+onready var hurtbox = $Hurtbox
 
 var direction: Vector3 = Vector3.ZERO
 
@@ -21,6 +26,7 @@ func _ready():
     _determine_visibility(card_manager.current_card.reveal_enemies)
 
     pickup_container = Utils.get_pickup_container()
+    hit_anim_timer.connect("timeout", self, "_on_HitAnimTimer_timeout")
 
 func _on_PathUpdateTimer_timeout():
     if is_instance_valid(player):
@@ -33,16 +39,16 @@ func _physics_process(_delta):
         look_at(player.global_transform.origin, Vector3.UP)
 
 func _determine_visibility(enable: bool):
-    if enable:
-        # TODO: Find cleaner way
-        $ghost/ghost.mesh.surface_get_material(2).set("albedo_color", Color("ecffff"))
-    else:
-        $ghost/ghost.mesh.surface_get_material(2).set("albedo_color", Color("29ecffff"))
+    $ghost/ghost.set_surface_material(2, 
+        normal_material if enable else hidden_material)
+    hurtbox.phased = not enable
 
 
 # Health/Damage
 func _on_Hurtbox_damage_taken(amount: int):
     stats.take_hit(amount)
+    $ghost/ghost.set_surface_material(2, hit_material)
+    hit_anim_timer.start()
 
 func _on_Hurtbox_player_collision(player_hurtbox : Area):
     player_hurtbox.take_damage()
@@ -60,3 +66,6 @@ func _die():
     main.add_child(death_scene)
     death_scene.global_transform.origin = global_transform.origin + Vector3(0, 2, 0)
     queue_free()
+
+func _on_HitAnimTimer_timeout():
+    _determine_visibility(card_manager.current_card.reveal_enemies)

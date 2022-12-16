@@ -47,9 +47,6 @@ onready var lean_gimbal = $Head/LeanGimbal
 # Variables for boosts
 var _speed_mult: float = 1.0
 
-# Player Actions
-var _shooting_allowed: bool = false
-
 func _ready():
     # Hides the cursor
     Sound.get_node("RestartSound").play()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://src/characters/Player.gd" type="Script" id=1]
 [ext_resource path="res://src/spells/SpellController.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://src/characters/WeaponManager.gd" type="Script" id=8]
 [ext_resource path="res://src/gameplay/weapons/AssaultRifle.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/characters/AmmoManager.gd" type="Script" id=10]
+[ext_resource path="res://sound/weapons/Pistol Shot 7.wav" type="AudioStream" id=11]
 [ext_resource path="res://src/UI/HUD.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/characters/Camera.gd" type="Script" id=17]
 [ext_resource path="res://src/characters/PlayerHurtbox.gd" type="Script" id=18]
@@ -130,11 +131,24 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.573, -0.57, 0.216 )
 [node name="Gun" parent="Head/WeaponManager/WeaponSocket" instance=ExtResource( 6 )]
 is_active = true
 
+[node name="ShootSFX" type="AudioStreamPlayer3D" parent="Head/WeaponManager/WeaponSocket/Gun"]
+stream = ExtResource( 11 )
+unit_db = -5.0
+max_db = 0.5
+
 [node name="AssaultRifle" parent="Head/WeaponManager/WeaponSocket" instance=ExtResource( 9 )]
+
+[node name="ShootSFX" type="AudioStreamPlayer3D" parent="Head/WeaponManager/WeaponSocket/AssaultRifle"]
+stream = ExtResource( 11 )
+unit_db = -10.0
 
 [node name="Minigun" parent="Head/WeaponManager/WeaponSocket" instance=ExtResource( 7 )]
 ammo_type = 1
 damage = 1
+
+[node name="ShootSFX" type="AudioStreamPlayer3D" parent="Head/WeaponManager/WeaponSocket/Minigun"]
+stream = ExtResource( 11 )
+unit_db = -20.0
 
 [node name="WeaponHitscanRaycast" type="RayCast" parent="Head/WeaponManager" groups=["WeaponHitscanRaycast"]]
 cast_to = Vector3( 0, 0, -200 )
