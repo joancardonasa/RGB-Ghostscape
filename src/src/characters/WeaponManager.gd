@@ -6,7 +6,6 @@ onready var weapons = $WeaponSocket.get_children()
 var active_weapon = null
 var ammo_manager = null
 
-var _shooting_allowed: bool = false
 var _cardbox_open: bool = false
 # Define signal to get new weapon set
 
@@ -15,7 +14,6 @@ signal update_ammo(weapon)
 func _ready():
     var card_manager = Utils.get_card_manager()
     ammo_manager = Utils.get_ammo_manager()
-    card_manager.connect("Player_AllowShoot", self, "_on_Card_AllowShoot")
     Utils.get_ui_cardbox().connect("CardBox_Enabled", self, "_on_CardBox_Enabled")
 
     for weapon in weapons:
@@ -24,7 +22,7 @@ func _ready():
 
 
 func _input(event):
-    if _shooting_allowed and is_instance_valid(active_weapon):
+    if  is_instance_valid(active_weapon):
         if event.is_action_pressed("fire") and not active_weapon.weapon_data.automatic:
             active_weapon.fire()
             return
@@ -33,13 +31,9 @@ func _input(event):
 
 
 func _physics_process(_delta):
-    if _shooting_allowed and not _cardbox_open and is_instance_valid(active_weapon):
+    if not _cardbox_open and is_instance_valid(active_weapon):
         if Input.is_action_pressed("fire") and active_weapon.weapon_data.automatic:
             active_weapon.fire()
-
-
-func _on_Card_AllowShoot(enable : bool):
-    _shooting_allowed = enable
 
 
 func determine_weapon_change(event: InputEvent):

@@ -39,11 +39,8 @@ func _physics_process(_delta):
         look_at(player.global_transform.origin, Vector3.UP)
 
 func _determine_visibility(enable: bool):
-    if enable:
-        # TODO: Find cleaner way
-        $ghost/ghost.set_surface_material(2, normal_material)
-    else:
-        $ghost/ghost.set_surface_material(2, hidden_material)
+    $ghost/ghost.set_surface_material(2, 
+        normal_material if enable else hidden_material)
     hurtbox.phased = not enable
 
 

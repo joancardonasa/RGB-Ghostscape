@@ -49,7 +49,9 @@ func fire():
 
         hitscan_raycast.enabled = true
         if hitscan_raycast.is_colliding():
-            emit_signal("enemy_hit", hit_marker_time)
+            var isPhasing = hitscan_raycast.get_collider().get("phased")
+            if isPhasing != null and not isPhasing:
+                emit_signal("enemy_hit", hit_marker_time)
             var collider = hitscan_raycast.get_collider()
             collider.take_damage(damage, hitscan_raycast.get_collision_point())
 

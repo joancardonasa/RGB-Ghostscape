@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/Bullet Flyby 3.wav-7ffc6771a1b5e0cdebef61708bbe5aa3.sample"
+path="res://.import/Bullet Flyby 7.wav-ef6a026085028af9f1c0de387f90a432.sample"
 
 [deps]
 
-source_file="res://sound/enemies/Bullet Flyby 3.wav"
-dest_files=[ "res://.import/Bullet Flyby 3.wav-7ffc6771a1b5e0cdebef61708bbe5aa3.sample" ]
+source_file="res://sound/enemies/Bullet Flyby 7.wav"
+dest_files=[ "res://.import/Bullet Flyby 7.wav-ef6a026085028af9f1c0de387f90a432.sample" ]
 
 [params]
 
