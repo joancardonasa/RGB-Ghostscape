@@ -7,6 +7,8 @@ onready var enemy_spawn_positions: Array = $EnemySpawnPositions.get_children()
 
 onready var spawn_timer = $EnemySpawnTimer
 
+export(float) var enemy_speed = 8 
+
 func _ready():
     pass
 
@@ -17,6 +19,7 @@ func spawn_enemy():
     var enemy = Enemy.instance()
     main.add_child(enemy)
 
+    enemy.speed = enemy_speed
     enemy.global_transform.origin = get_random_spawn_position()
 
 
@@ -37,6 +40,7 @@ func _on_WaveManager_wave_started(current_wave):
     # 1.5, 1.4, ..., 0.5 at Wave 10
     spawn_timer.wait_time = clamp(1.5 - (current_wave-1)*0.1, 0.5, 1.5)
     spawn_timer.start()
+    enemy_speed = clamp(enemy_speed + 1, 8, 15)
 
 
 func _on_WaveManager_rest_started():

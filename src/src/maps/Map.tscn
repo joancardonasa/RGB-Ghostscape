@@ -68,21 +68,20 @@ uv1_scale = Vector3( 0.1, 0.1, 0.1 )
 uv1_triplanar = true
 
 [sub_resource type="ProceduralSky" id=5]
-sky_top_color = Color( 1, 1, 1, 0 )
-sky_horizon_color = Color( 0.117647, 0.870588, 0.713726, 1 )
+sky_top_color = Color( 1, 1, 1, 1 )
+sky_horizon_color = Color( 1, 1, 1, 1 )
 ground_bottom_color = Color( 0.196078, 0.219608, 0.34902, 1 )
 ground_horizon_color = Color( 0.117647, 0.870588, 0.713726, 1 )
-sun_color = Color( 0.117647, 0.870588, 0.713726, 1 )
 sun_latitude = 17.94
 sun_longitude = -8.83
 sun_curve = 0.0554785
 texture_size = 1
 
 [sub_resource type="Environment" id=6]
-background_mode = 2
+background_mode = 3
 background_sky = SubResource( 5 )
 background_sky_custom_fov = 88.0
-background_color = Color( 0.117647, 0.870588, 0.713726, 1 )
+background_color = Color( 0.92549, 1, 0.984314, 1 )
 
 [node name="Map" type="Spatial"]
 script = ExtResource( 9 )
@@ -343,7 +342,12 @@ script = ExtResource( 12 )
 environment = SubResource( 6 )
 script = ExtResource( 14 )
 
+[connection signal="Draw_Card" from="CardManager" to="WorldEnvironment" method="_on_CardManager_Draw_Card"]
 [connection signal="rest_started" from="WaveManager" to="EnemyManager" method="_on_WaveManager_rest_started"]
+[connection signal="rest_started" from="WaveManager" to="CardManager" method="_on_WaveManager_rest_started"]
+[connection signal="rest_started" from="WaveManager" to="WorldEnvironment" method="_on_WaveManager_rest_started"]
 [connection signal="wave_started" from="WaveManager" to="EnemyManager" method="_on_WaveManager_wave_started"]
+[connection signal="wave_started" from="WaveManager" to="CardManager" method="_on_WaveManager_wave_started"]
+[connection signal="wave_started" from="WaveManager" to="WorldEnvironment" method="_on_WaveManager_wave_started"]
 
 [editable path="EnemyManager"]

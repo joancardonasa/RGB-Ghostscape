@@ -15,6 +15,7 @@ height = 1.52124
 collision_layer = 4
 collision_mask = 5
 script = ExtResource( 1 )
+speed = 8
 
 [node name="ghost" parent="." instance=ExtResource( 5 )]
 transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0.967395, 0 )
