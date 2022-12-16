@@ -1,30 +1,43 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/characters/Enemy.gd" type="Script" id=1]
+[ext_resource path="res://assets/enemies/ghost_hidden.material" type="Material" id=2]
 [ext_resource path="res://src/other/Stats.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/characters/EnemyHurtbox.gd" type="Script" id=4]
 [ext_resource path="res://assets/enemies/ghost.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/enemies/ghost_hit.material" type="Material" id=6]
+[ext_resource path="res://assets/enemies/ghost.material" type="Material" id=7]
+[ext_resource path="res://sound/enemies/Mud 7.wav" type="AudioStream" id=8]
+[ext_resource path="res://sound/enemies/Bullet Flyby 7.wav" type="AudioStream" id=9]
 
-[sub_resource type="SphereShape" id=2]
+[sub_resource type="CapsuleShape" id=7]
+radius = 1.5993
+height = 2.47815
 
 [sub_resource type="CapsuleShape" id=6]
-radius = 1.08533
+radius = 1.56225
 height = 1.52124
 
-[node name="Enemy" type="KinematicBody"]
+[sub_resource type="BoxShape" id=8]
+
+[node name="Enemy" type="KinematicBody" groups=["Enemy"]]
 collision_layer = 4
 collision_mask = 5
 script = ExtResource( 1 )
+speed = 8
+normal_material = ExtResource( 7 )
+hidden_material = ExtResource( 2 )
+hit_material = ExtResource( 6 )
 
 [node name="ghost" parent="." instance=ExtResource( 5 )]
-transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0.967395, 0 )
+transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 2.32109, 0 )
 
 [node name="Stats" parent="." instance=ExtResource( 3 )]
 max_HP = 3
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.2, 0 )
-shape = SubResource( 2 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.026773, 2.36162, 0 )
+shape = SubResource( 7 )
 
 [node name="PathUpdateTimer" type="Timer" parent="."]
 wait_time = 0.5
@@ -39,8 +52,25 @@ collision_mask = 0
 script = ExtResource( 4 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Hurtbox"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -3.0658, -0.653309, 0 )
+transform = Transform( 0.997948, 0, 0, 0, -4.95865e-08, -1.13441, 0, 0.997948, -4.36217e-08, -3.0658, 0.0206227, 0 )
 shape = SubResource( 6 )
+
+[node name="MissSFX" type="AudioStreamPlayer3D" parent="Hurtbox"]
+stream = ExtResource( 9 )
+attenuation_model = 3
+unit_db = -5.074
+
+[node name="HitSFX" type="AudioStreamPlayer3D" parent="Hurtbox"]
+stream = ExtResource( 8 )
+attenuation_model = 3
+
+[node name="CollisionShape2" type="CollisionShape" parent="Hurtbox"]
+transform = Transform( 0.706963, 0, 0, 0, 0.743455, 0, 0, 0, 0.743455, -1.31285, -0.35342, 0.118112 )
+shape = SubResource( 8 )
+
+[node name="CollisionShape3" type="CollisionShape" parent="Hurtbox"]
+transform = Transform( 0.706963, 0, 0, 0, 0.743455, 0, 0, 0, 0.743455, -4.72624, -0.35342, 0.118112 )
+shape = SubResource( 8 )
 
 [connection signal="died_signal" from="Stats" to="." method="_on_Stats_died_signal"]
 [connection signal="timeout" from="PathUpdateTimer" to="." method="_on_PathUpdateTimer_timeout"]

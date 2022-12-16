@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://assets/UI/speed_lines_small.png" type="Texture" id=1]
 [ext_resource path="res://src/UI/HUD.gd" type="Script" id=2]
@@ -71,6 +71,111 @@ outline_size = 5
 outline_color = Color( 0.0470588, 0.0156863, 0.129412, 1 )
 use_filter = true
 font_data = ExtResource( 4 )
+
+[sub_resource type="Shader" id=11]
+code = "shader_type canvas_item;
+
+uniform float vignette_intensity = 0.4;
+uniform float vignette_opacity : hint_range(0.0, 1.0) = 0.5;
+uniform vec4 vignette_rgb : hint_color = vec4(0.0, 0.0, 0.0, 1.0);
+
+float vignette(vec2 uv){
+	uv *= 1.0 - uv.xy;
+	float vignette = uv.x * uv.y * 15.0;
+	return pow(vignette, vignette_intensity * vignette_opacity);
+}
+
+void fragment(){
+	vec4 color = texture(SCREEN_TEXTURE, SCREEN_UV);
+	vec4 text = texture(TEXTURE, UV);
+	
+	text.rgba *= (vignette_rgb.rgba);
+	text.rgba *= (1.0 - vignette(UV));
+	
+	COLOR = vec4((text.rgb)*color.rgb,text.a);
+}"
+
+[sub_resource type="ShaderMaterial" id=12]
+shader = SubResource( 11 )
+shader_param/vignette_intensity = 1.0
+shader_param/vignette_opacity = 0.0
+shader_param/vignette_rgb = Color( 0.647059, 0, 0.282353, 1 )
+
+[sub_resource type="Animation" id=13]
+resource_name = "PlayHurt"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("HUD_UI/HurtVignette:material:shader_param/vignette_opacity")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=14]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("HUD_UI/HurtVignette:material:shader_param/vignette_opacity")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="DynamicFont" id=15]
+size = 48
+outline_size = 5
+outline_color = Color( 0.0470588, 0.0156863, 0.129412, 1 )
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=16]
+size = 164
+outline_size = 8
+outline_color = Color( 0.0470588, 0.0156863, 0.129412, 1 )
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="Animation" id=17]
+resource_name = "FlashTitle"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.7, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=18]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
 
 [node name="HUD" type="CanvasLayer" groups=["HUD"]]
 script = ExtResource( 2 )
@@ -190,3 +295,59 @@ margin_bottom = 40.0
 rect_pivot_offset = Vector2( 40, 40 )
 texture = ExtResource( 6 )
 expand = true
+
+[node name="HurtVignette" type="ColorRect" parent="HUD_UI"]
+material = SubResource( 12 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HUD_UI/HurtVignette"]
+root_node = NodePath("../../..")
+anims/PlayHurt = SubResource( 13 )
+anims/RESET = SubResource( 14 )
+
+[node name="Wave" type="Control" parent="HUD_UI"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 64.0
+margin_top = -288.0
+margin_right = 288.0
+margin_bottom = -152.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD_UI/Wave"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+alignment = 1
+
+[node name="StateLabel" type="Label" parent="HUD_UI/Wave/VBoxContainer"]
+margin_top = 7.0
+margin_right = 224.0
+margin_bottom = 66.0
+custom_fonts/font = SubResource( 15 )
+text = "Wave 1"
+valign = 1
+
+[node name="StateTimerLabel" type="Label" parent="HUD_UI/Wave/VBoxContainer"]
+margin_top = 70.0
+margin_right = 224.0
+margin_bottom = 129.0
+custom_fonts/font = SubResource( 15 )
+text = "00 : 38"
+valign = 1
+
+[node name="StageTitle" type="Label" parent="HUD_UI/Wave"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 320.0
+margin_top = -600.0
+margin_right = 1472.0
+margin_bottom = -288.0
+custom_fonts/font = SubResource( 16 )
+text = "Wave 1"
+align = 1
+valign = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HUD_UI/Wave/StageTitle"]
+anims/FlashTitle = SubResource( 17 )
+anims/RESET = SubResource( 18 )

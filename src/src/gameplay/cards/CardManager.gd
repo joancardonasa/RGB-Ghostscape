@@ -11,7 +11,6 @@ onready var _ui_deck = Utils.get_ui_deck()
 # Card Signals
 #warning-ignore-all:unused_signal
 signal Player_SpeedMult(enable, mult)
-signal Player_AllowShoot(enable)
 
 signal Enemy_Reveal(enable)
 signal Platform_Reveal(enable)
@@ -22,6 +21,8 @@ signal Pickup_Delete()
 signal Player_Heal(amount)
 # Deck Signals
 signal Draw_Card(card, duration)
+
+var is_in_rest: bool = true
 
 func _ready():
     deck = []
@@ -44,6 +45,8 @@ func push_card():
         deck.push_back(deck.pop_front())
 
 func _physics_process(delta):
+    if is_in_rest:
+        return
     if _next_draw > 0:
         _next_draw -= delta
     else:
@@ -56,3 +59,11 @@ func add_to_deck(card: Resource, idx: int):
 
 func remove_from_deck(card: Resource):
     deck.erase(card)
+
+
+func _on_WaveManager_rest_started():
+    is_in_rest = true
+
+
+func _on_WaveManager_wave_started(_current_wave):
+    is_in_rest = false

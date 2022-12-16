@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/effects/ImpactWhite.tres" type="Material" id=1]
+[ext_resource path="res://src/effects/Impact.gd" type="Script" id=2]
+[ext_resource path="res://src/effects/ImpactBlack.tres" type="Material" id=3]
+
+[sub_resource type="CubeMesh" id=1]
+
+[node name="Impact" type="CSGMesh"]
+mesh = SubResource( 1 )
+material = ExtResource( 1 )
+script = ExtResource( 2 )
+final_material = ExtResource( 3 )
+
+[node name="ChangeColor" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+autostart = true
