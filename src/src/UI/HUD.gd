@@ -71,3 +71,11 @@ func _on_Card_SpeedMult(enable : bool, _mult : float):
 
 func activate_speed_lines(enable: bool):
     speed_lines.emitting = enable
+
+
+# Wave
+func update_wave_info(
+    state_name: String, state_time: String, total_time: String):
+    $HUD_UI/Wave/VBoxContainer/StateLabel.text = state_name
+    $HUD_UI/Wave/VBoxContainer/StateTimerLabel.text = state_name
+    $HUD_UI/Wave/VBoxContainer/TotalTimerLabel.text = total_time

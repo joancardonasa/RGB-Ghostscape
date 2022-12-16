@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/gameplay/game/WaveManager.gd" type="Script" id=1]
+
+[node name="WaveManager" type="Node"]
+script = ExtResource( 1 )
+
+[node name="WaveTimer" type="Timer" parent="."]
+wait_time = 60.0
+one_shot = true
+
+[node name="RestTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[connection signal="timeout" from="WaveTimer" to="." method="_on_WaveTimer_timeout"]
+[connection signal="timeout" from="RestTimer" to="." method="_on_RestTimer_timeout"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://assets/UI/speed_lines_small.png" type="Texture" id=1]
 [ext_resource path="res://src/UI/HUD.gd" type="Script" id=2]
@@ -67,6 +67,13 @@ bg_color = Color( 0.6, 0.6, 0.6, 0 )
 
 [sub_resource type="DynamicFont" id=10]
 size = 48
+outline_size = 5
+outline_color = Color( 0.0470588, 0.0156863, 0.129412, 1 )
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=11]
+size = 32
 outline_size = 5
 outline_color = Color( 0.0470588, 0.0156863, 0.129412, 1 )
 use_filter = true
@@ -190,3 +197,40 @@ margin_bottom = 40.0
 rect_pivot_offset = Vector2( 40, 40 )
 texture = ExtResource( 6 )
 expand = true
+
+[node name="Wave" type="Control" parent="HUD_UI"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 64.0
+margin_top = -288.0
+margin_right = 288.0
+margin_bottom = -136.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD_UI/Wave"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+alignment = 1
+
+[node name="StateLabel" type="Label" parent="HUD_UI/Wave/VBoxContainer"]
+margin_top = 12.0
+margin_right = 224.0
+margin_bottom = 52.0
+custom_fonts/font = SubResource( 11 )
+text = "Wave 1"
+valign = 1
+
+[node name="StateTimerLabel" type="Label" parent="HUD_UI/Wave/VBoxContainer"]
+margin_top = 56.0
+margin_right = 224.0
+margin_bottom = 96.0
+custom_fonts/font = SubResource( 11 )
+text = "00 : 38"
+valign = 1
+
+[node name="TotalTimerLabel" type="Label" parent="HUD_UI/Wave/VBoxContainer"]
+margin_top = 100.0
+margin_right = 224.0
+margin_bottom = 140.0
+custom_fonts/font = SubResource( 11 )
+text = "02 : 43 - Total"
+valign = 1
