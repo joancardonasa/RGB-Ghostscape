@@ -49,7 +49,7 @@ func fire():
         if hitscan_raycast.is_colliding():
             emit_signal("enemy_hit", hit_marker_time)
             var collider = hitscan_raycast.get_collider()
-            collider.take_damage(damage)
+            collider.take_damage(damage, hitscan_raycast.get_collision_point())
 
         ammo_magazine -= 1
 

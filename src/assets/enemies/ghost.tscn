@@ -8,3 +8,6 @@ transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0 )
 [node name="ghost" parent="." index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0 )
 layers = 2
+
+[node name="HitAnimTimer" type="Timer" parent="." index="1"]
+wait_time = 0.1

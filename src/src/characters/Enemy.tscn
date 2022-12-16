@@ -1,9 +1,12 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/characters/Enemy.gd" type="Script" id=1]
+[ext_resource path="res://assets/enemies/ghost_hidden.material" type="Material" id=2]
 [ext_resource path="res://src/other/Stats.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/characters/EnemyHurtbox.gd" type="Script" id=4]
 [ext_resource path="res://assets/enemies/ghost.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/enemies/ghost_hit.material" type="Material" id=6]
+[ext_resource path="res://assets/enemies/ghost.material" type="Material" id=7]
 
 [sub_resource type="SphereShape" id=2]
 
@@ -15,6 +18,9 @@ height = 1.52124
 collision_layer = 4
 collision_mask = 5
 script = ExtResource( 1 )
+normal_material = ExtResource( 7 )
+hidden_material = ExtResource( 2 )
+hit_material = ExtResource( 6 )
 
 [node name="ghost" parent="." instance=ExtResource( 5 )]
 transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0.967395, 0 )
