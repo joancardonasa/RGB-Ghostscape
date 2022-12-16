@@ -11,6 +11,8 @@ onready var ammo_label = $HUD_UI/Ammo/HBoxContainer/Label
 onready var crosshair = $HUD_UI/Crosshair
 onready var hit_indicator = $HUD_UI/Crosshair/HitIndicator
 
+onready var hurt_vignette_anim_player = $HUD_UI/HurtVignette/AnimationPlayer
+
 var card_manager = null
 var weapon_manager = null
 var ammo_manager = null
@@ -71,3 +73,8 @@ func _on_Card_SpeedMult(enable : bool, _mult : float):
 
 func activate_speed_lines(enable: bool):
     speed_lines.emitting = enable
+
+
+# Hurt Vignette
+func flash_hurt_vignette():
+    hurt_vignette_anim_player.play("PlayHurt")

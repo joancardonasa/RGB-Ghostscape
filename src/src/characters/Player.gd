@@ -87,9 +87,9 @@ func _physics_process(delta):
         currentStrafeDir = -LEAN_AMOUNT
     else:
         currentStrafeDir = 0
-    
+
     direction = Vector3(h_input, 0, f_input).rotated(Vector3.UP, h_rot).normalized()
-    
+
     # Jumping and gravity
     if is_on_floor():
         snap = -get_floor_normal()
@@ -136,6 +136,7 @@ func _on_Card_Heal(amount : int):
     stats.heal(amount)
 
 func _on_HurtBox_damage_taken():
+    $HUD.flash_hurt_vignette()
     Sound.get_node("HitSound").play()
     if not Globals.GODMODE:
         stats.take_hit(1)

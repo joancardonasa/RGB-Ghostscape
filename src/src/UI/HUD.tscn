@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://assets/UI/speed_lines_small.png" type="Texture" id=1]
 [ext_resource path="res://src/UI/HUD.gd" type="Script" id=2]
@@ -71,6 +71,67 @@ outline_size = 5
 outline_color = Color( 0.0470588, 0.0156863, 0.129412, 1 )
 use_filter = true
 font_data = ExtResource( 4 )
+
+[sub_resource type="Shader" id=11]
+code = "shader_type canvas_item;
+
+uniform float vignette_intensity = 0.4;
+uniform float vignette_opacity : hint_range(0.0, 1.0) = 0.5;
+uniform vec4 vignette_rgb : hint_color = vec4(0.0, 0.0, 0.0, 1.0);
+
+float vignette(vec2 uv){
+	uv *= 1.0 - uv.xy;
+	float vignette = uv.x * uv.y * 15.0;
+	return pow(vignette, vignette_intensity * vignette_opacity);
+}
+
+void fragment(){
+	vec4 color = texture(SCREEN_TEXTURE, SCREEN_UV);
+	vec4 text = texture(TEXTURE, UV);
+	
+	text.rgba *= (vignette_rgb.rgba);
+	text.rgba *= (1.0 - vignette(UV));
+	
+	COLOR = vec4((text.rgb)*color.rgb,text.a);
+}"
+
+[sub_resource type="ShaderMaterial" id=12]
+shader = SubResource( 11 )
+shader_param/vignette_intensity = 1.0
+shader_param/vignette_opacity = 0.0
+shader_param/vignette_rgb = Color( 0.647059, 0, 0.282353, 1 )
+
+[sub_resource type="Animation" id=13]
+resource_name = "PlayHurt"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("HUD_UI/HurtVignette:material:shader_param/vignette_opacity")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=14]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("HUD_UI/HurtVignette:material:shader_param/vignette_opacity")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
 
 [node name="HUD" type="CanvasLayer" groups=["HUD"]]
 script = ExtResource( 2 )
@@ -190,3 +251,14 @@ margin_bottom = 40.0
 rect_pivot_offset = Vector2( 40, 40 )
 texture = ExtResource( 6 )
 expand = true
+
+[node name="HurtVignette" type="ColorRect" parent="HUD_UI"]
+material = SubResource( 12 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HUD_UI/HurtVignette"]
+root_node = NodePath("../../..")
+anims/PlayHurt = SubResource( 13 )
+anims/RESET = SubResource( 14 )

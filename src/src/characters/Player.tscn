@@ -88,9 +88,9 @@ void fragment() {
 shader = SubResource( 3 )
 shader_param/color = Color( 0.0470588, 0.0156863, 0.129412, 1 )
 shader_param/width = 10.0
-shader_param/pattern = 0
+shader_param/pattern = 1
 shader_param/inside = false
-shader_param/add_margins = true
+shader_param/add_margins = false
 
 [node name="Player" type="KinematicBody" groups=["Player"]]
 collision_layer = 2
@@ -176,6 +176,7 @@ one_shot = true
 material = SubResource( 4 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 
 [node name="Viewport" type="Viewport" parent="ViewportContainer"]
 size = Vector2( 1920, 1080 )
@@ -187,6 +188,7 @@ render_target_update_mode = 3
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
 cull_mask = 2
 fov = 100.0
+far = 200.0
 
 [connection signal="died_signal" from="Stats" to="." method="_on_Stats_died_signal"]
 [connection signal="hp_updated" from="Stats" to="HUD" method="_on_Stats_hp_updated"]
