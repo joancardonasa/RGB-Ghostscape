@@ -1,7 +1,7 @@
 extends Node
 
 export(Array, Resource) var StartDeck
-
+export(int) var max_deck_size = 7
 var deck : Array = []
 var _next_draw: float
 

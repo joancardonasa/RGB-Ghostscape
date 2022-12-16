@@ -50,7 +50,7 @@ func _reorder_deck():
         
 func can_drop_data(position: Vector2, data):
     var idx = _idx_from_pos(position)
-    var can_drop = data is Node and data.is_in_group("DRAGGABLE") and idx >= locked_cards
+    var can_drop = data is Node and data.is_in_group("DRAGGABLE") and idx >= locked_cards and _card_manager.deck.size() < _card_manager.max_deck_size
     if not can_drop:
         return false
     if not _move_preview_timer.is_stopped():
