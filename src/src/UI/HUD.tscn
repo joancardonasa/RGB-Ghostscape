@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://assets/UI/speed_lines_small.png" type="Texture" id=1]
 [ext_resource path="res://src/UI/HUD.gd" type="Script" id=2]
@@ -133,6 +133,50 @@ tracks/0/keys = {
 "values": [ 0.0 ]
 }
 
+[sub_resource type="DynamicFont" id=15]
+size = 48
+outline_size = 5
+outline_color = Color( 0.0470588, 0.0156863, 0.129412, 1 )
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=16]
+size = 164
+outline_size = 8
+outline_color = Color( 0.0470588, 0.0156863, 0.129412, 1 )
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="Animation" id=17]
+resource_name = "FlashTitle"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.7, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=18]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
 [node name="HUD" type="CanvasLayer" groups=["HUD"]]
 script = ExtResource( 2 )
 
@@ -262,3 +306,48 @@ mouse_filter = 2
 root_node = NodePath("../../..")
 anims/PlayHurt = SubResource( 13 )
 anims/RESET = SubResource( 14 )
+
+[node name="Wave" type="Control" parent="HUD_UI"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 64.0
+margin_top = -288.0
+margin_right = 288.0
+margin_bottom = -152.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD_UI/Wave"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+alignment = 1
+
+[node name="StateLabel" type="Label" parent="HUD_UI/Wave/VBoxContainer"]
+margin_top = 7.0
+margin_right = 224.0
+margin_bottom = 66.0
+custom_fonts/font = SubResource( 15 )
+text = "Wave 1"
+valign = 1
+
+[node name="StateTimerLabel" type="Label" parent="HUD_UI/Wave/VBoxContainer"]
+margin_top = 70.0
+margin_right = 224.0
+margin_bottom = 129.0
+custom_fonts/font = SubResource( 15 )
+text = "00 : 38"
+valign = 1
+
+[node name="StageTitle" type="Label" parent="HUD_UI/Wave"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 320.0
+margin_top = -600.0
+margin_right = 1472.0
+margin_bottom = -288.0
+custom_fonts/font = SubResource( 16 )
+text = "Wave 1"
+align = 1
+valign = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HUD_UI/Wave/StageTitle"]
+anims/FlashTitle = SubResource( 17 )
+anims/RESET = SubResource( 18 )
