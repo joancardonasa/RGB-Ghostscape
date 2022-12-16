@@ -1,7 +1,6 @@
 extends KinematicBody
 
 var EnemyDeathScene = preload("res://src/characters/EnemyDeathScene.tscn")
-var ImpactScene = preload("res://src/effects/Impact.tscn")
 
 export var speed = 5
 export(Material) var normal_material
@@ -12,6 +11,7 @@ onready var nav_agent = $NavigationAgent
 
 onready var stats = $Stats
 onready var hit_anim_timer = $ghost/HitAnimTimer
+onready var hurtbox = $Hurtbox
 
 var direction: Vector3 = Vector3.ZERO
 
@@ -44,17 +44,12 @@ func _determine_visibility(enable: bool):
         $ghost/ghost.set_surface_material(2, normal_material)
     else:
         $ghost/ghost.set_surface_material(2, hidden_material)
+    hurtbox.phased = not enable
 
 
 # Health/Damage
-func _on_Hurtbox_damage_taken(amount: int, hit_location: Vector3):
+func _on_Hurtbox_damage_taken(amount: int):
     stats.take_hit(amount)
-    var impact_scene = ImpactScene.instance()
-    add_child(impact_scene)
-    impact_scene.global_transform.origin = hit_location
-    impact_scene.rotate_object_local(Vector3.UP, rand_range(0, 360))
-    var scale = rand_range(0.5, 1.5)
-    impact_scene.scale = Vector3(scale, scale, scale)
     $ghost/ghost.set_surface_material(2, hit_material)
     hit_anim_timer.start()
 

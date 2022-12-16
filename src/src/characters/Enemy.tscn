@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/characters/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://assets/enemies/ghost_hidden.material" type="Material" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://assets/enemies/ghost.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/enemies/ghost_hit.material" type="Material" id=6]
 [ext_resource path="res://assets/enemies/ghost.material" type="Material" id=7]
+[ext_resource path="res://sound/enemies/Mud 7.wav" type="AudioStream" id=8]
 
 [sub_resource type="SphereShape" id=2]
 
@@ -47,6 +48,13 @@ script = ExtResource( 4 )
 [node name="CollisionShape" type="CollisionShape" parent="Hurtbox"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -3.0658, -0.653309, 0 )
 shape = SubResource( 6 )
+
+[node name="MissSFX" type="AudioStreamPlayer3D" parent="Hurtbox"]
+stream = ExtResource( 8 )
+
+[node name="HitSFX" type="AudioStreamPlayer3D" parent="Hurtbox"]
+stream = ExtResource( 8 )
+attenuation_model = 3
 
 [connection signal="died_signal" from="Stats" to="." method="_on_Stats_died_signal"]
 [connection signal="timeout" from="PathUpdateTimer" to="." method="_on_PathUpdateTimer_timeout"]

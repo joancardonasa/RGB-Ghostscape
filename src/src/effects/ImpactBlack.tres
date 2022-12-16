@@ -186,7 +186,7 @@ void light ()
 [resource]
 shader = SubResource( 3 )
 shader_param/albedo_tint = Color( 0.0470588, 0.0156863, 0.129412, 1 )
-shader_param/emission_tint = Color( 0, 0, 0, 1 )
+shader_param/emission_tint = Color( 0.0470588, 0.0156863, 0.129412, 1 )
 shader_param/emission_strength = 1.0
 shader_param/occlusion_strength = 1.0
 shader_param/specular_strength = 1.0
@@ -196,3 +196,4 @@ shader_param/flipbook_columns_count = 1
 shader_param/current_frame_blend = 0.0
 shader_param/use_normal_map = false
 shader_param/albedo = ExtResource( 1 )
+shader_param/emission = ExtResource( 1 )

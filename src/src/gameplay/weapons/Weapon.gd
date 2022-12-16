@@ -16,6 +16,7 @@ export(float) var camera_shake_intensity = 0.06
 export(float) var camera_shake_duration = 0.06
 
 onready var animation_player = $AnimationPlayer
+onready var shoot_sfx = $ShootSFX
 
 var hitscan_raycast = null
 var ammo_manager = null
@@ -42,6 +43,7 @@ func fire():
         animation_player.play("Fire")
 #        $"%MuzzleFlash".restart()
 #        $"%MuzzleFlash".emitting = true
+        shoot_sfx.play()
         Utils.camera_shake(camera_shake_intensity, camera_shake_duration)
         emit_signal("weapon_shot", crosshair_scale_shot_time)
 
