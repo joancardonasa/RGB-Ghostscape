@@ -74,8 +74,9 @@ func activate_speed_lines(enable: bool):
 
 
 # Wave
-func update_wave_info(
-    state_name: String, state_time: String, total_time: String):
+func update_wave_info(state_name: String):
     $HUD_UI/Wave/VBoxContainer/StateLabel.text = state_name
-    $HUD_UI/Wave/VBoxContainer/StateTimerLabel.text = state_name
-    $HUD_UI/Wave/VBoxContainer/TotalTimerLabel.text = total_time
+
+func update_wave_timer(state_time: String, total_time: String = ""):
+    $HUD_UI/Wave/VBoxContainer/StateTimerLabel.text = state_time
+    #$HUD_UI/Wave/VBoxContainer/TotalTimerLabel.text = total_time

@@ -5,8 +5,10 @@ var Enemy = preload("res://src/characters/Enemy.tscn")
 # Array of Position3D nodes
 onready var enemy_spawn_positions: Array = $EnemySpawnPositions.get_children()
 
+onready var spawn_timer = $EnemySpawnTimer
+
 func _ready():
-    $EnemySpawnTimer.start()
+    pass
 
 
 func spawn_enemy():
@@ -29,3 +31,14 @@ func get_random_spawn_position() -> Vector3:
 func _on_EnemySpawnTimer_timeout():
     # TODO: Return if max enemies are alive, depends on wave
     spawn_enemy()
+
+
+func _on_WaveManager_wave_started(current_wave):
+    # 1.5, 1.4, ..., 0.5 at Wave 10
+    spawn_timer.wait_time = clamp(1.5 - (current_wave-1)*0.1, 0.5, 1.5)
+    spawn_timer.start()
+
+
+func _on_WaveManager_rest_started():
+    spawn_timer.stop()
+    get_tree().call_group("Enemy", "_die")

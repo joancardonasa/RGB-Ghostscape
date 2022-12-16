@@ -11,7 +11,7 @@
 radius = 1.08533
 height = 1.52124
 
-[node name="Enemy" type="KinematicBody"]
+[node name="Enemy" type="KinematicBody" groups=["Enemy"]]
 collision_layer = 4
 collision_mask = 5
 script = ExtResource( 1 )

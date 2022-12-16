@@ -4,6 +4,7 @@
 
 [node name="WaveManager" type="Node"]
 script = ExtResource( 1 )
+wave_time_limit = 30.0
 
 [node name="WaveTimer" type="Timer" parent="."]
 wait_time = 60.0
