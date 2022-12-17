@@ -1,6 +1,6 @@
 extends Enemy
 
-func _move():
+func _move(_delta):
     if is_instance_valid(player) and _moving:
         move_and_slide(direction.normalized() * speed, Vector3.UP)
         var oriRot = global_rotation
