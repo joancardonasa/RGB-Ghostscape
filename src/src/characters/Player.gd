@@ -43,10 +43,12 @@ onready var head = $Head
 onready var stats = $Stats
 onready var camera = $Head/LeanGimbal/Camera
 onready var lean_gimbal = $Head/LeanGimbal
+onready var _footstep_sfx = $FootstepSFX
 
 # Variables for boosts
 var _speed_mult: float = 1.0
 var _invulnerable: bool = false
+var _footstep_acc: float = 0.0
 
 func _ready():
     # Hides the cursor
@@ -119,6 +121,15 @@ func _physics_process(delta):
     else:
         movement = velocity + gravity_vec
 
+    if is_on_floor():
+        _footstep_acc += movement.length()
+        if _footstep_acc > 200:
+            Sound.play(_footstep_sfx)
+            _footstep_acc = 0
+    else:
+        # Always make sound when landing
+        _footstep_acc = 1000
+    
     move_and_slide_with_snap(movement, snap, Vector3.UP)
 
 func _on_Stats_died_signal():

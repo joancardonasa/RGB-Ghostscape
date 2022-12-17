@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://src/characters/Player.gd" type="Script" id=1]
 [ext_resource path="res://src/spells/SpellController.gd" type="Script" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://src/characters/PlayerHurtbox.gd" type="Script" id=18]
 [ext_resource path="res://sound/weapons/Machine Gun Shot 2.wav" type="AudioStream" id=19]
 [ext_resource path="res://sound/weapons/AR Single Shot (Suppressed) 3.wav" type="AudioStream" id=20]
+[ext_resource path="res://sound/Gravel Footstep 4.wav" type="AudioStream" id=21]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.411191
@@ -223,6 +224,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
 cull_mask = 2
 fov = 100.0
 far = 200.0
+
+[node name="FootstepSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 21 )
+volume_db = -11.918
 
 [connection signal="died_signal" from="Stats" to="." method="_on_Stats_died_signal"]
 [connection signal="hp_updated" from="Stats" to="HUD" method="_on_Stats_hp_updated"]
