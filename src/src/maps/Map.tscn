@@ -54,6 +54,7 @@ script = ExtResource( 9 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -502.564, -155.51, 107.076 )
 
 [node name="EnemyManager" parent="." instance=ExtResource( 2 )]
+enemy_speed = 10.0
 
 [node name="EnemySpawnTimer" parent="EnemyManager" index="0"]
 wait_time = 1.5
