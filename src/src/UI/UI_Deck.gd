@@ -6,15 +6,19 @@ export(int) var locked_cards = 3
 
 var UI_Card = preload("res://src/UI/UI_Card.tscn")
 onready var _card_container = $CardContainer
+onready var _move_preview_timer: Timer = $MovePreview
+onready var _add_card_sfx: AudioStreamPlayer = $AddCardSFX
+onready var _remove_card_sfx: AudioStreamPlayer = $RemoveCardSFX
+onready var _preview_card_sfx: AudioStreamPlayer = $PreviewCardSFX
+
 var _card_manager
 var _deck = {}
 var _preview_card: Control
 var _preview_pos: int = -1
-onready var _move_preview_timer: Timer = $MovePreview
+
 
 signal card_added(card, idx)
 signal card_removed(card)
-
 
 func _ready():
     _card_manager = Utils.get_card_manager()
@@ -50,7 +54,7 @@ func _reorder_deck():
         
 func can_drop_data(position: Vector2, data):
     var idx = _idx_from_pos(position)
-    var can_drop = data is Node and data.is_in_group("DRAGGABLE") and idx >= locked_cards
+    var can_drop = data is Node and data.is_in_group("DRAGGABLE") and idx >= locked_cards and _card_manager.deck.size() < _card_manager.max_deck_size
     if not can_drop:
         return false
     if not _move_preview_timer.is_stopped():
@@ -62,6 +66,7 @@ func can_drop_data(position: Vector2, data):
         _card_container.move_child(_preview_card, idx)
         _preview_pos = idx
         _move_preview_timer.start()
+        Sound.play(_preview_card_sfx)
     return can_drop
 
 func drop_data(position: Vector2, data):
@@ -96,11 +101,13 @@ func _add_card(card_data: Resource):
     _card_container.add_child(ncard)
     ncard.set_card(card_data)
     _deck[card_data.get_instance_id()] = ncard
+    Sound.play(_add_card_sfx)
     ncard.connect("lifted", self, "_on_card_lifted")
 
 func _on_card_lifted(card):
     _card_manager.remove_from_deck(card.card_data)
     _card_container.remove_child(card)
     _deck.erase(card.card_data.get_instance_id())
+    Sound.play(_remove_card_sfx)
     _reorder_deck()
     emit_signal("card_removed", card.card_data)

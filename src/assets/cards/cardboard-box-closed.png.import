@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/running-shoe-double.png-84bae41437d0e753c381aa4c2d85c562.s3tc.stex"
-path.etc2="res://.import/running-shoe-double.png-84bae41437d0e753c381aa4c2d85c562.etc2.stex"
+path.s3tc="res://.import/cardboard-box-closed.png-e11cc8b0f213736ecd01556ff8b84f49.s3tc.stex"
+path.etc2="res://.import/cardboard-box-closed.png-e11cc8b0f213736ecd01556ff8b84f49.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/UI/running-shoe-double.png"
-dest_files=[ "res://.import/running-shoe-double.png-84bae41437d0e753c381aa4c2d85c562.s3tc.stex", "res://.import/running-shoe-double.png-84bae41437d0e753c381aa4c2d85c562.etc2.stex" ]
+source_file="res://assets/cards/cardboard-box-closed.png"
+dest_files=[ "res://.import/cardboard-box-closed.png-e11cc8b0f213736ecd01556ff8b84f49.s3tc.stex", "res://.import/cardboard-box-closed.png-e11cc8b0f213736ecd01556ff8b84f49.etc2.stex" ]
 
 [params]
 

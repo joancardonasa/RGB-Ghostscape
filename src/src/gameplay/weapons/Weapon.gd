@@ -17,6 +17,7 @@ export(float) var camera_shake_duration = 0.06
 
 onready var animation_player = $AnimationPlayer
 onready var shoot_sfx = $ShootSFX
+onready var reload_sfx = $ReloadSFX
 
 var hitscan_raycast = null
 var ammo_manager = null
@@ -24,6 +25,7 @@ var ammo_manager = null
 var ammo_magazine: int = 0
 
 var is_reloading: bool = false
+var _damage_mult: float = 1.0
 
 signal set_active(weapon)
 signal update_ammo(weapon)
@@ -36,6 +38,7 @@ func _ready():
     ammo_manager = Utils.get_ammo_manager()
 
     ammo_magazine = weapon_data.magazine_size
+    Utils.get_card_manager().connect("Player_DamageMult", self, "_on_Card_DamageMult")
 
 
 func fire():
@@ -43,7 +46,7 @@ func fire():
         animation_player.play("Fire")
 #        $"%MuzzleFlash".restart()
 #        $"%MuzzleFlash".emitting = true
-        shoot_sfx.play()
+        Sound.play(shoot_sfx)
         Utils.camera_shake(camera_shake_intensity, camera_shake_duration)
         emit_signal("weapon_shot", crosshair_scale_shot_time)
 
@@ -53,7 +56,7 @@ func fire():
             if isPhasing != null and not isPhasing:
                 emit_signal("enemy_hit", hit_marker_time)
             var collider = hitscan_raycast.get_collider()
-            collider.take_damage(damage, hitscan_raycast.get_collision_point())
+            collider.take_damage(damage * _damage_mult, hitscan_raycast.get_collision_point())
 
         ammo_magazine -= 1
 
@@ -99,7 +102,6 @@ func set_active(weapon: Weapon):
         emit_signal("set_active", self)
         emit_signal("update_ammo", self)
 
-
 func _input(event):
     # Only reload active weapon
     if not is_active: return
@@ -112,5 +114,10 @@ func _input(event):
 
 
 func start_reload_anim():
+    Sound.play(reload_sfx)
     is_reloading = true
     animation_player.play("Reload")
+
+
+func _on_Card_DamageMult(enable : bool, mult : float):
+    _damage_mult = mult if enable else 1.0

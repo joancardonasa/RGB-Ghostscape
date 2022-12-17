@@ -18,12 +18,15 @@ var direction: Vector3 = Vector3.ZERO
 var player = null
 var card_manager = null
 var pickup_container = null
+var _moving = true
 
 func _ready():
     player = Utils.get_player()
     card_manager = Utils.get_card_manager()
     card_manager.connect("Enemy_Reveal", self, "_determine_visibility")
-    _determine_visibility(card_manager.current_card.reveal_enemies)
+    card_manager.connect("Enemy_Stop", self, "_stop_moving")
+    _determine_visibility(Utils.coalesce(card_manager.current_card.get("reveal_enemies"), false))
+    _stop_moving(Utils.coalesce(card_manager.current_card.get("stop_enemies"), false))
 
     pickup_container = Utils.get_pickup_container()
     hit_anim_timer.connect("timeout", self, "_on_HitAnimTimer_timeout")
@@ -34,7 +37,7 @@ func _on_PathUpdateTimer_timeout():
         direction = global_transform.origin.direction_to(nav_agent.get_next_location())
 
 func _physics_process(_delta):
-    if is_instance_valid(player):
+    if is_instance_valid(player) and _moving:
         move_and_slide(direction.normalized() * speed, Vector3.UP)
         look_at(player.global_transform.origin, Vector3.UP)
 
@@ -55,7 +58,7 @@ func _on_Hurtbox_player_collision(player_hurtbox : Area):
     _die()
 
 func _on_Stats_died_signal():
-    Utils.spawn_ammo_pickup(global_transform.origin)
+    Utils.get_pickup_manager().spawn_pickup(global_transform.origin)
     Counter.ENEMIES_KILLED += 1
     _die()
 
@@ -68,4 +71,7 @@ func _die():
     queue_free()
 
 func _on_HitAnimTimer_timeout():
-    _determine_visibility(card_manager.current_card.reveal_enemies)
+    _determine_visibility(Utils.coalesce(card_manager.current_card.get("reveal_enemies"), false))
+
+func _stop_moving(enable: bool):
+    _moving = not enable

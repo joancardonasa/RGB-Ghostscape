@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://src/gameplay/cards/CardBlueinvulnerable.gd" type="Script" id=1]
+[ext_resource path="res://assets/cards/stars-stack.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+name = "[Blue] invulnerable"
+tooltip = "Makes you invulnerable"
+Duration = 5.0
+col = Color( 0.054902, 0.482353, 0.682353, 1 )
+reveal_pickups = true
+icon = ExtResource( 2 )

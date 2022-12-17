@@ -23,12 +23,9 @@ export var ammo_info: Dictionary = {
     }
 }
 
-var weapon_manager = null
+func _ready():
+    var pickup_manager = Utils.get_pickup_manager()
+    pickup_manager.connect("PickedUpAmmo", self, "on_ammo_pickup")
 
-signal PickedUpAmmo(ammo_type, ammo_amount)
-
-func _on_PickupArea_area_entered(area):
-    if area.is_in_group("AmmoPickup"):
-        ammo_info[area.ammo_type]["amount"] += area.ammo_amount
-        emit_signal("PickedUpAmmo", area.ammo_type, area.ammo_amount)
-        area.queue_free()
+func on_ammo_pickup(ammo_type: int, amount: int):
+    ammo_info[ammo_type]["amount"] += amount

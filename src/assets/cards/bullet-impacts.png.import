@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/cardboard-box-closed.png-58cbcd0059802ffa745cae3bd25412ac.s3tc.stex"
-path.etc2="res://.import/cardboard-box-closed.png-58cbcd0059802ffa745cae3bd25412ac.etc2.stex"
+path.s3tc="res://.import/bullet-impacts.png-67a8d4f41912662c40f67975da676022.s3tc.stex"
+path.etc2="res://.import/bullet-impacts.png-67a8d4f41912662c40f67975da676022.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/UI/cardboard-box-closed.png"
-dest_files=[ "res://.import/cardboard-box-closed.png-58cbcd0059802ffa745cae3bd25412ac.s3tc.stex", "res://.import/cardboard-box-closed.png-58cbcd0059802ffa745cae3bd25412ac.etc2.stex" ]
+source_file="res://assets/cards/bullet-impacts.png"
+dest_files=[ "res://.import/bullet-impacts.png-67a8d4f41912662c40f67975da676022.s3tc.stex", "res://.import/bullet-impacts.png-67a8d4f41912662c40f67975da676022.etc2.stex" ]
 
 [params]
 

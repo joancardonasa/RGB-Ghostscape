@@ -6,8 +6,6 @@ export(String) var tooltip = ""
 export(float) var Duration = 5.0
 export(float) var SpeedMult = 2.0
 export(Color, RGB) var col = Color("#008143")
-export(bool) var reveal_enemies = false
-export(bool) var reveal_pickups = false
 export(bool) var reveal_platforms = true
 export(Texture) var icon
 

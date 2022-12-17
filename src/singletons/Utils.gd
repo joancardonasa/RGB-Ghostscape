@@ -1,8 +1,5 @@
 extends Node
 
-
-var AmmoPickup = preload("res://src/gameplay/Pickups/AmmoPickup.tscn")
-
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 # Functions that provide utilities for all classes
@@ -62,21 +59,8 @@ func get_ui_cardbox():
 func get_pickup_container():
     return get_tree().get_nodes_in_group("PickupContainer")[0]
 
-func spawn_ammo_pickup(position: Vector3):
-    var pickup_container = get_pickup_container()
-    var ammo_pickup = AmmoPickup.instance()
-
-    # TODO: Set randomly
-    if roll_probability(0.5):
-        ammo_pickup.ammo_type = AmmoManager.AmmoType.SMALL
-        ammo_pickup.ammo_amount = 5
-    else:
-        ammo_pickup.ammo_type = AmmoManager.AmmoType.LARGE
-        ammo_pickup.ammo_amount = 2
-
-    pickup_container.add_child(ammo_pickup)
-    # TODO How to ensure it falls on the ground?
-    ammo_pickup.global_transform.origin = position
+func get_pickup_manager():
+    return get_tree().get_nodes_in_group("PickupManager")[0] 
 
 # Camera
 func get_camera():
@@ -84,3 +68,8 @@ func get_camera():
 
 func camera_shake(intensity, duration):
     get_camera().shake(intensity, duration)
+
+func coalesce(value, default_value):
+    if value == null:
+        return default_value
+    return value

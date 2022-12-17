@@ -1,7 +1,7 @@
 [gd_resource type="Resource" load_steps=3 format=2]
 
 [ext_resource path="res://src/gameplay/cards/CardRed.gd" type="Script" id=1]
-[ext_resource path="res://assets/UI/crossed-sabres.png" type="Texture" id=2]
+[ext_resource path="res://assets/cards/crossed-sabres.png" type="Texture" id=2]
 
 [resource]
 script = ExtResource( 1 )
@@ -10,5 +10,5 @@ tooltip = ""
 Duration = 5.0
 col = Color( 0.647059, 0, 0.282353, 1 )
 reveal_enemies = true
-reveal_pickups = false
+reveal_pickups = null
 icon = ExtResource( 2 )

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://src/gameplay/cards/CardRedStop.gd" type="Script" id=1]
+[ext_resource path="res://assets/cards/wolf-trap.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+name = "[Red] Stop Enemies"
+tooltip = "Freezes enemies"
+Duration = 5.0
+col = Color( 0.647059, 0, 0.282353, 1 )
+stop_enemies = true
+icon = ExtResource( 2 )

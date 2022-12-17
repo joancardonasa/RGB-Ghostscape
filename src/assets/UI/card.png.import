@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/health-normal.png-1fc0607b2af4c569238881289cf8d7ec.s3tc.stex"
-path.etc2="res://.import/health-normal.png-1fc0607b2af4c569238881289cf8d7ec.etc2.stex"
+path.s3tc="res://.import/card.png-e65bebb4c1ede20b5030768ece3351ba.s3tc.stex"
+path.etc2="res://.import/card.png-e65bebb4c1ede20b5030768ece3351ba.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/UI/health-normal.png"
-dest_files=[ "res://.import/health-normal.png-1fc0607b2af4c569238881289cf8d7ec.s3tc.stex", "res://.import/health-normal.png-1fc0607b2af4c569238881289cf8d7ec.etc2.stex" ]
+source_file="res://assets/UI/card.png"
+dest_files=[ "res://.import/card.png-e65bebb4c1ede20b5030768ece3351ba.s3tc.stex", "res://.import/card.png-e65bebb4c1ede20b5030768ece3351ba.etc2.stex" ]
 
 [params]
 

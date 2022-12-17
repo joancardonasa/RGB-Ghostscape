@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/running-shoe.png-e89b6efcd713a30ced8dc895ae4862bc.s3tc.stex"
-path.etc2="res://.import/running-shoe.png-e89b6efcd713a30ced8dc895ae4862bc.etc2.stex"
+path.s3tc="res://.import/running-shoe-double.png-69b5bbd38e7a034f4d3f6d7897954574.s3tc.stex"
+path.etc2="res://.import/running-shoe-double.png-69b5bbd38e7a034f4d3f6d7897954574.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/UI/running-shoe.png"
-dest_files=[ "res://.import/running-shoe.png-e89b6efcd713a30ced8dc895ae4862bc.s3tc.stex", "res://.import/running-shoe.png-e89b6efcd713a30ced8dc895ae4862bc.etc2.stex" ]
+source_file="res://assets/cards/running-shoe-double.png"
+dest_files=[ "res://.import/running-shoe-double.png-69b5bbd38e7a034f4d3f6d7897954574.s3tc.stex", "res://.import/running-shoe-double.png-69b5bbd38e7a034f4d3f6d7897954574.etc2.stex" ]
 
 [params]
 

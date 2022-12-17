@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/characters/EnemyDeathScene.gd" type="Script" id=1]
+[ext_resource path="res://sound/enemies/BABY TAKING DAMAGE.wav" type="AudioStream" id=2]
 
 [sub_resource type="Curve" id=1]
 _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.0953846, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.993846, 0 ), 0.0, 0.0, 0, 0 ]
@@ -38,5 +39,8 @@ script = ExtResource( 1 )
 [node name="DeathTimer" type="Timer" parent="."]
 one_shot = true
 autostart = true
+
+[node name="DeathSFX" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 2 )
 
 [connection signal="timeout" from="DeathTimer" to="." method="_on_DeathTimer_timeout"]

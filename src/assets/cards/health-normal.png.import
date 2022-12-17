@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/crossed-sabres.png-bcd16f84db780e1c2140a700f61fcc3a.s3tc.stex"
-path.etc2="res://.import/crossed-sabres.png-bcd16f84db780e1c2140a700f61fcc3a.etc2.stex"
+path.s3tc="res://.import/health-normal.png-687196f35c64937e90d1a1d5e023d30c.s3tc.stex"
+path.etc2="res://.import/health-normal.png-687196f35c64937e90d1a1d5e023d30c.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/UI/crossed-sabres.png"
-dest_files=[ "res://.import/crossed-sabres.png-bcd16f84db780e1c2140a700f61fcc3a.s3tc.stex", "res://.import/crossed-sabres.png-bcd16f84db780e1c2140a700f61fcc3a.etc2.stex" ]
+source_file="res://assets/cards/health-normal.png"
+dest_files=[ "res://.import/health-normal.png-687196f35c64937e90d1a1d5e023d30c.s3tc.stex", "res://.import/health-normal.png-687196f35c64937e90d1a1d5e023d30c.etc2.stex" ]
 
 [params]
 

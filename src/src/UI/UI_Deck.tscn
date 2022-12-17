@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/UI/UI_Card.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/UI/UI_Deck.gd" type="Script" id=2]
+[ext_resource path="res://sound/UI/cardPlace1.ogg" type="AudioStream" id=3]
+[ext_resource path="res://sound/UI/cardSlide4.ogg" type="AudioStream" id=4]
 
 [node name="UI_Deck" type="Control" groups=["UI_Deck"]]
 anchor_right = 1.0
@@ -30,5 +32,14 @@ margin_bottom = 243.0
 [node name="MovePreview" type="Timer" parent="."]
 wait_time = 0.192
 one_shot = true
+
+[node name="AddCardSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+
+[node name="RemoveCardSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+
+[node name="PreviewCardSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
 
 [connection signal="mouse_exited" from="." to="." method="_on_UI_Deck_mouse_exited"]
