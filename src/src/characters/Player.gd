@@ -46,6 +46,7 @@ onready var lean_gimbal = $Head/LeanGimbal
 
 # Variables for boosts
 var _speed_mult: float = 1.0
+var _invulnerable: bool = false
 
 func _ready():
     # Hides the cursor
@@ -55,6 +56,7 @@ func _ready():
     var card_manager = Utils.get_card_manager()
     card_manager.connect("Player_SpeedMult", self, "_on_Card_SpeedMult")
     card_manager.connect("Player_Heal", self, "_on_Card_Heal")
+    card_manager.connect("Player_Invulnerable", self, "_on_Card_Invulnerable")
 
 func _input(event):
     # Get mouse input for camera rotation
@@ -133,10 +135,13 @@ func _on_Card_Heal(amount : int):
     stats.heal(amount)
 
 func _on_HurtBox_damage_taken():
-    $HUD.flash_hurt_vignette()
-    Sound.get_node("HitSound").play()
-    if not Globals.GODMODE:
+    if not Globals.GODMODE and not _invulnerable:
+        $HUD.flash_hurt_vignette()
+        Sound.get_node("HitSound").play()
         stats.take_hit(1)
 
 func boost(force: Vector3):
     boost_vec = force
+
+func _on_Card_Invulnerable(enable : bool):
+    _invulnerable = enable
