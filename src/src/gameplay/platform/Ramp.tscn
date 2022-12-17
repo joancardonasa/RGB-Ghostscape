@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/gameplay/platform/StaticPlatform.gd" type="Script" id=1]
-[ext_resource path="res://materials/GreenAura.tres" type="Material" id=3]
+[ext_resource path="res://materials/Platforms.tres" type="Material" id=2]
 
 [sub_resource type="PrismMesh" id=5]
 left_to_right = 0.0
@@ -17,7 +17,7 @@ script = ExtResource( 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 mesh = SubResource( 5 )
 skeleton = NodePath("../..")
-material/0 = ExtResource( 3 )
+material/0 = ExtResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
