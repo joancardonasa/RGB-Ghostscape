@@ -3,6 +3,9 @@ extends Node
 onready var wave_timer = $WaveTimer
 onready var rest_timer = $RestTimer
 
+onready var start_sfx = $StartSFX
+onready var complete_sfx = $CompleteSFX
+
 # Seconds
 export(float) var wave_time_limit = 60
 export(float) var rest_time_limit = 10
@@ -45,12 +48,14 @@ func start_wave():
     hud.update_wave_info("Wave: " + str(current_wave))
     current_state = WAVE_STATE.WAVE
     emit_signal("wave_started", current_wave)
+    Sound.play(start_sfx)
     wave_timer.start()
 
 func start_rest():
     hud.update_wave_info("Rest")
     current_state = WAVE_STATE.REST
     emit_signal("rest_started")
+    Sound.play(complete_sfx)
     rest_timer.start()
 
 func start_start():
