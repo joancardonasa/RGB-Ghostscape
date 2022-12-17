@@ -6,6 +6,7 @@ onready var container = $ColorRect/HBoxContainer
 
 func _ready():
     set_active(false)
+    Utils.get_pickup_manager().connect("PickedUpCard", self, "_on_pick_up_card")
 
 func _input(event):
     if event.is_action_pressed("open_box"):
@@ -23,3 +24,8 @@ func set_active(enabled: bool):
 
 func get_cards():
     return container.get_children()
+
+func _on_pick_up_card(card: Resource, amount: int):
+    for child in container.get_children():
+        if child.card_data.name == card.name:
+            child.add_card(amount)

@@ -46,6 +46,12 @@ func _preview_drag():
 func _end_drag():
     _reflect_count(count)
 
+func add_card(amount: int):
+    count += amount
+    previewCount += amount
+    _reflect_count(previewCount)
+    
+
 
 func _reflect_count(new_count: int):
     # Do not decrease or add cards once we get to 10
