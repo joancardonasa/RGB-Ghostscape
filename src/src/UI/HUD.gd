@@ -50,7 +50,6 @@ func update_ammo_amount(weapon: Weapon):
         str(weapon.weapon_data.magazine_size) + \
         " (" + str(ammo_manager.ammo_info[weapon.ammo_type]["amount"]) + ")"
 
-
 # Crosshair
 func update_crosshair(weapon: Weapon):
     crosshair.texture = weapon.crosshair_texture
@@ -83,8 +82,10 @@ func update_wave_info(state_name: String):
     $HUD_UI/Wave/StageTitle.text = state_name
     $HUD_UI/Wave/VBoxContainer/StateLabel.text = state_name
     $HUD_UI/Wave/StageTitle/AnimationPlayer.play("FlashTitle")
-    
 
 func update_wave_timer(state_time: String, total_time: String = ""):
     $HUD_UI/Wave/VBoxContainer/StateTimerLabel.text = state_time
     #$HUD_UI/Wave/VBoxContainer/TotalTimerLabel.text = total_time
+
+
+

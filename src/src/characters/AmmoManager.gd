@@ -23,9 +23,12 @@ export var ammo_info: Dictionary = {
     }
 }
 
+signal update_ammo(ammo_type)
+
 func _ready():
     var pickup_manager = Utils.get_pickup_manager()
     pickup_manager.connect("PickedUpAmmo", self, "on_ammo_pickup")
 
 func on_ammo_pickup(ammo_type: int, amount: int):
     ammo_info[ammo_type]["amount"] += amount
+    emit_signal("update_ammo", ammo_type)

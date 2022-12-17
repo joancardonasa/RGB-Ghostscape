@@ -5,7 +5,6 @@ onready var weapons = $WeaponSocket.get_children()
 onready var change_sfx = $ChangeSFX
 
 var active_weapon = null
-var ammo_manager = null
 
 var _cardbox_open: bool = false
 # Define signal to get new weapon set
@@ -14,7 +13,6 @@ signal update_ammo(weapon)
 
 func _ready():
     var card_manager = Utils.get_card_manager()
-    ammo_manager = Utils.get_ammo_manager()
     Utils.get_ui_cardbox().connect("CardBox_Enabled", self, "_on_CardBox_Enabled")
 
     for weapon in weapons:
@@ -57,7 +55,8 @@ func set_new_active_weapon(weapon: Weapon):
     active_weapon = weapon
     get_tree().call_group("Weapon", "set_active", weapon)
 
-func _on_AmmoManager_PickedUpAmmo(ammo_type, ammo_amount):
+
+func _on_AmmoManager_update_ammo(ammo_type):
     if active_weapon.ammo_type != ammo_type:
         return
     emit_signal("update_ammo", active_weapon)

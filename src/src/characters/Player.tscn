@@ -227,4 +227,5 @@ far = 200.0
 [connection signal="died_signal" from="Stats" to="." method="_on_Stats_died_signal"]
 [connection signal="hp_updated" from="Stats" to="HUD" method="_on_Stats_hp_updated"]
 [connection signal="area_entered" from="PickUpManager/PickupArea" to="PickUpManager" method="_on_PickupArea_area_entered"]
+[connection signal="update_ammo" from="AmmoManager" to="Head/WeaponManager" method="_on_AmmoManager_update_ammo"]
 [connection signal="damage_taken" from="HurtBox" to="." method="_on_HurtBox_damage_taken"]
