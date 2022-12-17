@@ -99,7 +99,6 @@ func set_active(weapon: Weapon):
         emit_signal("set_active", self)
         emit_signal("update_ammo", self)
 
-
 func _input(event):
     # Only reload active weapon
     if not is_active: return

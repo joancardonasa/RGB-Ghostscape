@@ -16,9 +16,11 @@ func _ready():
 func _on_PickupArea_area_entered(area):
     if area.is_in_group("AmmoPickup"):
         emit_signal("PickedUpAmmo", area.ammo_type, area.ammo_amount)
+        Sound.play(area.get_node("PickUpSFX"))
         area.queue_free()
     elif area.is_in_group("CardPickup"):
         emit_signal("PickedUpCard", area.card_type, area.card_amount)
+        Sound.play(area.get_node("PickUpSFX"))
         area.queue_free()
 
 
