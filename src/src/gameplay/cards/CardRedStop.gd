@@ -5,6 +5,7 @@ export(String) var name = "[Red] Stop Enemies"
 export(String) var tooltip = "Freezes enemies"
 export(float) var Duration = 5.0
 export(Color, RGB) var col = Color("#a50048")
+export(bool) var reveal_enemies = true
 export(bool) var stop_enemies = true
 export(Texture) var icon
 

@@ -13,6 +13,7 @@ onready var _ui_deck = Utils.get_ui_deck()
 signal Player_SpeedMult(enable, mult)
 signal Player_Heal(amount)
 signal Player_Invulnerable(enable)
+signal Player_DamageMult(enable, mult)
 
 signal Enemy_Reveal(enable)
 signal Enemy_Stop(enable)

@@ -3,7 +3,7 @@ extends Resource
 class_name CardGreenHeal
 
 export(String) var name = "[Green] Heal"
-export(String) var tooltip = "Heals 1 Hit, Breaks on use"
+export(String) var tooltip = "Heals 1 Hit, breaks on use"
 export(float) var Duration = 2.0
 export(float) var SpeedMult = 2.0
 export(Color, RGB) var col = Color("#008143")
