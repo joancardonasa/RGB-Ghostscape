@@ -55,7 +55,7 @@ func _on_Hurtbox_player_collision(player_hurtbox : Area):
     _die()
 
 func _on_Stats_died_signal():
-    Utils.spawn_ammo_pickup(global_transform.origin)
+    Utils.get_pickup_manager().spawn_pickup(global_transform.origin)
     Counter.ENEMIES_KILLED += 1
     _die()
 

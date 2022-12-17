@@ -11,6 +11,7 @@
 [ext_resource path="res://src/gameplay/weapons/AssaultRifle.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/characters/AmmoManager.gd" type="Script" id=10]
 [ext_resource path="res://sound/weapons/Pistol Shot 7.wav" type="AudioStream" id=11]
+[ext_resource path="res://src/gameplay/Pickups/PickupManager.gd" type="Script" id=11]
 [ext_resource path="res://src/UI/HUD.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/characters/Camera.gd" type="Script" id=17]
 [ext_resource path="res://src/characters/PlayerHurtbox.gd" type="Script" id=18]
@@ -163,15 +164,18 @@ startingSpell = ExtResource( 3 )
 
 [node name="SceneTransition" parent="." instance=ExtResource( 5 )]
 
-[node name="AmmoManager" type="Spatial" parent="." groups=["AmmoManager"]]
-script = ExtResource( 10 )
+[node name="PickUpManager" type="Spatial" parent="." groups=["PickupManager"]]
+script = ExtResource( 11 )
 
-[node name="PickupArea" type="Area" parent="AmmoManager"]
+[node name="PickupArea" type="Area" parent="PickUpManager"]
 collision_layer = 0
 collision_mask = 64
 
-[node name="CollisionShape" type="CollisionShape" parent="AmmoManager/PickupArea"]
+[node name="CollisionShape" type="CollisionShape" parent="PickUpManager/PickupArea"]
 shape = SubResource( 2 )
+
+[node name="AmmoManager" type="Spatial" parent="." groups=["AmmoManager"]]
+script = ExtResource( 10 )
 
 [node name="HurtBox" type="Area" parent="."]
 collision_layer = 256
@@ -206,6 +210,5 @@ far = 200.0
 
 [connection signal="died_signal" from="Stats" to="." method="_on_Stats_died_signal"]
 [connection signal="hp_updated" from="Stats" to="HUD" method="_on_Stats_hp_updated"]
-[connection signal="PickedUpAmmo" from="AmmoManager" to="Head/WeaponManager" method="_on_AmmoManager_PickedUpAmmo"]
-[connection signal="area_entered" from="AmmoManager/PickupArea" to="AmmoManager" method="_on_PickupArea_area_entered"]
+[connection signal="area_entered" from="PickUpManager/PickupArea" to="PickUpManager" method="_on_PickupArea_area_entered"]
 [connection signal="damage_taken" from="HurtBox" to="." method="_on_HurtBox_damage_taken"]
