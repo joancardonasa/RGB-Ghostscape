@@ -17,6 +17,7 @@ export(float) var camera_shake_duration = 0.06
 
 onready var animation_player = $AnimationPlayer
 onready var shoot_sfx = $ShootSFX
+onready var reload_sfx = $ReloadSFX
 
 var hitscan_raycast = null
 var ammo_manager = null
@@ -43,7 +44,7 @@ func fire():
         animation_player.play("Fire")
 #        $"%MuzzleFlash".restart()
 #        $"%MuzzleFlash".emitting = true
-        shoot_sfx.play()
+        Sound.play(shoot_sfx)
         Utils.camera_shake(camera_shake_intensity, camera_shake_duration)
         emit_signal("weapon_shot", crosshair_scale_shot_time)
 
@@ -111,5 +112,6 @@ func _input(event):
 
 
 func start_reload_anim():
+    Sound.play(reload_sfx)
     is_reloading = true
     animation_player.play("Reload")

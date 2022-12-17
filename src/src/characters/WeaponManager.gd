@@ -2,6 +2,7 @@ extends Spatial
 
 onready var weapon_socket = $WeaponSocket
 onready var weapons = $WeaponSocket.get_children()
+onready var change_sfx = $ChangeSFX
 
 var active_weapon = null
 var ammo_manager = null
@@ -49,6 +50,7 @@ func determine_weapon_change(event: InputEvent):
 
     if active_weapon.is_reloading: return
     set_new_active_weapon(weapons[new_index])
+    Sound.play(change_sfx)
 
 
 func set_new_active_weapon(weapon: Weapon):

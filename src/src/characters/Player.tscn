@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://src/characters/Player.gd" type="Script" id=1]
 [ext_resource path="res://src/spells/SpellController.gd" type="Script" id=2]
@@ -11,10 +11,15 @@
 [ext_resource path="res://src/gameplay/weapons/AssaultRifle.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/characters/AmmoManager.gd" type="Script" id=10]
 [ext_resource path="res://sound/weapons/Pistol Shot 7.wav" type="AudioStream" id=11]
-[ext_resource path="res://src/gameplay/Pickups/PickupManager.gd" type="Script" id=11]
+[ext_resource path="res://sound/weapons/Gun Pickup 6.wav" type="AudioStream" id=12]
 [ext_resource path="res://src/UI/HUD.tscn" type="PackedScene" id=13]
+[ext_resource path="res://src/gameplay/Pickups/PickupManager.gd" type="Script" id=14]
+[ext_resource path="res://sound/weapons/Reload 3.wav" type="AudioStream" id=15]
+[ext_resource path="res://sound/weapons/Reload 5.wav" type="AudioStream" id=16]
 [ext_resource path="res://src/characters/Camera.gd" type="Script" id=17]
 [ext_resource path="res://src/characters/PlayerHurtbox.gd" type="Script" id=18]
+[ext_resource path="res://sound/weapons/Machine Gun Shot 2.wav" type="AudioStream" id=19]
+[ext_resource path="res://sound/weapons/AR Single Shot (Suppressed) 3.wav" type="AudioStream" id=20]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.411191
@@ -132,24 +137,32 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.573, -0.57, 0.216 )
 [node name="Gun" parent="Head/WeaponManager/WeaponSocket" instance=ExtResource( 6 )]
 is_active = true
 
-[node name="ShootSFX" type="AudioStreamPlayer3D" parent="Head/WeaponManager/WeaponSocket/Gun"]
+[node name="ShootSFX" type="AudioStreamPlayer" parent="Head/WeaponManager/WeaponSocket/Gun"]
 stream = ExtResource( 11 )
-unit_db = -5.0
-max_db = 0.5
+volume_db = -5.0
+
+[node name="ReloadSFX" type="AudioStreamPlayer" parent="Head/WeaponManager/WeaponSocket/Gun"]
+stream = ExtResource( 15 )
 
 [node name="AssaultRifle" parent="Head/WeaponManager/WeaponSocket" instance=ExtResource( 9 )]
 
-[node name="ShootSFX" type="AudioStreamPlayer3D" parent="Head/WeaponManager/WeaponSocket/AssaultRifle"]
-stream = ExtResource( 11 )
-unit_db = -10.0
+[node name="ShootSFX" type="AudioStreamPlayer" parent="Head/WeaponManager/WeaponSocket/AssaultRifle"]
+stream = ExtResource( 20 )
+volume_db = -10.0
+
+[node name="ReloadSFX" type="AudioStreamPlayer" parent="Head/WeaponManager/WeaponSocket/AssaultRifle"]
+stream = ExtResource( 16 )
 
 [node name="Minigun" parent="Head/WeaponManager/WeaponSocket" instance=ExtResource( 7 )]
 ammo_type = 1
 damage = 1
 
-[node name="ShootSFX" type="AudioStreamPlayer3D" parent="Head/WeaponManager/WeaponSocket/Minigun"]
-stream = ExtResource( 11 )
-unit_db = -20.0
+[node name="ShootSFX" type="AudioStreamPlayer" parent="Head/WeaponManager/WeaponSocket/Minigun"]
+stream = ExtResource( 19 )
+volume_db = -10.0
+
+[node name="ReloadSFX" type="AudioStreamPlayer" parent="Head/WeaponManager/WeaponSocket/Minigun"]
+stream = ExtResource( 16 )
 
 [node name="WeaponHitscanRaycast" type="RayCast" parent="Head/WeaponManager" groups=["WeaponHitscanRaycast"]]
 cast_to = Vector3( 0, 0, -200 )
@@ -158,6 +171,9 @@ collide_with_areas = true
 collide_with_bodies = false
 debug_shape_custom_color = Color( 0.0745098, 0.870588, 0.627451, 1 )
 
+[node name="ChangeSFX" type="AudioStreamPlayer" parent="Head/WeaponManager"]
+stream = ExtResource( 12 )
+
 [node name="SpellController" type="Node" parent="."]
 script = ExtResource( 2 )
 startingSpell = ExtResource( 3 )
@@ -165,7 +181,7 @@ startingSpell = ExtResource( 3 )
 [node name="SceneTransition" parent="." instance=ExtResource( 5 )]
 
 [node name="PickUpManager" type="Spatial" parent="." groups=["PickupManager"]]
-script = ExtResource( 11 )
+script = ExtResource( 14 )
 
 [node name="PickupArea" type="Area" parent="PickUpManager"]
 collision_layer = 0
