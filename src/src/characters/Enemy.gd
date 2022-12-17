@@ -23,7 +23,7 @@ func _ready():
     player = Utils.get_player()
     card_manager = Utils.get_card_manager()
     card_manager.connect("Enemy_Reveal", self, "_determine_visibility")
-    _determine_visibility(card_manager.current_card.reveal_enemies)
+    _determine_visibility(Utils.coalesce(card_manager.current_card.get("reveal_enemies"), false))
 
     pickup_container = Utils.get_pickup_container()
     hit_anim_timer.connect("timeout", self, "_on_HitAnimTimer_timeout")
@@ -68,4 +68,4 @@ func _die():
     queue_free()
 
 func _on_HitAnimTimer_timeout():
-    _determine_visibility(card_manager.current_card.reveal_enemies)
+    _determine_visibility(Utils.coalesce(card_manager.current_card.get("reveal_enemies"), false))

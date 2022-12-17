@@ -68,3 +68,8 @@ func get_camera():
 
 func camera_shake(intensity, duration):
     get_camera().shake(intensity, duration)
+
+func coalesce(value, default_value):
+    if value == null:
+        return default_value
+    return value

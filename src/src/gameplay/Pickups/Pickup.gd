@@ -6,7 +6,7 @@ func _ready():
     card_manager.connect("Pickup_Reveal", self, "_on_Card_PickupReveal")
     card_manager.connect("Pickup_Delete", self, "_on_Card_PickupDelete")
 
-    _determine_visibility(card_manager.current_card.reveal_pickups)
+    _determine_visibility(Utils.coalesce(card_manager.current_card.get("reveal_pickups"),false))
 
 
 # Card functionality

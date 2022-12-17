@@ -2,7 +2,7 @@
 
 [ext_resource path="res://fonts/OutlineFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/UI/UI_Card.gd" type="Script" id=2]
-[ext_resource path="res://assets/UI/crossed-sabres.png" type="Texture" id=3]
+[ext_resource path="res://assets/cards/crossed-sabres.png" type="Texture" id=3]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 1, 1, 1 )

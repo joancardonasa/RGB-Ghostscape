@@ -6,7 +6,6 @@ export(String) var name = "[Blue] Heal"
 export(String) var tooltip = "Heals 1 Hit, Breaks on use"
 export(float) var Duration = 5.0
 export(Color, RGB) var col = Color(0, 0, 1)
-export(bool) var reveal_enemies = false
 export(bool) var reveal_pickups = true
 export(Texture) var icon
 

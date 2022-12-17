@@ -2,7 +2,7 @@
 
 [ext_resource path="res://fonts/Kenney Pixel Square.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://src/UI/UI_CardBoxItem.gd" type="Script" id=2]
-[ext_resource path="res://assets/UI/crossed-sabres.png" type="Texture" id=3]
+[ext_resource path="res://assets/cards/crossed-sabres.png" type="Texture" id=3]
 [ext_resource path="res://sound/UI/cardShove3.ogg" type="AudioStream" id=4]
 
 [sub_resource type="StyleBoxFlat" id=4]

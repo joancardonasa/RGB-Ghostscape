@@ -1,7 +1,7 @@
 [gd_resource type="Resource" load_steps=3 format=2]
 
 [ext_resource path="res://src/gameplay/cards/CardGreen.gd" type="Script" id=1]
-[ext_resource path="res://assets/UI/running-shoe-double.png" type="Texture" id=2]
+[ext_resource path="res://assets/cards/running-shoe-double.png" type="Texture" id=2]
 
 [resource]
 script = ExtResource( 1 )
@@ -10,7 +10,5 @@ tooltip = ""
 Duration = 2.5
 SpeedMult = 5.0
 col = Color( 0, 0.505882, 0.262745, 1 )
-reveal_enemies = false
-reveal_pickups = false
 reveal_platforms = true
 icon = ExtResource( 2 )
