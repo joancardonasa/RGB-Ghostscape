@@ -44,9 +44,9 @@ func _on_EnemySpawnTimer_timeout():
 
 func _on_WaveManager_wave_started(current_wave):
     # 1.5, 1.4, ..., 0.5 at Wave 10
-    spawn_timer.wait_time = clamp(0.5 - (current_wave-1)*0.1, 0.2, 1.5)
+    spawn_timer.wait_time = clamp(1.0 - (current_wave-1)*0.2, 0.2, 1.5)
     spawn_timer.start()
-    enemy_speed = clamp(enemy_speed + 1, 8, 20)
+    enemy_speed = clamp(enemy_speed + 1, 6, 20)
 
 
 func _on_WaveManager_rest_started():

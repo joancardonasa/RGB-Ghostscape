@@ -165,6 +165,7 @@ volume_db = -10.0
 stream = ExtResource( 16 )
 
 [node name="WeaponHitscanRaycast" type="RayCast" parent="Head/WeaponManager" groups=["WeaponHitscanRaycast"]]
+enabled = true
 cast_to = Vector3( 0, 0, -200 )
 collision_mask = 512
 collide_with_areas = true

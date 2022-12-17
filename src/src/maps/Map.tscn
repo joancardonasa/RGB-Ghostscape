@@ -54,6 +54,7 @@ script = ExtResource( 9 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -502.564, -155.51, 107.076 )
 
 [node name="EnemyManager" parent="." instance=ExtResource( 2 )]
+enemy_speed = 6.0
 
 [node name="EnemySpawnTimer" parent="EnemyManager" index="0"]
 wait_time = 1.5
@@ -68,7 +69,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -560.708, -155.903, 36.7638 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -544.105, -105.404, -6.23296 )
 
 [node name="Position3D2" type="Position3D" parent="EnemyManager/EnemySpawnPositions" index="3"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -418.434, 10.6403, -72.2427 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -418.434, -149.441, -72.2427 )
 
 [node name="CSGCombinerOld" type="CSGCombiner" parent="."]
 material_override = SubResource( 4 )
