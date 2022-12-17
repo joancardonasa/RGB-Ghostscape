@@ -98,11 +98,10 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Retro Magic"
-config/description="You are the Arena fighter, use your magic to defeat your enemies."
+config/name="RGB GhostScape"
 run/main_scene="res://src/main/Main.tscn"
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
-config/icon="res://screenshots/T-Icon.png"
+config/icon="res://assets/icon.png"
 
 [audio]
 
