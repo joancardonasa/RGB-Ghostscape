@@ -1,13 +1,14 @@
 [gd_resource type="Resource" load_steps=3 format=2]
 
-[ext_resource path="res://src/gameplay/cards/CardBlueHeal.gd" type="Script" id=1]
+[ext_resource path="res://src/gameplay/cards/CardGreenHeal.gd" type="Script" id=1]
 [ext_resource path="res://assets/cards/health-normal.png" type="Texture" id=2]
 
 [resource]
 script = ExtResource( 1 )
-name = "[Blue] Heal"
+name = "[Green] Heal"
 tooltip = "Heals 1 Hit, Breaks on use"
-Duration = 5.0
-col = Color( 0.054902, 0.482353, 0.682353, 1 )
-reveal_pickups = true
+Duration = 2.0
+SpeedMult = 2.0
+col = Color( 0, 0.505882, 0.262745, 1 )
+reveal_platforms = true
 icon = ExtResource( 2 )
