@@ -7,6 +7,7 @@ var previewCount = 1
 onready var _label_count: Label = $Background/MarginContainer/VBoxContainer/Label
 onready var _background: Button = $Background
 onready var _icon: TextureRect = $Background/MarginContainer/VBoxContainer/Icon
+onready var _pick_up_sfx: AudioStreamPlayer = $PickUpSFX
 
 signal card_entered(card)
 signal card_exited(card)
@@ -26,6 +27,7 @@ func get_drag_data(_position: Vector2):
     set_drag_preview(_preview_drag())
     previewCount = count - 1 if count < 10 else 10
     _reflect_count(previewCount)
+    Sound.play(_pick_up_sfx)
     return self
 
 func _set_card(card: Resource, card_count: int):
@@ -50,7 +52,6 @@ func add_card(amount: int):
     count += amount
     previewCount += amount
     _reflect_count(previewCount)
-    
 
 
 func _reflect_count(new_count: int):
