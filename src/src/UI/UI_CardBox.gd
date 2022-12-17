@@ -3,6 +3,8 @@ extends Container
 signal CardBox_Enabled(enabled)
 
 onready var container = $ColorRect/HBoxContainer
+onready var open_sfx = $OpenSFX
+onready var close_sfx = $CloseSFX
 
 func _ready():
     set_active(false)
@@ -17,6 +19,7 @@ func _input(event):
 func set_active(enabled: bool):
     visible = enabled
     emit_signal("CardBox_Enabled", enabled)
+    Sound.play(open_sfx if enabled else close_sfx)
     if(enabled):
         Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
     else:
