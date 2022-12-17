@@ -131,13 +131,13 @@ transform = Transform( -2.9976, 0, -0.119921, 0, 1, 0, 0.119921, 0, -2.9976, -54
 transform = Transform( -1.452, 0, 2.6252, 0, 1, 0, -2.6252, 0, -1.452, -555.052, -100.566, -34.9659 )
 
 [node name="Dash20" parent="Platforms" instance=ExtResource( 10 )]
-transform = Transform( 2.28895, 0, 1.93925, 0, 1, 0, -1.93925, 0, 2.28895, -556.751, -79.3108, 67.9928 )
+transform = Transform( 2.28895, 0, 1.93925, 0, 1, 0, -1.93925, 0, 2.28895, -556.751, -82.1881, 67.9928 )
 
 [node name="Dash21" parent="Platforms" instance=ExtResource( 10 )]
-transform = Transform( 2.02271, 0, -2.21554, 0, 1, 0, 2.21554, 0, 2.02271, -558.805, -79.3108, 103.409 )
+transform = Transform( 2.02271, 0, -2.21554, 0, 1, 0, 2.21554, 0, 2.02271, -558.805, -82.1881, 103.409 )
 
 [node name="Dash22" parent="Platforms" instance=ExtResource( 10 )]
-transform = Transform( -2.23946, 0, -1.99619, 0, 1, 0, 1.99619, 0, -2.23946, -593.646, -79.3108, 98.3365 )
+transform = Transform( -2.23946, 0, -1.99619, 0, 1, 0, 1.99619, 0, -2.23946, -593.646, -82.1881, 98.3365 )
 
 [node name="Dash23" parent="Platforms" instance=ExtResource( 10 )]
 transform = Transform( 1.69455, 0, -2.47557, 0, 1, 0, 2.47557, 0, 1.69455, -666.175, -124.591, -21.689 )
