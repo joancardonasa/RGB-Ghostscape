@@ -1,10 +1,9 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/characters/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://assets/enemies/ghost_hidden.material" type="Material" id=2]
 [ext_resource path="res://src/other/Stats.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/characters/EnemyHurtbox.gd" type="Script" id=4]
-[ext_resource path="res://assets/enemies/ghost.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/enemies/ghost_hit.material" type="Material" id=6]
 [ext_resource path="res://assets/enemies/ghost.material" type="Material" id=7]
 [ext_resource path="res://sound/enemies/Mud 7.wav" type="AudioStream" id=8]
@@ -20,7 +19,7 @@ height = 1.52124
 
 [sub_resource type="BoxShape" id=8]
 
-[node name="Enemy" type="KinematicBody" groups=["Enemy"]]
+[node name="Enemy2" type="KinematicBody" groups=["Enemy"]]
 collision_layer = 4
 collision_mask = 5
 script = ExtResource( 1 )
@@ -28,9 +27,6 @@ speed = 8
 normal_material = ExtResource( 7 )
 hidden_material = ExtResource( 2 )
 hit_material = ExtResource( 6 )
-
-[node name="ghost" parent="." instance=ExtResource( 5 )]
-transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 2.38966, 0 )
 
 [node name="Stats" parent="." instance=ExtResource( 3 )]
 max_HP = 3

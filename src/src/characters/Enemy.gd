@@ -1,4 +1,5 @@
 extends KinematicBody
+class_name Enemy
 
 var EnemyDeathScene = preload("res://src/characters/EnemyDeathScene.tscn")
 
@@ -36,10 +37,14 @@ func _on_PathUpdateTimer_timeout():
         nav_agent.set_target_location(player.global_transform.origin)
         direction = global_transform.origin.direction_to(nav_agent.get_next_location())
 
-func _physics_process(_delta):
+func _move():
     if is_instance_valid(player) and _moving:
         move_and_slide(direction.normalized() * speed, Vector3.UP)
         look_at(player.global_transform.origin, Vector3.UP)
+
+func _physics_process(_delta):
+    _move()
+    
 
 func _determine_visibility(enable: bool):
     $ghost/mesh.set_surface_material(3, 

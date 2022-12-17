@@ -1,6 +1,7 @@
 extends Spatial
 
-var Enemy = preload("res://src/characters/Enemy.tscn")
+var EnemyGhost = preload("res://src/characters/EnemyGhost.tscn")
+var BatGhost = preload("res://src/characters/EnemyBatGhost.tscn")
 
 # Array of Position3D nodes
 onready var enemy_spawn_positions: Array = $EnemySpawnPositions.get_children()
@@ -16,7 +17,12 @@ func _ready():
 func spawn_enemy():
     # TODO: Node where we dump enemies, should be map, or wherever player is
     var main = get_parent()
-    var enemy = Enemy.instance()
+
+    var enemy
+    if Utils.roll_probability(0.25):
+        enemy = BatGhost.instance()
+    else:
+        enemy = EnemyGhost.instance()
     main.add_child(enemy)
 
     enemy.speed = enemy_speed
