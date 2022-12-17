@@ -50,7 +50,6 @@ var _invulnerable: bool = false
 
 func _ready():
     # Hides the cursor
-    Sound.get_node("RestartSound").play()
     Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
     # warning-ignore:return_value_discarded
     var card_manager = Utils.get_card_manager()
