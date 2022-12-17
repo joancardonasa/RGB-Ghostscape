@@ -42,7 +42,7 @@ func _physics_process(_delta):
         look_at(player.global_transform.origin, Vector3.UP)
 
 func _determine_visibility(enable: bool):
-    $ghost/ghost.set_surface_material(2, 
+    $ghost/mesh.set_surface_material(3, 
         normal_material if enable else hidden_material)
     hurtbox.phased = not enable
 
@@ -50,7 +50,7 @@ func _determine_visibility(enable: bool):
 # Health/Damage
 func _on_Hurtbox_damage_taken(amount: int):
     stats.take_hit(amount)
-    $ghost/ghost.set_surface_material(2, hit_material)
+    $ghost/mesh.set_surface_material(3, hit_material)
     hit_anim_timer.start()
 
 func _on_Hurtbox_player_collision(player_hurtbox : Area):

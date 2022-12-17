@@ -30,7 +30,7 @@ hidden_material = ExtResource( 2 )
 hit_material = ExtResource( 6 )
 
 [node name="ghost" parent="." instance=ExtResource( 5 )]
-transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 2.32109, 0 )
+transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 2.38966, 0 )
 
 [node name="Stats" parent="." instance=ExtResource( 3 )]
 max_HP = 3
