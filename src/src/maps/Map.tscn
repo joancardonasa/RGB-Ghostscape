@@ -54,10 +54,34 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -689.418, -157.82, -74.6906 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -560.708, -155.903, 36.7638 )
 
 [node name="Position3D6" type="Position3D" parent="EnemyManager/EnemySpawnPositions" index="2"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -544.105, -105.404, -6.23296 )
+transform = Transform( 0.98525, 0, -0.171121, 0, 1, 0, 0.171121, 0, 0.98525, -544.105, -97.5806, -0.621792 )
 
-[node name="Position3D2" type="Position3D" parent="EnemyManager/EnemySpawnPositions" index="3"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -418.434, 10.6403, -72.2427 )
+[node name="Position3D7" type="Position3D" parent="EnemyManager/EnemySpawnPositions" index="3"]
+transform = Transform( 0.98525, 0, -0.171121, 0, 1, 0, 0.171121, 0, 0.98525, -613.351, -97.5806, 120.622 )
+
+[node name="Position3D8" type="Position3D" parent="EnemyManager/EnemySpawnPositions" index="4"]
+transform = Transform( 0.98525, 0, -0.171121, 0, 1, 0, 0.171121, 0, 0.98525, -613.351, -152.483, 120.622 )
+
+[node name="Position3D9" type="Position3D" parent="EnemyManager/EnemySpawnPositions" index="5"]
+transform = Transform( 0.98525, 0, -0.171121, 0, 1, 0, 0.171121, 0, 0.98525, -588.372, -152.483, 34.9559 )
+
+[node name="Position3D10" type="Position3D" parent="EnemyManager/EnemySpawnPositions" index="6"]
+transform = Transform( 0.98525, 0, -0.171121, 0, 1, 0, 0.171121, 0, 0.98525, -507.433, -152.483, 34.9559 )
+
+[node name="Position3D11" type="Position3D" parent="EnemyManager/EnemySpawnPositions" index="7"]
+transform = Transform( 0.98525, 0, -0.171121, 0, 1, 0, 0.171121, 0, 0.98525, -507.433, -152.483, -105.976 )
+
+[node name="Position3D12" type="Position3D" parent="EnemyManager/EnemySpawnPositions" index="8"]
+transform = Transform( 0.98525, 0, -0.171121, 0, 1, 0, 0.171121, 0, 0.98525, -695.668, -152.483, -105.976 )
+
+[node name="Position3D13" type="Position3D" parent="EnemyManager/EnemySpawnPositions" index="9"]
+transform = Transform( 0.98525, 0, -0.171121, 0, 1, 0, 0.171121, 0, 0.98525, -695.668, -152.483, 28.1571 )
+
+[node name="Position3D14" type="Position3D" parent="EnemyManager/EnemySpawnPositions" index="10"]
+transform = Transform( 0.98525, 0, -0.171121, 0, 1, 0, 0.171121, 0, 0.98525, -505.449, -152.483, 28.1571 )
+
+[node name="Position3D15" type="Position3D" parent="EnemyManager/EnemySpawnPositions" index="11"]
+transform = Transform( 0.98525, 0, -0.171121, 0, 1, 0, 0.171121, 0, 0.98525, -601.848, -125.641, 101.973 )
 
 [node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="."]
 navmesh = SubResource( 1 )
@@ -125,7 +149,7 @@ transform = Transform( -2.40835, 0, 1.7888, 0, 1, 0, -1.7888, 0, -2.40835, -498.
 transform = Transform( -2.9976, 0, -0.119921, 0, 1, 0, 0.119921, 0, -2.9976, -584.465, -159.375, -65.7314 )
 
 [node name="Dash18" parent="Platforms" instance=ExtResource( 10 )]
-transform = Transform( -2.9976, 0, -0.119921, 0, 1, 0, 0.119921, 0, -2.9976, -544.835, -100.566, -10.7472 )
+transform = Transform( -2.9976, 0, -0.119921, 0, 1, 0, 0.119921, 0, -2.9976, -544.835, -101.623, -10.7472 )
 
 [node name="Dash19" parent="Platforms" instance=ExtResource( 10 )]
 transform = Transform( -1.452, 0, 2.6252, 0, 1, 0, -2.6252, 0, -1.452, -555.052, -100.566, -34.9659 )
