@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/gameplay/game/WaveManager.gd" type="Script" id=1]
+[ext_resource path="res://sound/UI/Win sound 2.wav" type="AudioStream" id=2]
+[ext_resource path="res://sound/UI/Gong3.wav" type="AudioStream" id=3]
 
 [node name="WaveManager" type="Node"]
 script = ExtResource( 1 )
@@ -13,6 +15,12 @@ one_shot = true
 [node name="RestTimer" type="Timer" parent="."]
 wait_time = 10.0
 one_shot = true
+
+[node name="StartSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+
+[node name="CompleteSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
 
 [connection signal="timeout" from="WaveTimer" to="." method="_on_WaveTimer_timeout"]
 [connection signal="timeout" from="RestTimer" to="." method="_on_RestTimer_timeout"]

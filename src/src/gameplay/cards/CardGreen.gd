@@ -19,5 +19,7 @@ func Enter():
     if(reveal_platforms): _cardManager.emit_signal("Platform_Reveal",true)
 
 func Exit():
+    if len(_cardManager.deck) > 0 and Utils.coalesce(_cardManager.deck[1].get("reveal_platforms"), false):
+        return
     _cardManager.emit_signal("Player_SpeedMult",false, SpeedMult)
-    if(reveal_platforms): _cardManager.emit_signal("Platform_Reveal",false)
+    _cardManager.emit_signal("Platform_Reveal",false)

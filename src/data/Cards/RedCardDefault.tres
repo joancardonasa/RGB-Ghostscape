@@ -10,5 +10,4 @@ tooltip = ""
 Duration = 5.0
 col = Color( 0.647059, 0, 0.282353, 1 )
 reveal_enemies = true
-reveal_pickups = null
 icon = ExtResource( 2 )

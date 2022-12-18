@@ -2,7 +2,7 @@ extends Resource
 class_name CardRedDamage
 
 export(String) var name = "[Red] Double Damage"
-export(String) var tooltip = "Doubles damage, breaks on use"
+export(String) var tooltip = "Doubles damage"
 export(float) var Duration = 5.0
 export(float) var damage_multiplier = 2.0
 export(bool) var reveal_enemies = true
@@ -21,4 +21,3 @@ func Enter():
 func Exit():
     _cardManager.emit_signal("Enemy_Reveal", false)
     _cardManager.emit_signal("Player_DamageMult", false, damage_multiplier)
-    _cardManager.remove_from_deck(self)

@@ -28,6 +28,10 @@ signal Draw_Card(card, duration)
 
 var is_in_rest: bool = true
 
+var default_green = preload("res://data/cards/GreenCardDefault.tres")
+var default_red = preload("res://data/cards/RedCardDefault.tres")
+var default_blue = preload("res://data/cards/BlueCardDefault.tres")
+
 func _ready():
     deck = []
     for card in StartDeck:
@@ -63,6 +67,17 @@ func add_to_deck(card: Resource, idx: int):
 
 func remove_from_deck(card: Resource):
     deck.erase(card)
+    if deck.size() < 3:
+        var ncard
+        if "Green" in card.name:
+            ncard = default_green.duplicate()
+        elif "Red" in card.name:
+            ncard = default_red.duplicate()
+        elif "Blue" in card.name:
+            ncard = default_blue.duplicate()
+        _ui_deck._add_card(ncard)
+        add_to_deck(ncard, 0)
+
 
 
 func _on_WaveManager_rest_started():
