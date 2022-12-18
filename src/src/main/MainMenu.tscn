@@ -180,7 +180,9 @@ text = "Developers:
 Other:
 
 - RetroMagic by Kamyab Nazari
-- Music by Karl Casey @ White Bat Audio"
+- Music by Karl Casey @ White Bat Audio
+- Card Icons made by Delapouite and Lorc. Available on https://game-icons.net
+- Crosshairs and Card sounds by kenney @ https://kenney.nl"
 scroll_active = false
 
 [node name="CloseButton" type="Button" parent="CreditsPanel"]
