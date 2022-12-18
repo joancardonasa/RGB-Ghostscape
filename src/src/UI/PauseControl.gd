@@ -1,9 +1,13 @@
 extends CanvasLayer
 
+onready var music_checkbox = $PauseMenu/MusicCheckBox
 
 func _enter_tree():
     Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
     pause(true)
+
+func _ready():
+    music_checkbox.toggle_mode = MusicManager.get_node("MusicPlayer").playing
 
 func die():
     Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

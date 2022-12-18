@@ -106,7 +106,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CheckBox" type="CheckBox" parent="PauseMenu"]
+[node name="MusicCheckBox" type="CheckBox" parent="PauseMenu"]
 margin_left = 40.0
 margin_top = 32.0
 margin_right = 224.0
@@ -120,4 +120,4 @@ icon_align = 1
 [connection signal="pressed" from="PauseMenu/PauseMenuButtons/ContinueButton" to="." method="_on_ContinueButton_pressed"]
 [connection signal="pressed" from="PauseMenu/PauseMenuButtons/RestartButton" to="." method="_on_RestartButton_pressed"]
 [connection signal="pressed" from="PauseMenu/PauseMenuButtons/MainMenuButton" to="." method="_on_MainMenuButton_pressed"]
-[connection signal="toggled" from="PauseMenu/CheckBox" to="." method="_on_CheckBox_toggled"]
+[connection signal="toggled" from="PauseMenu/MusicCheckBox" to="." method="_on_CheckBox_toggled"]

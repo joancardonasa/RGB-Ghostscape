@@ -83,15 +83,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -600.0
-margin_top = -282.0
-margin_right = 600.0
-margin_bottom = -119.0
+margin_left = -650.0
+margin_top = -307.0
+margin_right = 650.0
+margin_bottom = 7.0
 custom_colors/default_color = Color( 0.92549, 1, 0.984314, 1 )
 custom_fonts/normal_font = SubResource( 4 )
 bbcode_enabled = true
-bbcode_text = "[center][color=red]R[/color][color=green]G[/color][color=blue]B[/color] GhostScape[/center]"
-text = "RGB GhostScape"
+bbcode_text = "[center][color=#a50048]R[/color][color=#008143]G[/color][color=#0e7bae]B[/color] GHOSTSCAPE[/center]"
+text = "RGB GHOSTSCAPE"
 fit_content_height = true
 
 [node name="SceneTransition" parent="." instance=ExtResource( 1 )]
