@@ -21,4 +21,3 @@ func Exit():
     if len(_cardManager.deck) > 0 and Utils.coalesce(_cardManager.deck[1].get("reveal_pickups"), false):
         return
     _cardManager.emit_signal("Pickup_Reveal", false)
-    _cardManager.emit_signal("Pickup_Delete")

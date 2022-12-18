@@ -21,4 +21,3 @@ func Enter():
 func Exit():
     _cardManager.emit_signal("Pickup_Reveal", false)
     _cardManager.emit_signal("Player_Invulnerable", false)
-    _cardManager.emit_signal("Pickup_Delete")
