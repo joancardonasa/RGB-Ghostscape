@@ -1,1 +1,6 @@
-# 7dfps-2022
+# RGB Ghostscape
+
+![Image](./banner.png)
+
+A game about buildin' decks, shootin' ghosts, and runnin' for your life!
+- This game was a submission to 7DFPS 2022 (https://tissueinu.itch.io/rgb-ghostscape)
