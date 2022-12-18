@@ -42,8 +42,8 @@ Other:
 
 ### Screenshots
 
-<img src="./docs/screenshot_1.png" alt="screenshot_1" width="1000"/>
+<img src="./docs/screenshot_1.PNG" alt="screenshot_1" width="1000"/>
 
-<img src="./docs/screenshot_2.png" alt="screenshot_2" width="1000"/>
+<img src="./docs/screenshot_2.PNG" alt="screenshot_2" width="1000"/>
 
 <img src="./src/assets/UI/jam_tutorial.png" alt="tutorial" width="1000"/>
