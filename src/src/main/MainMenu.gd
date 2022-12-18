@@ -12,7 +12,7 @@ func ready():
 func _on_PlayButton_pressed():
     var a_player = _transition.fade_in()
     yield(a_player, "animation_finished")
-    SceneManager.goto_scene("res://src/maps/Map.tscn")
+    SceneManager.goto_scene("res://src/main/Tutorial.tscn")
 
 func _on_ExitButton_pressed():
     get_tree().quit()
