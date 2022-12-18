@@ -1,8 +1,6 @@
 [gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://src/characters/Player.gd" type="Script" id=1]
-[ext_resource path="res://src/spells/SpellController.gd" type="Script" id=2]
-[ext_resource path="res://src/spells/Spell.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/other/Stats.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/core/SceneTransition.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/gameplay/weapons/Gun.tscn" type="PackedScene" id=6]
@@ -175,10 +173,6 @@ debug_shape_custom_color = Color( 0.0745098, 0.870588, 0.627451, 1 )
 
 [node name="ChangeSFX" type="AudioStreamPlayer" parent="Head/WeaponManager"]
 stream = ExtResource( 12 )
-
-[node name="SpellController" type="Node" parent="."]
-script = ExtResource( 2 )
-startingSpell = ExtResource( 3 )
 
 [node name="SceneTransition" parent="." instance=ExtResource( 5 )]
 

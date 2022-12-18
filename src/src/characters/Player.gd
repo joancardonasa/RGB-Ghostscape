@@ -4,7 +4,6 @@ extends KinematicBody
 
 # Playercontroller for movement
 
-onready var spell_controller = $SpellController
 onready var _transition = $SceneTransition;
 
 onready var main_cam = $Head/LeanGimbal/Camera
