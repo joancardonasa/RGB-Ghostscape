@@ -2,7 +2,7 @@ extends Resource
 
 class_name CardBlueinvulnerable
 
-export(String) var name = "[Blue] invulnerable"
+export(String) var name = "[Blue] Invulnerable"
 export(String) var tooltip = "Makes you invulnerable"
 export(float) var Duration = 5.0
 export(Color, RGB) var col = Color("#0e7bae")

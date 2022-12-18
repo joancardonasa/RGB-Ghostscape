@@ -9,6 +9,6 @@ name = "[Red] Double Damage"
 tooltip = "Doubles damage, breaks on use"
 Duration = 5.0
 damage_multiplier = 2.0
+reveal_enemies = true
 col = Color( 0.647059, 0, 0.282353, 1 )
-stop_enemies = false
 icon = ExtResource( 2 )

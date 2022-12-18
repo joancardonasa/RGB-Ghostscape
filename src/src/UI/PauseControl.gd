@@ -27,3 +27,7 @@ func _on_RestartButton_pressed():
 func _on_MainMenuButton_pressed():
     pause(false)
     SceneManager.goto_scene("res://src/main/MainMenu.tscn")
+
+
+func _on_CheckBox_toggled(button_pressed):
+    MusicManager.get_node("MusicPlayer").playing = button_pressed
