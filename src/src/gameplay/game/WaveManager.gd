@@ -48,6 +48,8 @@ func start_wave():
     wave_timer.start()
 
 func start_rest():
+    if current_wave >= last_wave:
+        SceneManager.goto_scene("res://src/UI/GameWonControl.tscn")
     hud.update_wave_info("Rest")
     current_state = WAVE_STATE.REST
     emit_signal("rest_started")
@@ -56,7 +58,7 @@ func start_rest():
 func start_start():
     hud.update_wave_info("Start")
     current_state = WAVE_STATE.REST
-    rest_timer.wait_time = 2
+    rest_timer.wait_time = 6
     rest_timer.start()
 
 var time_remaining_secs = 0
