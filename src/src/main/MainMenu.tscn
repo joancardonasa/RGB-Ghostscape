@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/core/SceneTransition.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/MainMenu.gd" type="Script" id=2]
@@ -55,6 +55,11 @@ corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
+
+[sub_resource type="DynamicFont" id=8]
+size = 20
+use_filter = true
+font_data = ExtResource( 6 )
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -199,7 +204,19 @@ custom_fonts/font = ExtResource( 5 )
 text = "Close"
 icon_align = 1
 
+[node name="MusicCheckBox" type="CheckBox" parent="."]
+margin_left = 40.0
+margin_top = 32.0
+margin_right = 224.0
+margin_bottom = 65.0
+custom_fonts/font = SubResource( 8 )
+pressed = true
+text = "Music [On/Off]"
+align = 1
+icon_align = 1
+
 [connection signal="pressed" from="MainMenuButtons/PlayButton" to="." method="_on_PlayButton_pressed"]
 [connection signal="pressed" from="MainMenuButtons/CreditsButton" to="." method="_on_CreditsButton_pressed"]
 [connection signal="pressed" from="MainMenuButtons/ExitButton" to="." method="_on_ExitButton_pressed"]
 [connection signal="pressed" from="CreditsPanel/CloseButton" to="." method="_on_CloseButton_pressed"]
+[connection signal="toggled" from="MusicCheckBox" to="." method="_on_MusicCheckBox_toggled"]
